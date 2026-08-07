@@ -36,7 +36,7 @@ const db = getFirestore(app);
 const PAYSTACK_PUBLIC_KEY = 'pk_test_ad1aa411e2e8cade2cbf911f346a07bbe0f018ea';
 
 // 2. ALOC API Config
-const API_TOKEN = 'ALOC-40639bd3a520191a8522';
+const API_TOKEN = '__INJECT_ALOC_TOKEN__';
 
 // 3. Application State Variables
 let questions = [];
@@ -301,7 +301,6 @@ async function loadUserUnlockedSubjects() {
 
   updateSubjectDropdownUI();
 }
-
 function updateSubjectDropdownUI() {
   const select = document.getElementById('subject');
   const options = select.options;
@@ -337,6 +336,7 @@ function handleStartExamClick() {
     }
   }
 }
+
 function triggerPaystackPayment(subjectOrType) {
   if (!currentUser || !currentUser.email) {
     alert("User session not found. Please log in again.");
