@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WAEC/NECO CBT Practice Engine</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Paystack Inline SDK -->
+  <script src="https://js.paystack.co/v2/inline.js"></script>
+</head>
+<body>
+
+  <div id="quiz-container">
+    <header>
+      <h2>WAEC/NECO CBT Practice Engine</h2>
+      <div id="user-badge" class="hidden">
+        Candidate: <span id="candidate-name"></span>
+      </div>
+      <div id="timer" class="hidden">
+        Time Remaining: <span id="timer-time">00:00</span>
+      </div>
+    </header>
+
+    <!-- 1. AUTHENTICATION & ACCOUNT PORTAL -->
+    <section id="auth-screen">
+      <div class="auth-tabs">
+        <button id="tab-login" class="tab-btn active">Log In</button>
+        <button id="tab-register" class="tab-btn">Create Account</button>
+        <button id="tab-reset" class="tab-btn">Forgot Password</button>
+      </div>
+
+      <!-- Log In Form -->
+      <form id="login-form" class="auth-form" onsubmit="return false;">
+        <h3>Candidate Login</h3>
+        <label for="login-email">Email Address:</label>
+        <input type="email" id="login-email" placeholder="Enter email" required />
+
+        <label for="login-password">Password:</label>
+        <input type="password" id="login-password" placeholder="Enter password" required />
+
+        <button type="submit" id="login-btn">Sign In & Proceed</button>
+      </form>
+
+      <!-- Register Form -->
+      <form id="register-form" class="auth-form hidden" onsubmit="return false;">
+        <h3>Create New Account</h3>
+        
+        <!-- Spam Notice Banner -->
+        <div style="background: #fffbe0; border: 1px solid #ffe58f; padding: 10px 14px; border-radius: 6px; margin-bottom: 15px; font-size: 13px; color: #856404;">
+          ⚠️ <strong>Note:</strong> After registering, check your email inbox for your verification link. If you don't see it within 1 minute, check your <strong>Spam/Junk folder</strong> and click <em>"Not Spam"</em>.
+        </div>
+
+        <label for="reg-name">Full Name:</label>
+        <input type="text" id="reg-name" placeholder="Full Name" required />
+
+        <label for="reg-email">Email Address:</label>
+        <input type="email" id="reg-email" placeholder="Email Address" required />
+
+        <label for="reg-password">Password:</label>
+        <input type="password" id="reg-password" placeholder="Minimum 6 characters" required />
+
+        <button type="submit" id="reg-btn">Send Verification Link</button>
+      </form>
+
+      <!-- Verification Step -->
+      <div id="verify-box" class="auth-form hidden">
+        <h3>Verify Email Address</h3>
+        <p class="subtitle">Enter the 6-digit verification token sent to your email.</p>
+        <input type="text" id="verify-code-input" placeholder="e.g. 482910" maxlength="6" />
+        <button id="confirm-verify-btn">Verify Account</button>
+      </div>
+
+      <!-- Password Reset Form -->
+      <form id="reset-form" class="auth-form hidden" onsubmit="return false;">
+        <h3>Reset Password</h3>
+        <p class="subtitle">Enter your registered email to receive a password reset link.</p>
+        <label for="reset-email">Email Address:</label>
+        <input type="email" id="reset-email" placeholder="Enter registered email" required />
+
+        <button type="submit" id="reset-btn">Send Reset Link</button>
+      </form>
+    </section>
+
+    <!-- 2. EXAM SETUP SCREEN -->
+    <section id="setup-screen" class="hidden">
+      <h3>Select Exam Settings</h3>
+
+      <label for="subject">Subject:</label>
+      <select id="subject">
+        <option value="english">English Language (Free)</option>
+        <option value="mathematics">Mathematics (Free)</option>
+        <option value="biology">Biology (🔒 ₦500)</option>
+        <option value="chemistry">Chemistry (🔒 ₦500)</option>
+        <option value="physics">Physics (🔒 ₦500)</option>
+        <option value="government">Government (🔒 ₦500)</option>
+        <option value="economics">Economics (🔒 ₦500)</option>
+        <option value="commerce">Commerce (🔒 ₦500)</option>
+        <option value="crk">CRK (🔒 ₦500)</option>
+        <option value="irk">IRK (🔒 ₦500)</option>
+        <option value="accounting">Financial Accounting (🔒 ₦500)</option>
+        <option value="geography">Geography (🔒 ₦500)</option>
+        <option value="agricultural-science">Agricultural Science (🔒 ₦500)</option>
+        <option value="literature">Literature-in-English (🔒 ₦500)</option>
+        <option value="civiceducation">Civic Education (🔒 ₦500)</option>
+      </select>
+
+      <label for="examtype">Exam Board / Type:</label>
+      <select id="examtype">
+        <option value="wassce">WAEC (WASSCE)</option>
+        <option value="neco">NECO</option>
+        <option value="utme">JAMB (UTME)</option>
+      </select>
+
+      <label for="question-limit">Number of Questions:</label>
+      <select id="question-limit">
+        <option value="10">10 Questions (Quick Practice)</option>
+        <option value="20">20 Questions (Standard)</option>
+        <option value="40">40 Questions (Full Test)</option>
+      </select>
+
+      <label for="exam-duration">Time Duration:</label>
+      <select id="exam-duration">
+        <option value="10">10 Minutes</option>
+        <option value="20" selected>20 Minutes</option>
+        <option value="30">30 Minutes</option>
+        <option value="45">45 Minutes</option>
+      </select>
+
+      <!-- UNLOCK ALL BUTTON -->
+      <button id="unlock-all-btn" style="background-color: #28a745; margin-bottom: 10px;">
+        🔓 Unlock ALL Subjects (₦2,000 Special Deal)
+      </button>
+
+      <button id="start-btn">Start Practice Test</button>
+      <button id="switch-user-btn" class="secondary-btn">Sign Out / Switch Account</button>
+    </section>
+
+    <!-- 3. ACTIVE EXAM SCREEN -->
+    <section id="exam-area" class="hidden">
+      <!-- Section/Passage Container -->
+      <div id="passage-container" class="passage-box hidden"></div>
+
+      <div id="question-box">
+        <h4 id="question-number">Question 1</h4>
+        <div id="question-text">Loading question text...</div>
+        <div id="options-container"></div>
+      </div>
+
+      <div class="navigation-btns">
+        <button id="prev-btn" disabled>Previous</button>
+        <button id="next-btn">Next</button>
+        <button id="submit-btn" class="hidden">Submit Exam</button>
+      </div>
+    </section>
+
+    <!-- 4. RESULTS & REVIEW SCREEN -->
+    <section id="score-screen" class="hidden">
+      <h3>Exam Results</h3>
+      <div id="final-score">
+        <p id="final-score-text"></p>
+      </div>
+
+      <div id="review-container"></div>
+
+      <button id="restart-btn">Take Another Test</button>
+    </section>
+
+    <!-- PROFESSIONAL DEVELOPER FOOTER -->
+    <footer class="app-footer">
+      <div id="footer-wa-link" class="footer-channel-link">
+        📢 Need verified WAEC & NECO ANSWERS? 
+        <a href="https://whatsapp.com/channel/0029VbDoREeFsn0avGYpKC0J" target="_blank" rel="noopener noreferrer">
+          Join our WhatsApp Channel →
+        </a>
+      </div>
+      
+      <div class="footer-divider"></div>
+      <p class="copyright-text">
+        &copy; 2026 <strong>Okeze Augustine Chigbo</strong>. All rights reserved.
+      </p>
+    </footer>
+
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
