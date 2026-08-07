@@ -2,11 +2,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebas
 import { 
   getAuth, 
   createUserWithEmailAndPassword, 
-  sendEmailVerification, 
   signInWithEmailAndPassword, 
-  sendPasswordResetEmail,
   signOut,
-  onAuthStateChanged 
+  onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { 
   getFirestore, 
@@ -35,7 +33,7 @@ const db = getFirestore(app);
 // Paystack Key Configuration
 const PAYSTACK_PUBLIC_KEY = 'pk_test_ad1aa411e2e8cade2cbf911f346a07bbe0f018ea';
 
-// 2. ALOC API Config
+// 2.ALOC API Config
 const API_TOKEN = '__INJECT_ALOC_TOKEN__';
 
 // 3. Application State Variables
@@ -82,12 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
   renderFooterChannelLink();
 
   onAuthStateChanged(auth, async (user) => {
-    if (user && user.emailVerified) {
+    if (user) {
       currentUser = {
         uid: user.uid,
         name: user.displayName || user.email.split('@')[0],
-        email: user.email,
-        emailVerified: user.emailVerified
+        email: user.email
       };
 
       await loadUserUnlockedSubjects();
@@ -175,36 +172,53 @@ async function handleRegistration(e) {
 
   if (!email || !password) return;
 
-  regBtn.innerText = "Creating Account...";
+  regBtn.innerText = "Processing...";
   regBtn.disabled = true;
 
   try {
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
 
     await setDoc(doc(db, "users", user.uid), {
       name: name,
       email: email,
+      otp: otp,
+      isVerified: false,
       unlockedSubjects: ['english', 'mathematics'],
       isAllUnlocked: false,
       createdAt: new Date().toISOString()
     });
 
-    const actionCodeSettings = {
-      url: 'https://waecnecoutmecbt.netlify.app/',
-      handleCodeInApp: true
-    };
+    const res = await fetch('/.netlify/functions/send-otp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, otp })
+    });
 
-    await sendEmailVerification(user, actionCodeSettings);
+    const result = await res.json();
+    if (!res.ok || !result.success) {
+      throw new Error(result.error || "Failed to dispatch verification code.");
+    }
+
     await signOut(auth);
+    alert(`Verification code sent to ${email}!\n\nPlease check your inbox.`);
 
-    alert(`Account created for ${email}!\n\nPlease check your email inbox and click the verification link before logging in.`);
+    const enteredOtp = prompt("Enter the 6-digit verification code sent to your email:");
+    if (enteredOtp === otp) {
+      await updateDoc(doc(db, "users", user.uid), { isVerified: true, otp: null });
+      alert("Account verified successfully! You can now log in.");
+    } else {
+      alert("Incorrect verification code. You can log in later after verifying.");
+    }
+
     document.getElementById('register-form').reset();
     switchAuthTab('login');
   } catch (error) {
     alert("Registration Failed: " + error.message);
   } finally {
-    regBtn.innerText = "Send Verification Link";
+    regBtn.innerText = "Register Account";
     regBtn.disabled = false;
   }
 }
@@ -221,15 +235,7 @@ async function handleLogin(e) {
   loginBtn.disabled = true;
 
   try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-
-    if (!user.emailVerified) {
-      alert("Account not activated! Please check your email inbox and click the verification link before logging in.");
-      await signOut(auth);
-      return;
-    }
-
+    await signInWithEmailAndPassword(auth, email, password);
     document.getElementById('login-form').reset();
   } catch (error) {
     alert("Login Failed: " + error.message);
@@ -246,17 +252,32 @@ async function handlePasswordReset(e) {
 
   if (!email) return;
 
-  resetBtn.innerText = "Sending Link...";
+  resetBtn.innerText = "Sending Code...";
   resetBtn.disabled = true;
 
   try {
-    const actionCodeSettings = {
-      url: 'https://waecnecoutmecbt.netlify.app/',
-      handleCodeInApp: true
-    };
+    const resetOtp = Math.floor(100000 + Math.random() * 900000).toString();
 
-    await sendPasswordResetEmail(auth, email, actionCodeSettings);
-    alert(`A password reset link has been dispatched to ${email}. Check your inbox or spam folder.`);
+    const res = await fetch('/.netlify/functions/send-reset-otp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, otp: resetOtp })
+    });
+
+    const result = await res.json();
+    if (!res.ok || !result.success) {
+      throw new Error(result.error || "Failed to dispatch reset code.");
+    }
+
+    alert(`A password reset code has been sent to ${email}.`);
+
+    const enteredOtp = prompt("Enter the 6-digit code sent to your email:");
+    if (enteredOtp === resetOtp) {
+      alert("Code verified successfully!");
+    } else {
+      alert("Incorrect verification code.");
+    }
+
     document.getElementById('reset-form').reset();
     switchAuthTab('login');
   } catch (error) {
@@ -274,7 +295,6 @@ async function handleSignOut() {
     console.error("Sign Out Error:", error);
   }
 }
-
 async function loadUserUnlockedSubjects() {
   try {
     const userDocRef = doc(db, "users", currentUser.uid);
@@ -301,6 +321,7 @@ async function loadUserUnlockedSubjects() {
 
   updateSubjectDropdownUI();
 }
+
 function updateSubjectDropdownUI() {
   const select = document.getElementById('subject');
   const options = select.options;
