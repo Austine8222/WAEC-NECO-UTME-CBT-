@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { 
   getAuth, 
-  createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 
   signOut,
   onAuthStateChanged
@@ -33,7 +32,7 @@ const db = getFirestore(app);
 // Paystack Key Configuration
 const PAYSTACK_PUBLIC_KEY = 'pk_test_ad1aa411e2e8cade2cbf911f346a07bbe0f018ea';
 
-// 2.ALOC API Config
+// 2. ALOC API Config
 const API_TOKEN = '__INJECT_ALOC_TOKEN__';
 
 // 3. Application State Variables
@@ -46,10 +45,13 @@ let currentUser = null;
 let unlockedSubjects = ['english', 'mathematics'];
 let isAllUnlocked = false;
 
+// Temporary staging data for multi-step flows
+let pendingRegData = null;
+let verifiedResetEmail = "";
+
 // Constant WhatsApp Channel Configuration
 const WHATSAPP_CHANNEL_URL = "https://whatsapp.com/channel/0029VbDoREeFsn0avGYpKC0J";
 
-// Local Fallback Question Bank
 const localBackupQuestions = [
   {
     id: 1,
@@ -75,12 +77,26 @@ const ALL_SUBJECTS = [
   'accounting', 'geography', 'agricultural-science', 'literature', 'civiceducation'
 ];
 
-// 4. Initial Event Binding & Auth Observer
 document.addEventListener('DOMContentLoaded', () => {
   renderFooterChannelLink();
 
   onAuthStateChanged(auth, async (user) => {
     if (user) {
+      try {
+        const userDocRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userDocRef);
+
+        if (userSnap.exists()) {
+          const userData = userSnap.data();
+          if (userData.isVerified === false) {
+            await signOut(auth);
+            return;
+          }
+        }
+      } catch (err) {
+        console.error("Auth check error:", err);
+      }
+
       currentUser = {
         uid: user.uid,
         name: user.displayName || user.email.split('@')[0],
@@ -91,7 +107,11 @@ document.addEventListener('DOMContentLoaded', () => {
       showSetupScreen();
     } else {
       currentUser = null;
-      showAuthScreen();
+      if (!document.getElementById('verify-box') || document.getElementById('verify-box').classList.contains('hidden')) {
+        if (!document.getElementById('new-password-box') || document.getElementById('new-password-box').classList.contains('hidden')) {
+          showAuthScreen();
+        }
+      }
     }
   });
 
@@ -101,7 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('login-form').addEventListener('submit', handleLogin);
   document.getElementById('register-form').addEventListener('submit', handleRegistration);
-  document.getElementById('reset-form').addEventListener('submit', handlePasswordReset);
+  document.getElementById('confirm-verify-btn').addEventListener('click', handleVerifyRegistrationOtp);
+  document.getElementById('reset-form').addEventListener('submit', handlePasswordResetRequest);
+  document.getElementById('confirm-reset-verify-btn').addEventListener('click', handleVerifyResetOtp);
+  document.getElementById('update-password-btn').addEventListener('click', handleSubmitNewPassword);
 
   document.getElementById('switch-user-btn').addEventListener('click', handleSignOut);
   document.getElementById('start-btn').addEventListener('click', handleStartExamClick);
@@ -150,6 +173,9 @@ function ensureChannelBanner(containerId) {
 function switchAuthTab(tab) {
   document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
   document.querySelectorAll('.auth-form').forEach(form => form.classList.add('hidden'));
+  document.getElementById('verify-box').classList.add('hidden');
+  document.getElementById('reset-verify-box').classList.add('hidden');
+  document.getElementById('new-password-box').classList.add('hidden');
 
   if (tab === 'login') {
     document.getElementById('tab-login').classList.add('active');
@@ -163,6 +189,7 @@ function switchAuthTab(tab) {
   }
 }
 
+// 1. SECURE REGISTRATION & OTP DISPATCH
 async function handleRegistration(e) {
   if (e) e.preventDefault();
   const name = document.getElementById('reg-name').value.trim();
@@ -170,31 +197,16 @@ async function handleRegistration(e) {
   const password = document.getElementById('reg-password').value;
   const regBtn = document.getElementById('reg-btn');
 
-  if (!email || !password) return;
+  if (!email || !password || !name) return;
 
-  regBtn.innerText = "Processing...";
+  regBtn.innerText = "Sending Code...";
   regBtn.disabled = true;
 
   try {
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
-
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-
-    await setDoc(doc(db, "users", user.uid), {
-      name: name,
-      email: email,
-      otp: otp,
-      isVerified: false,
-      unlockedSubjects: ['english', 'mathematics'],
-      isAllUnlocked: false,
-      createdAt: new Date().toISOString()
-    });
-
     const res = await fetch('/.netlify/functions/send-otp', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, otp })
+      body: JSON.stringify({ email })
     });
 
     const result = await res.json();
@@ -202,27 +214,62 @@ async function handleRegistration(e) {
       throw new Error(result.error || "Failed to dispatch verification code.");
     }
 
-    await signOut(auth);
-    alert(`Verification code sent to ${email}!\n\nPlease check your inbox.`);
-
-    const enteredOtp = prompt("Enter the 6-digit verification code sent to your email:");
-    if (enteredOtp === otp) {
-      await updateDoc(doc(db, "users", user.uid), { isVerified: true, otp: null });
-      alert("Account verified successfully! You can now log in.");
-    } else {
-      alert("Incorrect verification code. You can log in later after verifying.");
-    }
-
-    document.getElementById('register-form').reset();
-    switchAuthTab('login');
+    pendingRegData = { name, email, password };
+    
+    document.getElementById('register-form').classList.add('hidden');
+    document.getElementById('verify-box').classList.remove('hidden');
+    alert(`Verification code sent to ${email}. Please check your inbox.`);
   } catch (error) {
     alert("Registration Failed: " + error.message);
   } finally {
-    regBtn.innerText = "Register Account";
+    regBtn.innerText = "Send Verification Code";
     regBtn.disabled = false;
   }
 }
 
+async function handleVerifyRegistrationOtp() {
+  const enteredOtp = document.getElementById('verify-code-input').value.trim();
+  const verifyBtn = document.getElementById('confirm-verify-btn');
+
+  if (!enteredOtp || enteredOtp.length !== 6) {
+    alert("Please enter a valid 6-digit verification code.");
+    return;
+  }
+
+  verifyBtn.innerText = "Verifying & Creating Account...";
+  verifyBtn.disabled = true;
+
+  try {
+    const res = await fetch('/.netlify/functions/verify-and-register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: pendingRegData.email,
+        password: pendingRegData.password,
+        name: pendingRegData.name,
+        otp: enteredOtp
+      })
+    });
+
+    const result = await res.json();
+    if (!res.ok || !result.success) {
+      throw new Error(result.error || "Verification failed.");
+    }
+
+    alert("Account verified and created successfully! You can now log in.");
+    document.getElementById('register-form').reset();
+    document.getElementById('verify-code-input').value = "";
+    pendingRegData = null;
+    switchAuthTab('login');
+  } catch (error) {
+    alert("Verification Error: " + error.message);
+  } finally {
+    verifyBtn.innerText = "Verify Account";
+    verifyBtn.disabled = false;
+  }
+}
+
+// 2. SECURE LOGIN WITH VERIFICATION ENFORCEMENT
 async function handleLogin(e) {
   if (e) e.preventDefault();
   const email = document.getElementById('login-email').value.trim();
@@ -235,17 +282,33 @@ async function handleLogin(e) {
   loginBtn.disabled = true;
 
   try {
-    await signInWithEmailAndPassword(auth, email, password);
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    const userDocRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userDocRef);
+
+    if (userSnap.exists()) {
+      const userData = userSnap.data();
+      if (!userData.isVerified) {
+        await signOut(auth);
+        alert("Access Denied: Your account email is not verified.");
+        loginBtn.innerText = "Sign In & Proceed";
+        loginBtn.disabled = false;
+        return;
+      }
+    }
+
     document.getElementById('login-form').reset();
   } catch (error) {
     alert("Login Failed: " + error.message);
-  } finally {
     loginBtn.innerText = "Sign In & Proceed";
     loginBtn.disabled = false;
   }
 }
 
-async function handlePasswordReset(e) {
+// 3. SECURE PASSWORD RESET FLOW
+async function handlePasswordResetRequest(e) {
   if (e) e.preventDefault();
   const email = document.getElementById('reset-email').value.trim();
   const resetBtn = document.getElementById('reset-btn');
@@ -256,12 +319,10 @@ async function handlePasswordReset(e) {
   resetBtn.disabled = true;
 
   try {
-    const resetOtp = Math.floor(100000 + Math.random() * 900000).toString();
-
     const res = await fetch('/.netlify/functions/send-reset-otp', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, otp: resetOtp })
+      body: JSON.stringify({ email })
     });
 
     const result = await res.json();
@@ -269,22 +330,87 @@ async function handlePasswordReset(e) {
       throw new Error(result.error || "Failed to dispatch reset code.");
     }
 
+    verifiedResetEmail = email;
+    document.getElementById('reset-form').classList.add('hidden');
+    document.getElementById('reset-verify-box').classList.remove('hidden');
     alert(`A password reset code has been sent to ${email}.`);
+  } catch (error) {
+    alert("Password Reset Request Failed: " + error.message);
+  } finally {
+    resetBtn.innerText = "Send Reset Code";
+    resetBtn.disabled = false;
+  }
+}
 
-    const enteredOtp = prompt("Enter the 6-digit code sent to your email:");
-    if (enteredOtp === resetOtp) {
-      alert("Code verified successfully!");
-    } else {
-      alert("Incorrect verification code.");
+async function handleVerifyResetOtp() {
+  const enteredOtp = document.getElementById('reset-verify-code-input').value.trim();
+  const verifyBtn = document.getElementById('confirm-reset-verify-btn');
+
+  if (!enteredOtp || enteredOtp.length !== 6) {
+    alert("Please enter a valid 6-digit code.");
+    return;
+  }
+
+  verifyBtn.innerText = "Verifying Code...";
+  verifyBtn.disabled = true;
+
+  try {
+    const res = await fetch('/.netlify/functions/verify-reset-otp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: verifiedResetEmail, otp: enteredOtp })
+    });
+
+    const result = await res.json();
+    if (!res.ok || !result.success) {
+      throw new Error(result.error || "Invalid or expired OTP code.");
     }
 
+    alert("Code verified successfully! Please enter your new password.");
+    document.getElementById('reset-verify-box').classList.add('hidden');
+    document.getElementById('new-password-box').classList.remove('hidden');
+  } catch (error) {
+    alert("Verification Failed: " + error.message);
+  } finally {
+    verifyBtn.innerText = "Verify Code";
+    verifyBtn.disabled = false;
+  }
+}
+
+async function handleSubmitNewPassword() {
+  const newPassword = document.getElementById('new-password-input').value;
+  const updateBtn = document.getElementById('update-password-btn');
+
+  if (!newPassword || newPassword.length < 6) {
+    alert("Password must be at least 6 characters long.");
+    return;
+  }
+
+  updateBtn.innerText = "Updating Password...";
+  updateBtn.disabled = true;
+
+  try {
+    const res = await fetch('/.netlify/functions/update-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: verifiedResetEmail, newPassword })
+    });
+
+    const result = await res.json();
+    if (!res.ok || !result.success) {
+      throw new Error(result.error || "Failed to update password.");
+    }
+
+    alert("Password updated successfully! You can now log in with your new password.");
     document.getElementById('reset-form').reset();
+    document.getElementById('new-password-input').value = "";
+    verifiedResetEmail = "";
     switchAuthTab('login');
   } catch (error) {
-    alert("Password Reset Failed: " + error.message);
+    alert("Update Failed: " + error.message);
   } finally {
-    resetBtn.innerText = "Send Reset Link";
-    resetBtn.disabled = false;
+    updateBtn.innerText = "Save New Password";
+    updateBtn.disabled = false;
   }
 }
 
@@ -295,6 +421,7 @@ async function handleSignOut() {
     console.error("Sign Out Error:", error);
   }
 }
+
 async function loadUserUnlockedSubjects() {
   try {
     const userDocRef = doc(db, "users", currentUser.uid);
@@ -321,9 +448,9 @@ async function loadUserUnlockedSubjects() {
 
   updateSubjectDropdownUI();
 }
-
 function updateSubjectDropdownUI() {
   const select = document.getElementById('subject');
+  if (!select) return;
   const options = select.options;
 
   for (let i = 0; i < options.length; i++) {
