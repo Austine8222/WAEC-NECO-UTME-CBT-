@@ -21,7 +21,13 @@ exports.handler = async function(event, context) {
   }
 
   try {
-    const { email, password, name, otp } = JSON.parse(event.body);
+    const body = JSON.parse(event.body);
+    const email = body.email ? body.email.trim().toLowerCase() : '';
+    const password = body.password;
+    const name = body.name;
+    const otp = body.otp ? String(body.otp).trim() : '';
+
+    console.log("Attempting verification for email:", email, "with code:", otp);
 
     if (!email || !password || !name || !otp) {
       return { statusCode: 400, body: JSON.stringify({ error: 'Missing required fields' }) };
@@ -32,6 +38,7 @@ exports.handler = async function(event, context) {
     const snapshot = await usersRef.where('email', '==', email).where('isVerified', '==', false).get();
 
     if (snapshot.empty) {
+      console.log("No pending registration found in Firestore for email:", email);
       return { statusCode: 400, body: JSON.stringify({ error: 'No pending registration found or already verified.' }) };
     }
 
@@ -42,13 +49,18 @@ exports.handler = async function(event, context) {
       userDocData = doc.data();
     });
 
-    // 2. Validate OTP and check expiration (e.g., 10 minutes window)
-    if (!userDocData.otp || userDocData.otp !== otp) {
+    console.log("Found Firestore Record:", docId, "Stored OTP:", userDocData.otp, "User Submitted OTP:", otp);
+
+    // 2. Validate OTP and check expiration
+    const storedOtpStr = userDocData.otp ? String(userDocData.otp).trim() : '';
+    if (!storedOtpStr || storedOtpStr !== otp) {
+      console.log("OTP Mismatch! Stored:", storedOtpStr, "Received:", otp);
       return { statusCode: 400, body: JSON.stringify({ error: 'Invalid verification code.' }) };
     }
 
     const now = Date.now();
     if (userDocData.otpExpires && now > userDocData.otpExpires) {
+      console.log("OTP Expired. Current time:", now, "Expiration time:", userDocData.otpExpires);
       return { statusCode: 400, body: JSON.stringify({ error: 'Verification code has expired. Please register again.' }) };
     }
 
@@ -61,6 +73,7 @@ exports.handler = async function(event, context) {
         displayName: name
       });
     } catch (authErr) {
+      console.error("Firebase Auth Creation Error:", authErr.message);
       return { statusCode: 400, body: JSON.stringify({ error: authErr.message }) };
     }
 
@@ -81,6 +94,7 @@ exports.handler = async function(event, context) {
       await db.collection('users').doc(docId).delete();
     }
 
+    console.log("Account successfully verified and created for UID:", userRecord.uid);
     return {
       statusCode: 200,
       body: JSON.stringify({ success: true, message: 'Account verified and created successfully.' })
