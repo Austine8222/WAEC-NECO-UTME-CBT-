@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function own(uid) { return signedIn() && request.auth.uid == uid; }
+    function isAdmin() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+    }
+
+    match /questions/{questionId} {
+      allow read: if false;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /practiceGuides/{guideId} {
+      allow read: if false;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /users/{userId} {
+      allow read: if own(userId);
+      allow create, update, delete: if false;
+    }
+
+    match /exam_results/{resultId} {
+      allow create: if signedIn() && request.resource.data.candidateUid == request.auth.uid;
+      allow read: if signedIn() && resource.data.candidateUid == request.auth.uid;
+      allow update, delete: if false;
+    }
+
+    match /payments/{paymentId} {
+      allow read, write: if false;
+    }
+  }
+}

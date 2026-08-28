@@ -1,0 +1,3902 @@
+[
+  {
+    "subject": "english",
+    "examType": "wassce",
+    "question": "Choose the option that best completes the sentence: If I had known about the meeting, I ____ attended it.",
+    "options": [
+      "A. will have",
+      "B. would have",
+      "C. would",
+      "D. had"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The third conditional uses 'would have' + past participle for an unreal past condition."
+  },
+  {
+    "subject": "english",
+    "examType": "wassce",
+    "question": "Choose the word nearest in meaning to 'meticulous'.",
+    "options": [
+      "A. Careless",
+      "B. Thorough",
+      "C. Impatient",
+      "D. Noisy"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Meticulous means very careful and thorough about details."
+  },
+  {
+    "subject": "english",
+    "examType": "wassce",
+    "question": "Which word is correctly stressed on the second syllable?",
+    "options": [
+      "A. PREsent (noun)",
+      "B. reLAX",
+      "C. TAble",
+      "D. DOCtor"
+    ],
+    "correctAnswer": 1,
+    "explanation": "In 'relax', the primary stress falls on the second syllable."
+  },
+  {
+    "subject": "english",
+    "examType": "wassce",
+    "question": "Identify the figure of speech in: 'The wind whispered through the trees.'",
+    "options": [
+      "A. Simile",
+      "B. Hyperbole",
+      "C. Personification",
+      "D. Irony"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The wind is given the human action of whispering, which is personification."
+  },
+  {
+    "subject": "english",
+    "examType": "wassce",
+    "question": "Choose the correctly punctuated sentence.",
+    "options": [
+      "A. James said I am ready.",
+      "B. James said, 'I am ready.'",
+      "C. James said 'I am ready'.",
+      "D. James, said 'I am ready.'"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A direct quotation after a reporting clause is conventionally introduced with a comma and enclosed in quotation marks."
+  },
+  {
+    "subject": "mathematics",
+    "examType": "wassce",
+    "question": "Solve: 3x - 7 = 14.",
+    "options": [
+      "A. 5",
+      "B. 6",
+      "C. 7",
+      "D. 8"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Add 7 to both sides: 3x = 21. Divide by 3 to get x = 7."
+  },
+  {
+    "subject": "mathematics",
+    "examType": "wassce",
+    "question": "If y = 2x + 3, find y when x = 5.",
+    "options": [
+      "A. 10",
+      "B. 11",
+      "C. 13",
+      "D. 15"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Substitute x = 5: y = 2(5) + 3 = 13."
+  },
+  {
+    "subject": "mathematics",
+    "examType": "wassce",
+    "question": "A triangle has base 12 cm and perpendicular height 7 cm. Find its area.",
+    "options": [
+      "A. 42 cm²",
+      "B. 84 cm²",
+      "C. 19 cm²",
+      "D. 38 cm²"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Area = 1/2 × base × height = 1/2 × 12 × 7 = 42 cm²."
+  },
+  {
+    "subject": "mathematics",
+    "examType": "wassce",
+    "question": "What is the probability of obtaining an even number when a fair die is thrown once?",
+    "options": [
+      "A. 1/6",
+      "B. 1/3",
+      "C. 1/2",
+      "D. 2/3"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The even outcomes are 2, 4 and 6: 3 favourable outcomes out of 6, giving 1/2."
+  },
+  {
+    "subject": "mathematics",
+    "examType": "wassce",
+    "question": "Simplify: 2(3x - 4) + 5.",
+    "options": [
+      "A. 6x - 3",
+      "B. 6x - 8",
+      "C. 6x + 1",
+      "D. 3x + 1"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Expand to get 6x - 8, then add 5: 6x - 3."
+  },
+  {
+    "subject": "biology",
+    "examType": "wassce",
+    "question": "Which organelle is primarily responsible for aerobic respiration in a cell?",
+    "options": [
+      "A. Ribosome",
+      "B. Mitochondrion",
+      "C. Nucleus",
+      "D. Vacuole"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Mitochondria are the main sites of aerobic respiration and ATP production."
+  },
+  {
+    "subject": "biology",
+    "examType": "wassce",
+    "question": "The movement of water molecules across a selectively permeable membrane is called?",
+    "options": [
+      "A. Diffusion",
+      "B. Osmosis",
+      "C. Active transport",
+      "D. Transpiration"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Osmosis is the movement of water molecules through a selectively permeable membrane from higher to lower water potential."
+  },
+  {
+    "subject": "biology",
+    "examType": "wassce",
+    "question": "Which blood component is mainly involved in clotting?",
+    "options": [
+      "A. Red blood cells",
+      "B. Plasma",
+      "C. Platelets",
+      "D. Lymphocytes"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Platelets aggregate at damaged sites and help initiate blood clotting."
+  },
+  {
+    "subject": "biology",
+    "examType": "wassce",
+    "question": "Photosynthesis takes place mainly in the?",
+    "options": [
+      "A. Chloroplast",
+      "B. Nucleus",
+      "C. Mitochondrion",
+      "D. Golgi apparatus"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Chloroplasts contain chlorophyll and are the main site of photosynthesis in green plants."
+  },
+  {
+    "subject": "biology",
+    "examType": "wassce",
+    "question": "Which process produces genetically identical cells for growth and repair?",
+    "options": [
+      "A. Meiosis",
+      "B. Fertilization",
+      "C. Mitosis",
+      "D. Mutation"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Mitosis produces daughter cells with the same chromosome number and, normally, the same genetic information as the parent cell."
+  },
+  {
+    "subject": "chemistry",
+    "examType": "wassce",
+    "question": "What is the pH of a neutral solution at 25°C?",
+    "options": [
+      "A. 0",
+      "B. 5",
+      "C. 7",
+      "D. 14"
+    ],
+    "correctAnswer": 2,
+    "explanation": "At 25°C, a neutral aqueous solution has pH 7."
+  },
+  {
+    "subject": "chemistry",
+    "examType": "wassce",
+    "question": "Which gas is produced when an acid reacts with a carbonate?",
+    "options": [
+      "A. Oxygen",
+      "B. Hydrogen",
+      "C. Carbon dioxide",
+      "D. Nitrogen"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Acid + carbonate produces a salt, water and carbon dioxide gas."
+  },
+  {
+    "subject": "chemistry",
+    "examType": "wassce",
+    "question": "The atomic number of an element is equal to the number of its?",
+    "options": [
+      "A. Neutrons",
+      "B. Protons",
+      "C. Nucleons",
+      "D. Isotopes"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Atomic number is the number of protons in the nucleus of an atom."
+  },
+  {
+    "subject": "chemistry",
+    "examType": "wassce",
+    "question": "Which method is most suitable for separating ethanol from water?",
+    "options": [
+      "A. Filtration",
+      "B. Sublimation",
+      "C. Fractional distillation",
+      "D. Decantation"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Ethanol and water are miscible liquids with different boiling points, so fractional distillation is appropriate."
+  },
+  {
+    "subject": "chemistry",
+    "examType": "wassce",
+    "question": "What type of bond is formed by transfer of electrons between a metal and a non-metal?",
+    "options": [
+      "A. Covalent",
+      "B. Metallic",
+      "C. Ionic",
+      "D. Hydrogen"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Ionic bonding involves electrostatic attraction between oppositely charged ions formed after electron transfer."
+  },
+  {
+    "subject": "physics",
+    "examType": "wassce",
+    "question": "Which quantity is measured in newtons?",
+    "options": [
+      "A. Energy",
+      "B. Power",
+      "C. Force",
+      "D. Pressure"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The SI unit of force is the newton (N)."
+  },
+  {
+    "subject": "physics",
+    "examType": "wassce",
+    "question": "A body travels 120 m in 20 s. What is its average speed?",
+    "options": [
+      "A. 4 m/s",
+      "B. 5 m/s",
+      "C. 6 m/s",
+      "D. 8 m/s"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Average speed = distance/time = 120/20 = 6 m/s."
+  },
+  {
+    "subject": "physics",
+    "examType": "wassce",
+    "question": "Which instrument is used to measure electric current?",
+    "options": [
+      "A. Voltmeter",
+      "B. Ammeter",
+      "C. Galvanometer only",
+      "D. Barometer"
+    ],
+    "correctAnswer": 1,
+    "explanation": "An ammeter is connected in series to measure electric current."
+  },
+  {
+    "subject": "physics",
+    "examType": "wassce",
+    "question": "The energy possessed by a body because of its position is called?",
+    "options": [
+      "A. Kinetic energy",
+      "B. Chemical energy",
+      "C. Potential energy",
+      "D. Nuclear energy"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Potential energy is stored energy associated with position or configuration."
+  },
+  {
+    "subject": "physics",
+    "examType": "wassce",
+    "question": "Which colour of visible light has the shortest wavelength?",
+    "options": [
+      "A. Red",
+      "B. Yellow",
+      "C. Green",
+      "D. Violet"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Violet has the shortest wavelength and highest frequency in the visible spectrum."
+  },
+  {
+    "subject": "government",
+    "examType": "wassce",
+    "question": "The principle that government power is divided among the legislature, executive and judiciary is called?",
+    "options": [
+      "A. Rule of law",
+      "B. Separation of powers",
+      "C. Federal character",
+      "D. Franchise"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Separation of powers allocates governmental functions among different organs to prevent excessive concentration of power."
+  },
+  {
+    "subject": "government",
+    "examType": "wassce",
+    "question": "A constitution that can be amended through the ordinary legislative process is described as?",
+    "options": [
+      "A. Rigid",
+      "B. Flexible",
+      "C. Federal",
+      "D. Written"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A flexible constitution can be amended relatively easily through the normal law-making process."
+  },
+  {
+    "subject": "government",
+    "examType": "wassce",
+    "question": "The right of citizens to vote in elections is known as?",
+    "options": [
+      "A. Referendum",
+      "B. Franchise",
+      "C. Recall",
+      "D. Mandate"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Franchise means the legal right to vote."
+  },
+  {
+    "subject": "government",
+    "examType": "wassce",
+    "question": "Which institution is primarily responsible for making laws in a democratic state?",
+    "options": [
+      "A. Legislature",
+      "B. Judiciary",
+      "C. Civil service",
+      "D. Police"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The legislature debates and enacts laws, subject to constitutional limits."
+  },
+  {
+    "subject": "government",
+    "examType": "wassce",
+    "question": "A system in which citizens elect representatives to make decisions on their behalf is?",
+    "options": [
+      "A. Direct democracy",
+      "B. Representative democracy",
+      "C. Military rule",
+      "D. Monarchy"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Representative democracy operates through elected officials who act on behalf of citizens."
+  },
+  {
+    "subject": "economics",
+    "examType": "wassce",
+    "question": "The basic economic problem arises because resources are?",
+    "options": [
+      "A. Unlimited",
+      "B. Scarce relative to wants",
+      "C. Equally distributed",
+      "D. Free of charge"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Scarcity exists because resources are limited while human wants are virtually unlimited."
+  },
+  {
+    "subject": "economics",
+    "examType": "wassce",
+    "question": "An increase in quantity demanded caused by a fall in price is represented by?",
+    "options": [
+      "A. Movement along the demand curve",
+      "B. Shift of demand curve right",
+      "C. Shift of supply curve left",
+      "D. Movement along supply curve"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A price change causes movement along the existing demand curve rather than a shift."
+  },
+  {
+    "subject": "economics",
+    "examType": "wassce",
+    "question": "The reward for entrepreneurship is generally called?",
+    "options": [
+      "A. Rent",
+      "B. Wages",
+      "C. Interest",
+      "D. Profit"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Profit is the return to the entrepreneur after accounting for costs and risk."
+  },
+  {
+    "subject": "economics",
+    "examType": "wassce",
+    "question": "Inflation is best described as a sustained?",
+    "options": [
+      "A. Fall in the general price level",
+      "B. Rise in the general price level",
+      "C. Rise in unemployment only",
+      "D. Fall in money supply only"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Inflation is a sustained increase in the general level of prices of goods and services."
+  },
+  {
+    "subject": "economics",
+    "examType": "wassce",
+    "question": "Which market structure has many sellers offering differentiated products?",
+    "options": [
+      "A. Monopoly",
+      "B. Perfect competition",
+      "C. Monopolistic competition",
+      "D. Monopsony"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Monopolistic competition has many firms, product differentiation and relatively easy entry."
+  },
+  {
+    "subject": "commerce",
+    "examType": "wassce",
+    "question": "A document issued by a seller showing goods sold and the amount due is an?",
+    "options": [
+      "A. Invoice",
+      "B. Receipt",
+      "C. Quotation",
+      "D. Catalogue"
+    ],
+    "correctAnswer": 0,
+    "explanation": "An invoice requests payment and details goods supplied, quantities and prices."
+  },
+  {
+    "subject": "commerce",
+    "examType": "wassce",
+    "question": "The movement of goods from producer to final consumer is known as?",
+    "options": [
+      "A. Production",
+      "B. Distribution",
+      "C. Consumption",
+      "D. Advertising"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Distribution covers the activities involved in moving goods and services to consumers."
+  },
+  {
+    "subject": "commerce",
+    "examType": "wassce",
+    "question": "Which type of insurance protects a business against loss caused by fire?",
+    "options": [
+      "A. Life assurance",
+      "B. Fire insurance",
+      "C. Marine insurance",
+      "D. Motor insurance"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Fire insurance covers specified losses or damage resulting from fire."
+  },
+  {
+    "subject": "commerce",
+    "examType": "wassce",
+    "question": "A retailer who sells goods from a fixed shop is a?",
+    "options": [
+      "A. Itinerant trader",
+      "B. Hawker",
+      "C. Shopkeeper",
+      "D. Broker"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A shopkeeper operates a fixed retail outlet from which goods are sold."
+  },
+  {
+    "subject": "commerce",
+    "examType": "wassce",
+    "question": "Which document gives evidence that goods have been dispatched for carriage?",
+    "options": [
+      "A. Consignment note",
+      "B. Invoice",
+      "C. Receipt",
+      "D. Prospectus"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A consignment note records the goods handed to a carrier for transportation."
+  },
+  {
+    "subject": "crk",
+    "examType": "wassce",
+    "question": "Who interpreted Pharaoh's dreams in Egypt according to Genesis?",
+    "options": [
+      "A. Moses",
+      "B. Joseph",
+      "C. Aaron",
+      "D. Joshua"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Joseph interpreted Pharaoh's dreams and advised on preparing for the coming years of famine."
+  },
+  {
+    "subject": "crk",
+    "examType": "wassce",
+    "question": "The greatest commandment according to Jesus includes loving?",
+    "options": [
+      "A. Only one's family",
+      "B. God with all one's heart",
+      "C. Only one's neighbours",
+      "D. Wealth above all things"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Jesus taught that the greatest commandment is to love God with all one's heart, soul and mind."
+  },
+  {
+    "subject": "crk",
+    "examType": "wassce",
+    "question": "Which disciple denied Jesus three times?",
+    "options": [
+      "A. Peter",
+      "B. John",
+      "C. James",
+      "D. Thomas"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Peter denied knowing Jesus three times before the cock crowed, as Jesus had predicted."
+  },
+  {
+    "subject": "crk",
+    "examType": "wassce",
+    "question": "The parable of the Good Samaritan teaches primarily about?",
+    "options": [
+      "A. Military power",
+      "B. Loving one's neighbour",
+      "C. Accumulating wealth",
+      "D. Political leadership"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The parable emphasizes compassionate love for others regardless of social or ethnic boundaries."
+  },
+  {
+    "subject": "crk",
+    "examType": "wassce",
+    "question": "According to Acts, the Holy Spirit descended on the disciples at?",
+    "options": [
+      "A. Passover",
+      "B. Pentecost",
+      "C. Christmas",
+      "D. Atonement"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Acts 2 describes the coming of the Holy Spirit upon the disciples on the day of Pentecost."
+  },
+  {
+    "subject": "irk",
+    "examType": "wassce",
+    "question": "The first pillar of Islam after the declaration of faith is?",
+    "options": [
+      "A. Zakat",
+      "B. Sawm",
+      "C. Salah",
+      "D. Hajj"
+    ],
+    "correctAnswer": 2,
+    "explanation": "After Shahadah, Salah (the five daily prayers) is one of the fundamental pillars of Islam."
+  },
+  {
+    "subject": "irk",
+    "examType": "wassce",
+    "question": "Zakat is best described as?",
+    "options": [
+      "A. Pilgrimage",
+      "B. Obligatory charity",
+      "C. Fasting",
+      "D. Declaration of faith"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Zakat is obligatory almsgiving on qualifying wealth to eligible recipients."
+  },
+  {
+    "subject": "irk",
+    "examType": "wassce",
+    "question": "The month in which Muslims fast from dawn to sunset is?",
+    "options": [
+      "A. Muharram",
+      "B. Rajab",
+      "C. Ramadan",
+      "D. Shawwal"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Fasting during Ramadan is one of the Five Pillars of Islam."
+  },
+  {
+    "subject": "irk",
+    "examType": "wassce",
+    "question": "The migration of Prophet Muhammad from Makkah to Madinah is called?",
+    "options": [
+      "A. Hijrah",
+      "B. Jihad",
+      "C. Umrah",
+      "D. Sunnah"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Hijrah refers to the Prophet Muhammad's migration from Makkah to Madinah in 622 CE."
+  },
+  {
+    "subject": "irk",
+    "examType": "wassce",
+    "question": "Hajj is the pilgrimage made to?",
+    "options": [
+      "A. Jerusalem only",
+      "B. Makkah",
+      "C. Cairo",
+      "D. Baghdad"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Hajj is the major pilgrimage to Makkah that Muslims who are able are required to perform once in their lifetime."
+  },
+  {
+    "subject": "accounting",
+    "examType": "wassce",
+    "question": "The accounting equation is?",
+    "options": [
+      "A. Assets = Capital - Liabilities",
+      "B. Assets = Capital + Liabilities",
+      "C. Capital = Assets + Liabilities",
+      "D. Liabilities = Assets + Capital"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The fundamental equation is Assets = Capital + Liabilities."
+  },
+  {
+    "subject": "accounting",
+    "examType": "wassce",
+    "question": "A book used for the first recording of many business transactions is called the?",
+    "options": [
+      "A. Ledger",
+      "B. Journal",
+      "C. Balance sheet",
+      "D. Trial balance"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A journal is a book of original entry in which transactions are first recorded before posting to ledgers."
+  },
+  {
+    "subject": "accounting",
+    "examType": "wassce",
+    "question": "Which account normally has a debit balance?",
+    "options": [
+      "A. Sales",
+      "B. Capital",
+      "C. Purchases",
+      "D. Creditors"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Purchases are expenses/costs and are normally recorded on the debit side."
+  },
+  {
+    "subject": "accounting",
+    "examType": "wassce",
+    "question": "The statement prepared to test the arithmetical accuracy of ledger entries is the?",
+    "options": [
+      "A. Trial balance",
+      "B. Cash book",
+      "C. Invoice",
+      "D. Bank statement"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A trial balance lists ledger balances to check whether total debits equal total credits."
+  },
+  {
+    "subject": "accounting",
+    "examType": "wassce",
+    "question": "Depreciation is the systematic allocation of the cost of a non-current asset over its?",
+    "options": [
+      "A. Purchase invoice",
+      "B. Useful life",
+      "C. Cash balance",
+      "D. Selling price only"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Depreciation allocates the depreciable amount of an asset over its useful economic life."
+  },
+  {
+    "subject": "geography",
+    "examType": "wassce",
+    "question": "The imaginary line that divides the Earth into Northern and Southern Hemispheres is the?",
+    "options": [
+      "A. Prime Meridian",
+      "B. Equator",
+      "C. Tropic of Cancer",
+      "D. Arctic Circle"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Equator is at 0° latitude and divides the Earth into northern and southern halves."
+  },
+  {
+    "subject": "geography",
+    "examType": "wassce",
+    "question": "Which process involves the wearing away and removal of weathered materials?",
+    "options": [
+      "A. Deposition",
+      "B. Erosion",
+      "C. Condensation",
+      "D. Folding"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Erosion is the removal and transportation of weathered materials by agents such as water, wind and ice."
+  },
+  {
+    "subject": "geography",
+    "examType": "wassce",
+    "question": "A narrow body of land joining two larger landmasses is called an?",
+    "options": [
+      "A. Isthmus",
+      "B. Peninsula",
+      "C. Archipelago",
+      "D. Delta"
+    ],
+    "correctAnswer": 0,
+    "explanation": "An isthmus is a narrow strip of land connecting two larger land areas."
+  },
+  {
+    "subject": "geography",
+    "examType": "wassce",
+    "question": "Which instrument measures atmospheric pressure?",
+    "options": [
+      "A. Thermometer",
+      "B. Rain gauge",
+      "C. Barometer",
+      "D. Anemometer"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A barometer measures atmospheric pressure."
+  },
+  {
+    "subject": "geography",
+    "examType": "wassce",
+    "question": "The process by which water vapour changes into liquid water is?",
+    "options": [
+      "A. Evaporation",
+      "B. Condensation",
+      "C. Sublimation",
+      "D. Infiltration"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Condensation occurs when water vapour cools and changes into liquid droplets."
+  },
+  {
+    "subject": "agricultural-science",
+    "examType": "wassce",
+    "question": "Which soil particle has the largest size?",
+    "options": [
+      "A. Clay",
+      "B. Silt",
+      "C. Sand",
+      "D. Humus"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Sand particles are larger than silt and clay particles."
+  },
+  {
+    "subject": "agricultural-science",
+    "examType": "wassce",
+    "question": "The practice of growing two or more crops on the same land at the same time is?",
+    "options": [
+      "A. Monocropping",
+      "B. Mixed cropping",
+      "C. Bush fallowing",
+      "D. Crop rotation"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Mixed cropping involves growing two or more crops together on the same piece of land during the same period."
+  },
+  {
+    "subject": "agricultural-science",
+    "examType": "wassce",
+    "question": "Which nutrient is especially associated with leafy vegetative growth in plants?",
+    "options": [
+      "A. Nitrogen",
+      "B. Sodium",
+      "C. Chlorine",
+      "D. Helium"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Nitrogen is essential for proteins and chlorophyll and strongly supports vegetative growth."
+  },
+  {
+    "subject": "agricultural-science",
+    "examType": "wassce",
+    "question": "A farm tool used for loosening soil and making shallow furrows is the?",
+    "options": [
+      "A. Cutlass",
+      "B. Hoe",
+      "C. Rake",
+      "D. Secateurs"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The hoe is commonly used for loosening soil, weeding and making shallow furrows."
+  },
+  {
+    "subject": "agricultural-science",
+    "examType": "wassce",
+    "question": "Which practice helps reduce soil erosion on sloping farmland?",
+    "options": [
+      "A. Contour farming",
+      "B. Continuous bare fallow",
+      "C. Burning all crop residue",
+      "D. Removing ground cover"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Contour farming slows water runoff across slopes and helps reduce soil erosion."
+  },
+  {
+    "subject": "literature",
+    "examType": "wassce",
+    "question": "A literary work in which characters and events are used to convey a moral lesson is often called an?",
+    "options": [
+      "A. Allegory",
+      "B. Elegy",
+      "C. Ode",
+      "D. Sonnet"
+    ],
+    "correctAnswer": 0,
+    "explanation": "An allegory uses a narrative's characters and events to communicate deeper moral, political or philosophical meanings."
+  },
+  {
+    "subject": "literature",
+    "examType": "wassce",
+    "question": "A poem mourning the death of a person is an?",
+    "options": [
+      "A. Epic",
+      "B. Elegy",
+      "C. Satire",
+      "D. Ballad"
+    ],
+    "correctAnswer": 1,
+    "explanation": "An elegy is a poem or literary work expressing sorrow, especially for someone who has died."
+  },
+  {
+    "subject": "literature",
+    "examType": "wassce",
+    "question": "The person who tells a story is the?",
+    "options": [
+      "A. Narrator",
+      "B. Audience",
+      "C. Antagonist",
+      "D. Chorus"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The narrator is the voice or character through which a story is narrated."
+  },
+  {
+    "subject": "literature",
+    "examType": "wassce",
+    "question": "A deliberate exaggeration used for emphasis is?",
+    "options": [
+      "A. Metaphor",
+      "B. Hyperbole",
+      "C. Oxymoron",
+      "D. Euphemism"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Hyperbole is intentional and often extravagant exaggeration for emphasis or effect."
+  },
+  {
+    "subject": "literature",
+    "examType": "wassce",
+    "question": "The main character around whom a story's action centres is the?",
+    "options": [
+      "A. Protagonist",
+      "B. Foil",
+      "C. Narrator only",
+      "D. Minor character"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The protagonist is the principal character whose goals and conflicts drive the central action."
+  },
+  {
+    "subject": "civiceducation",
+    "examType": "wassce",
+    "question": "A citizen's responsibility to obey the laws of the state is an example of?",
+    "options": [
+      "A. Civic duty",
+      "B. Immunity",
+      "C. Privilege",
+      "D. Diplomacy"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Civic duties are responsibilities citizens are expected to perform for the good of society, including obeying lawful rules."
+  },
+  {
+    "subject": "civiceducation",
+    "examType": "wassce",
+    "question": "Which value promotes fair and unbiased treatment of people?",
+    "options": [
+      "A. Justice",
+      "B. Nepotism",
+      "C. Intolerance",
+      "D. Corruption"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Justice requires fairness, impartiality and respect for rights."
+  },
+  {
+    "subject": "civiceducation",
+    "examType": "wassce",
+    "question": "The peaceful settlement of disagreements through discussion is called?",
+    "options": [
+      "A. Dialogue",
+      "B. Violence",
+      "C. Vandalism",
+      "D. Intimidation"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Dialogue involves communication aimed at understanding differences and finding peaceful solutions."
+  },
+  {
+    "subject": "civiceducation",
+    "examType": "wassce",
+    "question": "Which of the following is a fundamental democratic value?",
+    "options": [
+      "A. Accountability",
+      "B. Dictatorship",
+      "C. Censorship of all views",
+      "D. Arbitrary rule"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Accountability is essential to democracy because public officials should answer for their decisions and use of public resources."
+  },
+  {
+    "subject": "civiceducation",
+    "examType": "wassce",
+    "question": "National unity is strengthened when citizens?",
+    "options": [
+      "A. Promote ethnic hatred",
+      "B. Respect diversity and cooperate",
+      "C. Reject other communities",
+      "D. Disobey all laws"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Respect for diversity, tolerance and cooperation help citizens build social cohesion and national unity."
+  },
+  {
+    "subject": "english",
+    "examType": "wassce",
+    "question": "Choose the option that best completes the sentence: Neither the teacher nor the students ___ aware of the change.",
+    "options": [
+      "A. was",
+      "B. were",
+      "C. is",
+      "D. has"
+    ],
+    "correctAnswer": 1,
+    "explanation": "With neither...nor, the verb agrees with the nearer subject; students is plural, so were is correct."
+  },
+  {
+    "subject": "english",
+    "examType": "wassce",
+    "question": "Choose the option that best completes the sentence: By this time next year, she ___ her degree.",
+    "options": [
+      "A. completes",
+      "B. completed",
+      "C. will have completed",
+      "D. has completed"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The future perfect describes an action that will be completed before a specified future time."
+  },
+  {
+    "subject": "english",
+    "examType": "wassce",
+    "question": "Choose the word opposite in meaning to \"scarce\".",
+    "options": [
+      "A. rare",
+      "B. limited",
+      "C. abundant",
+      "D. insufficient"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Scarce means insufficient or hard to obtain; abundant is its opposite."
+  },
+  {
+    "subject": "english",
+    "examType": "wassce",
+    "question": "Choose the option nearest in meaning to \"concise\".",
+    "options": [
+      "A. brief",
+      "B. confusing",
+      "C. careless",
+      "D. indirect"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Concise means expressing much in few words, so brief is nearest in meaning."
+  },
+  {
+    "subject": "english",
+    "examType": "wassce",
+    "question": "Choose the option that best completes the sentence: If he had studied harder, he ___ the examination.",
+    "options": [
+      "A. will pass",
+      "B. would pass",
+      "C. would have passed",
+      "D. passed"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A third conditional sentence uses would have + past participle for an unreal past condition."
+  },
+  {
+    "subject": "english",
+    "examType": "wassce",
+    "question": "Choose the option that best completes the sentence: The news ___ encouraging.",
+    "options": [
+      "A. are",
+      "B. were",
+      "C. is",
+      "D. have"
+    ],
+    "correctAnswer": 2,
+    "explanation": "News is treated as an uncountable singular noun in standard English."
+  },
+  {
+    "subject": "english",
+    "examType": "wassce",
+    "question": "Choose the word that is correctly spelt.",
+    "options": [
+      "A. accomodation",
+      "B. accommodation",
+      "C. acommodation",
+      "D. accomodationn"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The standard spelling is accommodation, with double c and double m."
+  },
+  {
+    "subject": "english",
+    "examType": "wassce",
+    "question": "Choose the option that best completes the sentence: She insisted ___ paying the bill.",
+    "options": [
+      "A. to",
+      "B. for",
+      "C. on",
+      "D. at"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The verb insist is commonly followed by on + gerund."
+  },
+  {
+    "subject": "english",
+    "examType": "wassce",
+    "question": "Choose the option that best completes the sentence: The man ___ car was stolen reported to the police.",
+    "options": [
+      "A. who",
+      "B. whom",
+      "C. whose",
+      "D. which"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Whose shows possession and correctly links the man to his car."
+  },
+  {
+    "subject": "english",
+    "examType": "wassce",
+    "question": "Choose the option that best completes the sentence: Hardly had we arrived ___ the rain started.",
+    "options": [
+      "A. than",
+      "B. when",
+      "C. while",
+      "D. since"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The standard correlative construction is hardly...when."
+  },
+  {
+    "subject": "english",
+    "examType": "wassce",
+    "question": "Choose the word nearest in meaning to \"obsolete\".",
+    "options": [
+      "A. modern",
+      "B. outdated",
+      "C. expensive",
+      "D. useful"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Obsolete means no longer in use or outdated."
+  },
+  {
+    "subject": "english",
+    "examType": "wassce",
+    "question": "Choose the option that best completes the sentence: He is one of those students who ___ always punctual.",
+    "options": [
+      "A. is",
+      "B. are",
+      "C. was",
+      "D. has"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The relative pronoun who refers to the plural antecedent students, so are is correct."
+  },
+  {
+    "subject": "english",
+    "examType": "wassce",
+    "question": "Identify the figure of speech in: \"The wind whispered through the trees.\"",
+    "options": [
+      "A. irony",
+      "B. personification",
+      "C. hyperbole",
+      "D. oxymoron"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Whispering is a human action attributed to the wind, which is personification."
+  },
+  {
+    "subject": "english",
+    "examType": "wassce",
+    "question": "Choose the option that best completes the sentence: I would rather you ___ tomorrow.",
+    "options": [
+      "A. come",
+      "B. came",
+      "C. will come",
+      "D. have come"
+    ],
+    "correctAnswer": 1,
+    "explanation": "After would rather when referring to a present or future preference about another person, the past form is commonly used."
+  },
+  {
+    "subject": "mathematics",
+    "examType": "wassce",
+    "question": "Solve 3x - 7 = 11.",
+    "options": [
+      "A. 4",
+      "B. 6",
+      "C. 8",
+      "D. 9"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Add 7 to both sides to get 3x = 18; hence x = 6."
+  },
+  {
+    "subject": "mathematics",
+    "examType": "wassce",
+    "question": "Evaluate 2^5.",
+    "options": [
+      "A. 10",
+      "B. 16",
+      "C. 25",
+      "D. 32"
+    ],
+    "correctAnswer": 3,
+    "explanation": "2^5 = 2×2×2×2×2 = 32."
+  },
+  {
+    "subject": "mathematics",
+    "examType": "wassce",
+    "question": "If a:b = 3:5 and b = 20, find a.",
+    "options": [
+      "A. 8",
+      "B. 10",
+      "C. 12",
+      "D. 15"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The scale factor is 20/5 = 4, so a = 3×4 = 12."
+  },
+  {
+    "subject": "mathematics",
+    "examType": "wassce",
+    "question": "Find the simple interest on ₦20,000 at 5% per annum for 3 years.",
+    "options": [
+      "A. ₦1,000",
+      "B. ₦2,000",
+      "C. ₦3,000",
+      "D. ₦4,000"
+    ],
+    "correctAnswer": 2,
+    "explanation": "SI = PRT/100 = 20,000×5×3/100 = ₦3,000."
+  },
+  {
+    "subject": "mathematics",
+    "examType": "wassce",
+    "question": "The mean of 4, 6, 8, 10 and 12 is",
+    "options": [
+      "A. 7",
+      "B. 8",
+      "C. 9",
+      "D. 10"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The sum is 40 and there are five values; mean = 40/5 = 8."
+  },
+  {
+    "subject": "mathematics",
+    "examType": "wassce",
+    "question": "Factorise x² - 9.",
+    "options": [
+      "A. (x-3)(x+3)",
+      "B. (x-9)(x+1)",
+      "C. (x-3)²",
+      "D. (x+9)(x-1)"
+    ],
+    "correctAnswer": 0,
+    "explanation": "This is a difference of two squares: x² - 3² = (x-3)(x+3)."
+  },
+  {
+    "subject": "mathematics",
+    "examType": "wassce",
+    "question": "If sin θ = 3/5 for an acute angle θ, find cos θ.",
+    "options": [
+      "A. 2/5",
+      "B. 3/4",
+      "C. 4/5",
+      "D. 5/4"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Using the 3-4-5 triangle, cos θ = adjacent/hypotenuse = 4/5."
+  },
+  {
+    "subject": "mathematics",
+    "examType": "wassce",
+    "question": "A rectangle has length 12 cm and width 5 cm. Find its area.",
+    "options": [
+      "A. 17 cm²",
+      "B. 34 cm²",
+      "C. 60 cm²",
+      "D. 120 cm²"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Area = length × width = 12×5 = 60 cm²."
+  },
+  {
+    "subject": "mathematics",
+    "examType": "wassce",
+    "question": "Find the gradient of the line joining (2,3) and (6,11).",
+    "options": [
+      "A. 1",
+      "B. 2",
+      "C. 3",
+      "D. 4"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Gradient = (11-3)/(6-2) = 8/4 = 2."
+  },
+  {
+    "subject": "mathematics",
+    "examType": "wassce",
+    "question": "If log10 1000 = x, find x.",
+    "options": [
+      "A. 2",
+      "B. 3",
+      "C. 10",
+      "D. 100"
+    ],
+    "correctAnswer": 1,
+    "explanation": "10³ = 1000, so log10 1000 = 3."
+  },
+  {
+    "subject": "mathematics",
+    "examType": "wassce",
+    "question": "The probability of obtaining an even number when a fair die is thrown once is",
+    "options": [
+      "A. 1/6",
+      "B. 1/3",
+      "C. 1/2",
+      "D. 2/3"
+    ],
+    "correctAnswer": 2,
+    "explanation": "There are three even outcomes (2,4,6) out of six possible outcomes, giving 3/6 = 1/2."
+  },
+  {
+    "subject": "mathematics",
+    "examType": "wassce",
+    "question": "Convert 0.375 to a fraction in its lowest terms.",
+    "options": [
+      "A. 3/8",
+      "B. 5/8",
+      "C. 3/5",
+      "D. 375/100"
+    ],
+    "correctAnswer": 0,
+    "explanation": "0.375 = 375/1000 = 3/8 after simplification."
+  },
+  {
+    "subject": "mathematics",
+    "examType": "wassce",
+    "question": "The sum of the interior angles of a quadrilateral is",
+    "options": [
+      "A. 180°",
+      "B. 270°",
+      "C. 360°",
+      "D. 540°"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A quadrilateral can be divided into two triangles, giving 2×180° = 360°."
+  },
+  {
+    "subject": "mathematics",
+    "examType": "wassce",
+    "question": "Solve 2x + 3 < 11.",
+    "options": [
+      "A. x < 4",
+      "B. x > 4",
+      "C. x < 7",
+      "D. x > 7"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Subtract 3 to get 2x < 8; divide by 2 to get x < 4."
+  },
+  {
+    "subject": "mathematics",
+    "examType": "wassce",
+    "question": "The nth term of the sequence 3, 6, 9, 12,... is",
+    "options": [
+      "A. n+3",
+      "B. 2n+1",
+      "C. 3n",
+      "D. 3n+1"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The sequence is arithmetic with first term 3 and common difference 3, so Tn = 3n."
+  },
+  {
+    "subject": "biology",
+    "examType": "wassce",
+    "question": "The organelle responsible for aerobic respiration in a cell is the",
+    "options": [
+      "A. ribosome",
+      "B. mitochondrion",
+      "C. lysosome",
+      "D. vacuole"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Mitochondria are the main sites of aerobic respiration and ATP production."
+  },
+  {
+    "subject": "biology",
+    "examType": "wassce",
+    "question": "The movement of water molecules through a selectively permeable membrane is called",
+    "options": [
+      "A. diffusion",
+      "B. osmosis",
+      "C. active transport",
+      "D. plasmolysis"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Osmosis is the movement of water from higher to lower water potential through a selectively permeable membrane."
+  },
+  {
+    "subject": "biology",
+    "examType": "wassce",
+    "question": "Which blood component is mainly responsible for clotting?",
+    "options": [
+      "A. red blood cells",
+      "B. plasma",
+      "C. platelets",
+      "D. lymphocytes"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Platelets help form clots and reduce blood loss after injury."
+  },
+  {
+    "subject": "biology",
+    "examType": "wassce",
+    "question": "The green pigment that absorbs light energy for photosynthesis is",
+    "options": [
+      "A. haemoglobin",
+      "B. chlorophyll",
+      "C. melanin",
+      "D. carotene only"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Chlorophyll absorbs light energy used during photosynthesis."
+  },
+  {
+    "subject": "biology",
+    "examType": "wassce",
+    "question": "The functional unit of the kidney is the",
+    "options": [
+      "A. nephron",
+      "B. neuron",
+      "C. alveolus",
+      "D. villus"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Each kidney contains many nephrons, which carry out filtration and urine formation."
+  },
+  {
+    "subject": "biology",
+    "examType": "wassce",
+    "question": "Which hormone regulates blood glucose by lowering it?",
+    "options": [
+      "A. insulin",
+      "B. adrenaline",
+      "C. thyroxine",
+      "D. glucagon"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Insulin promotes uptake and storage of glucose, lowering blood glucose concentration."
+  },
+  {
+    "subject": "biology",
+    "examType": "wassce",
+    "question": "A trait controlled by two identical alleles is described as",
+    "options": [
+      "A. heterozygous",
+      "B. homozygous",
+      "C. dominant only",
+      "D. hybrid only"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Homozygous means the two alleles at a locus are the same."
+  },
+  {
+    "subject": "biology",
+    "examType": "wassce",
+    "question": "The exchange of gases in the lungs occurs mainly at the",
+    "options": [
+      "A. trachea",
+      "B. bronchi",
+      "C. alveoli",
+      "D. diaphragm"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Alveoli have thin walls and a rich blood supply, allowing efficient gas exchange."
+  },
+  {
+    "subject": "biology",
+    "examType": "wassce",
+    "question": "Which part of a flower receives pollen grains?",
+    "options": [
+      "A. anther",
+      "B. stigma",
+      "C. ovary",
+      "D. sepal"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The stigma is the receptive surface of the carpel where pollen lands."
+  },
+  {
+    "subject": "biology",
+    "examType": "wassce",
+    "question": "A food chain always begins with a",
+    "options": [
+      "A. carnivore",
+      "B. decomposer",
+      "C. producer",
+      "D. parasite"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Producers capture energy, usually from sunlight, and form the first trophic level."
+  },
+  {
+    "subject": "biology",
+    "examType": "wassce",
+    "question": "The process by which green plants lose water vapour through their leaves is",
+    "options": [
+      "A. respiration",
+      "B. transpiration",
+      "C. guttation",
+      "D. absorption"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Transpiration is the loss of water vapour mainly through stomata."
+  },
+  {
+    "subject": "biology",
+    "examType": "wassce",
+    "question": "Which structure controls the activities of most cells?",
+    "options": [
+      "A. cell wall",
+      "B. nucleus",
+      "C. vacuole",
+      "D. chloroplast"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The nucleus contains genetic material and regulates many cellular activities."
+  },
+  {
+    "subject": "biology",
+    "examType": "wassce",
+    "question": "The vitamin deficiency that commonly causes scurvy is deficiency of",
+    "options": [
+      "A. vitamin A",
+      "B. vitamin B12",
+      "C. vitamin C",
+      "D. vitamin D"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Vitamin C deficiency causes scurvy, characterised by poor wound healing and bleeding gums."
+  },
+  {
+    "subject": "biology",
+    "examType": "wassce",
+    "question": "The type of joint found at the elbow is mainly a",
+    "options": [
+      "A. ball-and-socket joint",
+      "B. hinge joint",
+      "C. pivot joint",
+      "D. gliding joint"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The elbow permits mainly flexion and extension, characteristic of a hinge joint."
+  },
+  {
+    "subject": "biology",
+    "examType": "wassce",
+    "question": "The main nitrogenous waste excreted by humans is",
+    "options": [
+      "A. glucose",
+      "B. urea",
+      "C. glycogen",
+      "D. starch"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The liver converts excess amino acids to urea, which is excreted by the kidneys."
+  },
+  {
+    "subject": "chemistry",
+    "examType": "wassce",
+    "question": "The atomic number of an element is the number of",
+    "options": [
+      "A. neutrons",
+      "B. protons",
+      "C. nucleons",
+      "D. shells"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Atomic number equals the number of protons in the nucleus."
+  },
+  {
+    "subject": "chemistry",
+    "examType": "wassce",
+    "question": "A substance with pH 2 is",
+    "options": [
+      "A. strongly acidic",
+      "B. neutral",
+      "C. weakly alkaline",
+      "D. strongly alkaline"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A pH well below 7 indicates an acidic solution; pH 2 is strongly acidic."
+  },
+  {
+    "subject": "chemistry",
+    "examType": "wassce",
+    "question": "Which gas relights a glowing splint?",
+    "options": [
+      "A. hydrogen",
+      "B. oxygen",
+      "C. nitrogen",
+      "D. carbon dioxide"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Oxygen supports combustion and relights a glowing splint."
+  },
+  {
+    "subject": "chemistry",
+    "examType": "wassce",
+    "question": "The bond formed by transfer of electrons is",
+    "options": [
+      "A. covalent",
+      "B. metallic",
+      "C. ionic",
+      "D. hydrogen"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Ionic bonding involves electron transfer and electrostatic attraction between ions."
+  },
+  {
+    "subject": "chemistry",
+    "examType": "wassce",
+    "question": "The process of converting a solid directly to a gas is",
+    "options": [
+      "A. condensation",
+      "B. sublimation",
+      "C. freezing",
+      "D. melting"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Sublimation is direct change from solid to gas without passing through the liquid state."
+  },
+  {
+    "subject": "chemistry",
+    "examType": "wassce",
+    "question": "Which indicator is commonly used to test whether a solution is acidic or alkaline?",
+    "options": [
+      "A. litmus",
+      "B. starch",
+      "C. Benedict’s only",
+      "D. iodine only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Litmus changes colour according to whether a solution is acidic or alkaline."
+  },
+  {
+    "subject": "chemistry",
+    "examType": "wassce",
+    "question": "The relative molecular mass of H2O is",
+    "options": [
+      "A. 16",
+      "B. 17",
+      "C. 18",
+      "D. 20"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Water has 2(1) + 16 = 18."
+  },
+  {
+    "subject": "chemistry",
+    "examType": "wassce",
+    "question": "A catalyst increases the rate of a reaction by",
+    "options": [
+      "A. increasing product mass",
+      "B. lowering activation energy",
+      "C. increasing equilibrium constant",
+      "D. being permanently consumed"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A catalyst provides an alternative pathway with lower activation energy."
+  },
+  {
+    "subject": "chemistry",
+    "examType": "wassce",
+    "question": "Oxidation is commonly described as",
+    "options": [
+      "A. gain of electrons",
+      "B. loss of electrons",
+      "C. gain of neutrons",
+      "D. loss of protons only"
+    ],
+    "correctAnswer": 1,
+    "explanation": "In redox terms, oxidation is loss of electrons."
+  },
+  {
+    "subject": "chemistry",
+    "examType": "wassce",
+    "question": "The functional group present in alcohols is",
+    "options": [
+      "A. -COOH",
+      "B. -OH",
+      "C. -CHO",
+      "D. -COO-"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Alcohols contain the hydroxyl functional group, -OH."
+  },
+  {
+    "subject": "chemistry",
+    "examType": "wassce",
+    "question": "The major component of natural gas is",
+    "options": [
+      "A. methane",
+      "B. ethene",
+      "C. carbon monoxide",
+      "D. nitrogen"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Methane is the principal component of natural gas."
+  },
+  {
+    "subject": "chemistry",
+    "examType": "wassce",
+    "question": "Electrolysis of acidified water produces hydrogen at the",
+    "options": [
+      "A. anode",
+      "B. cathode",
+      "C. electrolyte surface only",
+      "D. salt bridge"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Hydrogen ions gain electrons at the cathode to form hydrogen gas."
+  },
+  {
+    "subject": "chemistry",
+    "examType": "wassce",
+    "question": "A solution containing more solute than can normally remain dissolved at a given temperature is",
+    "options": [
+      "A. dilute",
+      "B. saturated only",
+      "C. supersaturated",
+      "D. neutral"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A supersaturated solution contains more dissolved solute than the equilibrium solubility at that temperature."
+  },
+  {
+    "subject": "physics",
+    "examType": "wassce",
+    "question": "The SI unit of force is",
+    "options": [
+      "A. joule",
+      "B. watt",
+      "C. newton",
+      "D. pascal"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Force is measured in newtons (N)."
+  },
+  {
+    "subject": "physics",
+    "examType": "wassce",
+    "question": "A car travels 120 m in 10 s. Its average speed is",
+    "options": [
+      "A. 10 m/s",
+      "B. 12 m/s",
+      "C. 20 m/s",
+      "D. 1200 m/s"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Speed = distance/time = 120/10 = 12 m/s."
+  },
+  {
+    "subject": "physics",
+    "examType": "wassce",
+    "question": "Which instrument measures electric current?",
+    "options": [
+      "A. voltmeter",
+      "B. ammeter",
+      "C. barometer",
+      "D. thermometer"
+    ],
+    "correctAnswer": 1,
+    "explanation": "An ammeter measures current in amperes."
+  },
+  {
+    "subject": "physics",
+    "examType": "wassce",
+    "question": "The energy possessed by a body because of its position is",
+    "options": [
+      "A. kinetic energy",
+      "B. potential energy",
+      "C. sound energy",
+      "D. nuclear energy"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Potential energy is stored energy associated with position or configuration."
+  },
+  {
+    "subject": "physics",
+    "examType": "wassce",
+    "question": "If a force of 10 N moves an object 5 m in its direction, the work done is",
+    "options": [
+      "A. 2 J",
+      "B. 15 J",
+      "C. 50 J",
+      "D. 100 J"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Work = force × distance = 10×5 = 50 J."
+  },
+  {
+    "subject": "physics",
+    "examType": "wassce",
+    "question": "The acceleration due to gravity near the Earth’s surface is approximately",
+    "options": [
+      "A. 0.98 m/s²",
+      "B. 9.8 m/s²",
+      "C. 98 m/s²",
+      "D. 980 m/s²"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The standard approximate value is 9.8 m/s²."
+  },
+  {
+    "subject": "physics",
+    "examType": "wassce",
+    "question": "Which wave requires a material medium for propagation?",
+    "options": [
+      "A. radio wave",
+      "B. light wave",
+      "C. sound wave",
+      "D. X-ray"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Sound is a mechanical wave and requires a medium."
+  },
+  {
+    "subject": "physics",
+    "examType": "wassce",
+    "question": "The unit of electrical resistance is",
+    "options": [
+      "A. ohm",
+      "B. coulomb",
+      "C. ampere",
+      "D. tesla"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Resistance is measured in ohms (Ω)."
+  },
+  {
+    "subject": "physics",
+    "examType": "wassce",
+    "question": "A convex lens is commonly used to",
+    "options": [
+      "A. diverge light only",
+      "B. converge parallel rays",
+      "C. block light",
+      "D. produce sound"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A convex lens converges parallel rays toward its principal focus."
+  },
+  {
+    "subject": "physics",
+    "examType": "wassce",
+    "question": "The pressure exerted by a liquid increases with",
+    "options": [
+      "A. decreasing depth",
+      "B. increasing depth",
+      "C. decreasing density only",
+      "D. decreasing gravity"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Liquid pressure increases with depth because of the weight of liquid above."
+  },
+  {
+    "subject": "physics",
+    "examType": "wassce",
+    "question": "The momentum of a body is the product of its",
+    "options": [
+      "A. mass and acceleration",
+      "B. mass and velocity",
+      "C. force and time only",
+      "D. weight and distance"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Momentum p = mv."
+  },
+  {
+    "subject": "physics",
+    "examType": "wassce",
+    "question": "A transformer operates with",
+    "options": [
+      "A. direct current only",
+      "B. alternating current",
+      "C. static charge only",
+      "D. chemical energy only"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A transformer requires changing magnetic flux, normally supplied by AC."
+  },
+  {
+    "subject": "physics",
+    "examType": "wassce",
+    "question": "Which colour has the shortest wavelength in visible light?",
+    "options": [
+      "A. red",
+      "B. yellow",
+      "C. green",
+      "D. violet"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Violet has the shortest wavelength and highest frequency in the visible spectrum."
+  },
+  {
+    "subject": "physics",
+    "examType": "wassce",
+    "question": "A fuse protects an electrical circuit by",
+    "options": [
+      "A. increasing voltage",
+      "B. melting when current is excessive",
+      "C. storing charge",
+      "D. reducing resistance to zero"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Excess current heats the fuse wire until it melts and breaks the circuit."
+  },
+  {
+    "subject": "physics",
+    "examType": "wassce",
+    "question": "The frequency of a wave is 5 Hz. Its period is",
+    "options": [
+      "A. 0.02 s",
+      "B. 0.2 s",
+      "C. 5 s",
+      "D. 25 s"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Period T = 1/f = 1/5 = 0.2 s."
+  },
+  {
+    "subject": "government",
+    "examType": "wassce",
+    "question": "A constitution is best described as",
+    "options": [
+      "A. a political party manifesto",
+      "B. the fundamental rules governing a state",
+      "C. a court judgment",
+      "D. a budget statement"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A constitution sets out fundamental principles, institutions and powers of government."
+  },
+  {
+    "subject": "government",
+    "examType": "wassce",
+    "question": "The principle of separation of powers is associated with",
+    "options": [
+      "A. Montesquieu",
+      "B. Karl Marx",
+      "C. Adam Smith",
+      "D. John Locke only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Montesquieu is widely associated with the modern formulation of separation of powers."
+  },
+  {
+    "subject": "government",
+    "examType": "wassce",
+    "question": "A legislature with two chambers is described as",
+    "options": [
+      "A. unicameral",
+      "B. bicameral",
+      "C. federal",
+      "D. unitary"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Bicameral means the legislature has two chambers."
+  },
+  {
+    "subject": "government",
+    "examType": "wassce",
+    "question": "Universal adult suffrage means",
+    "options": [
+      "A. only taxpayers can vote",
+      "B. all qualified adult citizens can vote subject to law",
+      "C. only public servants can vote",
+      "D. only party members can vote"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Universal adult suffrage extends voting rights to qualified adult citizens without arbitrary class restrictions."
+  },
+  {
+    "subject": "government",
+    "examType": "wassce",
+    "question": "A referendum is a",
+    "options": [
+      "A. direct vote by citizens on a specific issue",
+      "B. meeting of judges",
+      "C. legislative committee",
+      "D. party primary"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A referendum allows citizens to vote directly on a specified public question."
+  },
+  {
+    "subject": "government",
+    "examType": "wassce",
+    "question": "The main function of an opposition party in a democracy is to",
+    "options": [
+      "A. abolish elections",
+      "B. scrutinise and offer alternatives to government policies",
+      "C. control the judiciary",
+      "D. appoint civil servants"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The opposition checks government actions and presents alternative policies."
+  },
+  {
+    "subject": "government",
+    "examType": "wassce",
+    "question": "A federal system divides constitutional powers between",
+    "options": [
+      "A. political parties only",
+      "B. central and component governments",
+      "C. courts and media",
+      "D. citizens and companies"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Federalism constitutionally distributes powers between a central authority and component units."
+  },
+  {
+    "subject": "government",
+    "examType": "wassce",
+    "question": "The rule of law implies that",
+    "options": [
+      "A. leaders are above the law",
+      "B. laws apply according to established legal principles",
+      "C. judges make all policies",
+      "D. elections are unnecessary"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The rule of law requires government and citizens to operate under established law."
+  },
+  {
+    "subject": "government",
+    "examType": "wassce",
+    "question": "A pressure group differs from a political party mainly because it",
+    "options": [
+      "A. seeks to influence policy rather than primarily win governmental power",
+      "B. cannot have members",
+      "C. always controls the legislature",
+      "D. must contest every election"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Pressure groups seek policy influence; political parties generally seek to win and exercise governmental power."
+  },
+  {
+    "subject": "government",
+    "examType": "wassce",
+    "question": "The electoral commission is primarily responsible for",
+    "options": [
+      "A. making laws",
+      "B. organising and supervising elections",
+      "C. interpreting the constitution",
+      "D. collecting customs duties"
+    ],
+    "correctAnswer": 1,
+    "explanation": "An electoral commission administers elections and related electoral processes."
+  },
+  {
+    "subject": "government",
+    "examType": "wassce",
+    "question": "A government headed by a president who is both head of state and government is generally",
+    "options": [
+      "A. presidential",
+      "B. monarchical",
+      "C. confederal",
+      "D. theocratic"
+    ],
+    "correctAnswer": 0,
+    "explanation": "In a presidential system, the president commonly combines the roles of head of state and head of government."
+  },
+  {
+    "subject": "government",
+    "examType": "wassce",
+    "question": "Public opinion can be measured through",
+    "options": [
+      "A. opinion polls",
+      "B. military coups",
+      "C. judicial appointments",
+      "D. cabinet reshuffles only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Opinion polls are a common method of measuring public attitudes."
+  },
+  {
+    "subject": "government",
+    "examType": "wassce",
+    "question": "A coup d’état is",
+    "options": [
+      "A. peaceful transfer after an election",
+      "B. unconstitutional seizure of government power",
+      "C. constitutional amendment",
+      "D. referendum"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A coup is an unconstitutional and often sudden seizure of political power."
+  },
+  {
+    "subject": "government",
+    "examType": "wassce",
+    "question": "Citizenship by naturalisation is acquired when",
+    "options": [
+      "A. a person meets legal conditions to become a citizen of another state",
+      "B. a person visits a country",
+      "C. a person buys goods abroad",
+      "D. a person watches foreign television"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Naturalisation is a legal process through which a non-citizen acquires citizenship after meeting statutory requirements."
+  },
+  {
+    "subject": "government",
+    "examType": "wassce",
+    "question": "An independent judiciary is important because it",
+    "options": [
+      "A. makes judges campaign for parties",
+      "B. supports impartial interpretation and enforcement of law",
+      "C. removes all legislation",
+      "D. controls the media"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Judicial independence supports impartial adjudication without improper political interference."
+  },
+  {
+    "subject": "economics",
+    "examType": "wassce",
+    "question": "The basic economic problem arises because resources are",
+    "options": [
+      "A. unlimited",
+      "B. scarce relative to wants",
+      "C. equally distributed",
+      "D. free in all cases"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Scarcity exists because resources are limited while human wants are effectively unlimited."
+  },
+  {
+    "subject": "economics",
+    "examType": "wassce",
+    "question": "Opportunity cost is the",
+    "options": [
+      "A. money price of a good",
+      "B. next best alternative forgone",
+      "C. total cost of production",
+      "D. marginal revenue"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Opportunity cost is the value of the next best alternative sacrificed."
+  },
+  {
+    "subject": "economics",
+    "examType": "wassce",
+    "question": "An increase in the price of a normal good, ceteris paribus, usually causes quantity demanded to",
+    "options": [
+      "A. increase",
+      "B. decrease",
+      "C. remain exactly the same",
+      "D. become infinite"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The law of demand states that quantity demanded generally falls as price rises, other things equal."
+  },
+  {
+    "subject": "economics",
+    "examType": "wassce",
+    "question": "Inflation is a sustained increase in the",
+    "options": [
+      "A. general price level",
+      "B. unemployment rate only",
+      "C. quantity of exports only",
+      "D. value of money"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Inflation is a sustained rise in the general price level, reducing purchasing power."
+  },
+  {
+    "subject": "economics",
+    "examType": "wassce",
+    "question": "A market in which one firm dominates supply is a",
+    "options": [
+      "A. monopoly",
+      "B. perfect competition",
+      "C. duopoly",
+      "D. monopsony only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A monopoly is a market structure dominated by a single seller with substantial market power."
+  },
+  {
+    "subject": "economics",
+    "examType": "wassce",
+    "question": "Gross Domestic Product measures the value of",
+    "options": [
+      "A. all final goods and services produced within an economy over a period",
+      "B. only exports",
+      "C. only government salaries",
+      "D. only agricultural output"
+    ],
+    "correctAnswer": 0,
+    "explanation": "GDP measures the market value of final goods and services produced within a country during a period."
+  },
+  {
+    "subject": "economics",
+    "examType": "wassce",
+    "question": "A tax on imported goods is called",
+    "options": [
+      "A. subsidy",
+      "B. tariff",
+      "C. dividend",
+      "D. rent"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A tariff is a tax imposed on imports."
+  },
+  {
+    "subject": "economics",
+    "examType": "wassce",
+    "question": "When government expenditure exceeds revenue, there is a",
+    "options": [
+      "A. budget surplus",
+      "B. budget deficit",
+      "C. trade surplus",
+      "D. balance of payments surplus"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A budget deficit occurs when government spending is greater than government revenue for the period."
+  },
+  {
+    "subject": "economics",
+    "examType": "wassce",
+    "question": "The central bank can control credit through",
+    "options": [
+      "A. open market operations",
+      "B. crop rotation",
+      "C. price discrimination only",
+      "D. warehousing"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Open market operations involve buying or selling securities to influence liquidity and credit conditions."
+  },
+  {
+    "subject": "economics",
+    "examType": "wassce",
+    "question": "A fall in the general price level is called",
+    "options": [
+      "A. inflation",
+      "B. deflation",
+      "C. devaluation",
+      "D. reflation"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Deflation is a sustained decline in the general price level."
+  },
+  {
+    "subject": "economics",
+    "examType": "wassce",
+    "question": "The demand for labour is described as derived demand because it depends on demand for",
+    "options": [
+      "A. leisure",
+      "B. the goods and services labour helps produce",
+      "C. money only",
+      "D. imports only"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Labour is demanded because it contributes to producing goods and services that consumers demand."
+  },
+  {
+    "subject": "economics",
+    "examType": "wassce",
+    "question": "A subsidy to producers generally tends to",
+    "options": [
+      "A. raise production costs",
+      "B. reduce effective production costs",
+      "C. abolish demand",
+      "D. reduce supply automatically"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A subsidy lowers the effective cost of production and may encourage greater output."
+  },
+  {
+    "subject": "economics",
+    "examType": "wassce",
+    "question": "Balance of trade refers to the difference between",
+    "options": [
+      "A. visible exports and visible imports",
+      "B. tax revenue and spending",
+      "C. savings and investment",
+      "D. money supply and demand"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Balance of trade is the difference between merchandise (visible) exports and imports."
+  },
+  {
+    "subject": "economics",
+    "examType": "wassce",
+    "question": "A progressive tax is one in which the tax rate",
+    "options": [
+      "A. falls as income rises",
+      "B. rises as income rises",
+      "C. is always zero",
+      "D. is identical for everyone"
+    ],
+    "correctAnswer": 1,
+    "explanation": "In a progressive system, higher income brackets face higher effective or marginal tax rates."
+  },
+  {
+    "subject": "economics",
+    "examType": "wassce",
+    "question": "A fall in the value of a country’s currency relative to others is called",
+    "options": [
+      "A. appreciation",
+      "B. depreciation",
+      "C. revaluation only",
+      "D. deflation"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Depreciation is a fall in a currency’s value under a market-determined exchange-rate system."
+  },
+  {
+    "subject": "commerce",
+    "examType": "wassce",
+    "question": "Commerce is mainly concerned with",
+    "options": [
+      "A. extraction of minerals",
+      "B. activities involved in distribution and exchange",
+      "C. only manufacturing",
+      "D. only farming"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Commerce covers trade and aids to trade involved in distributing goods and services."
+  },
+  {
+    "subject": "commerce",
+    "examType": "wassce",
+    "question": "A wholesaler usually sells goods to",
+    "options": [
+      "A. final consumers only",
+      "B. retailers",
+      "C. central banks",
+      "D. courts"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Wholesalers commonly buy in bulk and resell to retailers or other businesses."
+  },
+  {
+    "subject": "commerce",
+    "examType": "wassce",
+    "question": "A document sent by a seller showing goods supplied and amount due is an",
+    "options": [
+      "A. invoice",
+      "B. receipt",
+      "C. cheque",
+      "D. catalogue"
+    ],
+    "correctAnswer": 0,
+    "explanation": "An invoice states the goods supplied, prices and amount owed."
+  },
+  {
+    "subject": "commerce",
+    "examType": "wassce",
+    "question": "A receipt is evidence that",
+    "options": [
+      "A. an order has been placed",
+      "B. payment has been made",
+      "C. goods are insured",
+      "D. a company has been incorporated"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A receipt acknowledges payment received."
+  },
+  {
+    "subject": "commerce",
+    "examType": "wassce",
+    "question": "A bank draft is",
+    "options": [
+      "A. a cheque drawn by a bank on itself",
+      "B. a personal letter",
+      "C. an insurance policy",
+      "D. a warehouse receipt"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A bank draft is issued by a bank and drawn on the bank itself."
+  },
+  {
+    "subject": "commerce",
+    "examType": "wassce",
+    "question": "The person who takes out an insurance policy is the",
+    "options": [
+      "A. insurer",
+      "B. insured",
+      "C. underwriter only",
+      "D. broker only"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The insured is the person or entity covered by the policy; the insurer provides the cover."
+  },
+  {
+    "subject": "commerce",
+    "examType": "wassce",
+    "question": "Advertising is an aid to trade because it",
+    "options": [
+      "A. destroys demand",
+      "B. informs and persuades potential customers",
+      "C. replaces production",
+      "D. eliminates competition"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Advertising communicates information and can stimulate demand for products."
+  },
+  {
+    "subject": "commerce",
+    "examType": "wassce",
+    "question": "Hire purchase allows a buyer to",
+    "options": [
+      "A. use goods immediately while paying by instalments, with ownership usually passing after final conditions",
+      "B. receive goods free",
+      "C. avoid all payments",
+      "D. sell goods before receiving them"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Under hire purchase, possession/use is obtained while payment is made by instalments and ownership passes according to the agreement."
+  },
+  {
+    "subject": "commerce",
+    "examType": "wassce",
+    "question": "A partnership is a business owned by",
+    "options": [
+      "A. one person only",
+      "B. two or more persons who agree to carry on business together",
+      "C. the government only",
+      "D. shareholders only"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A partnership is formed by two or more persons carrying on business under an agreement."
+  },
+  {
+    "subject": "commerce",
+    "examType": "wassce",
+    "question": "A public limited company can raise capital from",
+    "options": [
+      "A. the public through shares subject to company law",
+      "B. only one owner",
+      "C. only employees",
+      "D. only foreign governments"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Public companies can offer shares to the public subject to applicable company regulations."
+  },
+  {
+    "subject": "commerce",
+    "examType": "wassce",
+    "question": "A warehouse is used mainly for",
+    "options": [
+      "A. storing goods",
+      "B. issuing passports",
+      "C. making laws",
+      "D. auditing courts"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Warehouses provide facilities for storage and management of goods."
+  },
+  {
+    "subject": "commerce",
+    "examType": "wassce",
+    "question": "A bill of lading is primarily used in",
+    "options": [
+      "A. sea transport of goods",
+      "B. retail pricing",
+      "C. crop production",
+      "D. banking only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A bill of lading is a transport document commonly associated with carriage of goods by sea."
+  },
+  {
+    "subject": "commerce",
+    "examType": "wassce",
+    "question": "The main purpose of a trade mark is to",
+    "options": [
+      "A. identify and distinguish goods or services",
+      "B. calculate wages",
+      "C. measure rainfall",
+      "D. set tax rates"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A trade mark identifies the commercial source of goods or services and distinguishes them from others."
+  },
+  {
+    "subject": "commerce",
+    "examType": "wassce",
+    "question": "An agent acts on behalf of a",
+    "options": [
+      "A. principal",
+      "B. debtor only",
+      "C. consumer court",
+      "D. warehouse only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "An agent is authorised to act for a principal within the scope of the agency."
+  },
+  {
+    "subject": "commerce",
+    "examType": "wassce",
+    "question": "E-commerce refers to",
+    "options": [
+      "A. buying and selling through electronic networks",
+      "B. only cash transactions",
+      "C. farming with machines",
+      "D. exporting by sea only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "E-commerce is commercial activity conducted electronically, especially through online networks."
+  },
+  {
+    "subject": "crk",
+    "examType": "wassce",
+    "question": "According to the Genesis creation account, the first human was",
+    "options": [
+      "A. Noah",
+      "B. Adam",
+      "C. Abraham",
+      "D. Moses"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Genesis presents Adam as the first human formed by God."
+  },
+  {
+    "subject": "crk",
+    "examType": "wassce",
+    "question": "Abraham was asked to offer Isaac as a test of his",
+    "options": [
+      "A. wealth",
+      "B. faith and obedience",
+      "C. political power",
+      "D. farming skill"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The account of Abraham and Isaac highlights faith, obedience and trust in God."
+  },
+  {
+    "subject": "crk",
+    "examType": "wassce",
+    "question": "Moses received the Ten Commandments at",
+    "options": [
+      "A. Mount Sinai",
+      "B. Mount Carmel",
+      "C. Jericho",
+      "D. Bethlehem"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The covenant commandments were given to Israel at Mount Sinai."
+  },
+  {
+    "subject": "crk",
+    "examType": "wassce",
+    "question": "David became king after the reign of",
+    "options": [
+      "A. Saul",
+      "B. Solomon",
+      "C. Ahab",
+      "D. Rehoboam"
+    ],
+    "correctAnswer": 0,
+    "explanation": "David succeeded Saul as king of Israel."
+  },
+  {
+    "subject": "crk",
+    "examType": "wassce",
+    "question": "The prophet who confronted the prophets of Baal on Mount Carmel was",
+    "options": [
+      "A. Elijah",
+      "B. Elisha",
+      "C. Isaiah",
+      "D. Jeremiah"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Elijah challenged the prophets of Baal at Mount Carmel."
+  },
+  {
+    "subject": "crk",
+    "examType": "wassce",
+    "question": "Jesus taught that the greatest commandment includes loving",
+    "options": [
+      "A. wealth",
+      "B. God",
+      "C. power",
+      "D. status"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Jesus taught love of God and love of neighbour as central commandments."
+  },
+  {
+    "subject": "crk",
+    "examType": "wassce",
+    "question": "The parable of the Good Samaritan teaches",
+    "options": [
+      "A. revenge",
+      "B. neighbourly love and compassion",
+      "C. wealth accumulation",
+      "D. political authority"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The parable emphasises practical compassion toward a person in need."
+  },
+  {
+    "subject": "crk",
+    "examType": "wassce",
+    "question": "Peter denied Jesus",
+    "options": [
+      "A. once",
+      "B. twice",
+      "C. three times",
+      "D. seven times"
+    ],
+    "correctAnswer": 2,
+    "explanation": "The Gospel accounts record Peter denying Jesus three times before the cock crowed."
+  },
+  {
+    "subject": "crk",
+    "examType": "wassce",
+    "question": "The first Christian martyr recorded in Acts was",
+    "options": [
+      "A. Stephen",
+      "B. Barnabas",
+      "C. Philip",
+      "D. Silas"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Stephen is described as the first Christian martyr in Acts."
+  },
+  {
+    "subject": "crk",
+    "examType": "wassce",
+    "question": "Paul was originally known as",
+    "options": [
+      "A. Saul",
+      "B. Simon",
+      "C. Samuel",
+      "D. Silas"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Paul is introduced as Saul before his Christian mission became prominent."
+  },
+  {
+    "subject": "crk",
+    "examType": "wassce",
+    "question": "The fruit of the Spirit is listed in",
+    "options": [
+      "A. Galatians",
+      "B. Genesis",
+      "C. Exodus",
+      "D. Revelation only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Galatians 5 contains the well-known list of the fruit of the Spirit."
+  },
+  {
+    "subject": "crk",
+    "examType": "wassce",
+    "question": "The Christian teaching on forgiveness encourages believers to",
+    "options": [
+      "A. repay every offence",
+      "B. forgive others",
+      "C. avoid all relationships",
+      "D. seek revenge"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Christian teaching repeatedly encourages forgiveness and reconciliation."
+  },
+  {
+    "subject": "crk",
+    "examType": "wassce",
+    "question": "The Last Supper is associated with Jesus and his",
+    "options": [
+      "A. disciples",
+      "B. Roman soldiers only",
+      "C. merchants only",
+      "D. judges"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Jesus shared the Last Supper with his disciples before his arrest."
+  },
+  {
+    "subject": "crk",
+    "examType": "wassce",
+    "question": "The resurrection of Jesus is central to Christian belief because it",
+    "options": [
+      "A. confirms the Christian hope of victory over death",
+      "B. teaches hatred",
+      "C. ends prayer",
+      "D. removes moral responsibility"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The resurrection is central to Christian faith and Christian hope of life beyond death."
+  },
+  {
+    "subject": "crk",
+    "examType": "wassce",
+    "question": "A major lesson from the story of Joseph is",
+    "options": [
+      "A. revenge is always right",
+      "B. forgiveness and providence can overcome betrayal",
+      "C. wealth guarantees happiness",
+      "D. dreams are always literal"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Joseph’s story highlights perseverance, forgiveness and God’s providence amid hardship."
+  },
+  {
+    "subject": "irk",
+    "examType": "wassce",
+    "question": "The Qur’an is the",
+    "options": [
+      "A. holy book of Islam",
+      "B. biography of every prophet only",
+      "C. collection of Roman laws",
+      "D. history of Arabia only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Qur’an is the revealed scripture of Islam."
+  },
+  {
+    "subject": "irk",
+    "examType": "wassce",
+    "question": "The first pillar of Islam is",
+    "options": [
+      "A. Zakat",
+      "B. Shahadah",
+      "C. Sawm",
+      "D. Hajj"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Shahadah is the testimony of faith and the first of the Five Pillars."
+  },
+  {
+    "subject": "irk",
+    "examType": "wassce",
+    "question": "The obligatory daily prayers in Islam are",
+    "options": [
+      "A. three",
+      "B. four",
+      "C. five",
+      "D. seven"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Muslims are required to observe five daily prayers."
+  },
+  {
+    "subject": "irk",
+    "examType": "wassce",
+    "question": "Zakat is primarily",
+    "options": [
+      "A. obligatory almsgiving",
+      "B. pilgrimage",
+      "C. fasting",
+      "D. testimony of faith"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Zakat is obligatory charity calculated according to specified conditions."
+  },
+  {
+    "subject": "irk",
+    "examType": "wassce",
+    "question": "Sawm refers to",
+    "options": [
+      "A. fasting",
+      "B. pilgrimage",
+      "C. marriage",
+      "D. inheritance"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Sawm is fasting, especially the obligatory fast during Ramadan."
+  },
+  {
+    "subject": "irk",
+    "examType": "wassce",
+    "question": "Hajj is the pilgrimage to",
+    "options": [
+      "A. Jerusalem only",
+      "B. Makkah",
+      "C. Cairo",
+      "D. Medina only"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Hajj is the pilgrimage to Makkah performed by Muslims who are able to do so."
+  },
+  {
+    "subject": "irk",
+    "examType": "wassce",
+    "question": "The month in which obligatory fasting is observed is",
+    "options": [
+      "A. Muharram",
+      "B. Ramadan",
+      "C. Shawwal",
+      "D. Rajab"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Ramadan is the ninth month of the Islamic calendar and the month of obligatory fasting."
+  },
+  {
+    "subject": "irk",
+    "examType": "wassce",
+    "question": "The Hijrah refers to the migration of Prophet Muhammad from",
+    "options": [
+      "A. Makkah to Madinah",
+      "B. Madinah to Makkah",
+      "C. Cairo to Makkah",
+      "D. Jerusalem to Taif"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Hijrah was the migration from Makkah to Madinah and marks the beginning of the Islamic calendar era."
+  },
+  {
+    "subject": "irk",
+    "examType": "wassce",
+    "question": "The first revelation came to Prophet Muhammad in the cave of",
+    "options": [
+      "A. Hira",
+      "B. Uhud",
+      "C. Safa",
+      "D. Thawr"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The first revelation is traditionally associated with the Cave of Hira."
+  },
+  {
+    "subject": "irk",
+    "examType": "wassce",
+    "question": "The angel associated with bringing revelation to Prophet Muhammad is",
+    "options": [
+      "A. Mikail",
+      "B. Israfil",
+      "C. Jibril",
+      "D. Malik"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Jibril (Gabriel) is the angel who conveyed revelation to the prophets, including Muhammad."
+  },
+  {
+    "subject": "irk",
+    "examType": "wassce",
+    "question": "The two main sources of Islamic guidance are",
+    "options": [
+      "A. Qur’an and Sunnah",
+      "B. poetry and drama",
+      "C. trade and politics",
+      "D. folklore and myth"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The Qur’an and Sunnah are foundational sources of Islamic guidance."
+  },
+  {
+    "subject": "irk",
+    "examType": "wassce",
+    "question": "Salah should be performed facing the",
+    "options": [
+      "A. Kaaba",
+      "B. Nile",
+      "C. Mount Sinai",
+      "D. Red Sea"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Muslims face the Kaaba in Makkah during Salah."
+  },
+  {
+    "subject": "irk",
+    "examType": "wassce",
+    "question": "The festival at the end of Ramadan is",
+    "options": [
+      "A. Eid al-Fitr",
+      "B. Eid al-Adha",
+      "C. Mawlid only",
+      "D. Ashura only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Eid al-Fitr marks the end of Ramadan fasting."
+  },
+  {
+    "subject": "irk",
+    "examType": "wassce",
+    "question": "Eid al-Adha is closely associated with",
+    "options": [
+      "A. Hajj and sacrifice",
+      "B. harvest only",
+      "C. marriage",
+      "D. the beginning of Ramadan"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Eid al-Adha coincides with the Hajj season and commemorates sacrifice and obedience."
+  },
+  {
+    "subject": "irk",
+    "examType": "wassce",
+    "question": "Islam teaches that honesty in business transactions is",
+    "options": [
+      "A. encouraged",
+      "B. forbidden",
+      "C. irrelevant",
+      "D. required only for rulers"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Islamic ethics emphasise honesty, fairness and avoidance of deception in transactions."
+  },
+  {
+    "subject": "accounting",
+    "examType": "wassce",
+    "question": "The accounting equation is",
+    "options": [
+      "A. Assets = Capital + Liabilities",
+      "B. Assets = Revenue - Expenses",
+      "C. Capital = Assets + Liabilities",
+      "D. Liabilities = Assets + Capital"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The basic accounting equation is Assets = Capital + Liabilities."
+  },
+  {
+    "subject": "accounting",
+    "examType": "wassce",
+    "question": "A debit entry generally increases",
+    "options": [
+      "A. assets",
+      "B. liabilities only",
+      "C. capital only",
+      "D. income only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Under double-entry rules, debits increase assets and expenses, while credits increase liabilities, capital and income."
+  },
+  {
+    "subject": "accounting",
+    "examType": "wassce",
+    "question": "A credit entry generally increases",
+    "options": [
+      "A. assets",
+      "B. expenses",
+      "C. liabilities",
+      "D. drawings"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Credits increase liabilities, capital and income under the double-entry system."
+  },
+  {
+    "subject": "accounting",
+    "examType": "wassce",
+    "question": "The document used to record credit sales is the",
+    "options": [
+      "A. sales invoice",
+      "B. receipt",
+      "C. bank statement",
+      "D. cheque counterfoil"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A sales invoice records goods sold on credit and the amount due."
+  },
+  {
+    "subject": "accounting",
+    "examType": "wassce",
+    "question": "A trial balance is prepared mainly to",
+    "options": [
+      "A. test arithmetical equality of debits and credits",
+      "B. calculate cash only",
+      "C. replace final accounts",
+      "D. record every transaction twice"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A trial balance checks whether total debit entries equal total credit entries."
+  },
+  {
+    "subject": "accounting",
+    "examType": "wassce",
+    "question": "Depreciation is",
+    "options": [
+      "A. increase in asset value",
+      "B. systematic allocation of the depreciable amount of an asset over its useful life",
+      "C. cash profit",
+      "D. capital introduced"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Depreciation allocates the depreciable cost of a non-current asset over its useful life."
+  },
+  {
+    "subject": "accounting",
+    "examType": "wassce",
+    "question": "The imprest system is associated with the",
+    "options": [
+      "A. petty cash book",
+      "B. sales ledger",
+      "C. balance sheet",
+      "D. journal proper only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The imprest system is a method of controlling petty cash expenditure."
+  },
+  {
+    "subject": "accounting",
+    "examType": "wassce",
+    "question": "Carriage inward is normally treated as",
+    "options": [
+      "A. a cost associated with bringing purchases to the business",
+      "B. selling expense only",
+      "C. capital introduced",
+      "D. drawings"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Carriage inward is included in the cost of purchases or inventory acquisition."
+  },
+  {
+    "subject": "accounting",
+    "examType": "wassce",
+    "question": "A bank reconciliation statement explains differences between",
+    "options": [
+      "A. cash book and bank statement balances",
+      "B. sales and purchases only",
+      "C. assets and capital only",
+      "D. wages and salaries"
+    ],
+    "correctAnswer": 0,
+    "explanation": "It reconciles the bank balance in the cash book with the balance shown by the bank statement."
+  },
+  {
+    "subject": "accounting",
+    "examType": "wassce",
+    "question": "Drawings by the owner",
+    "options": [
+      "A. increase capital",
+      "B. reduce owner’s equity",
+      "C. increase liabilities",
+      "D. increase sales"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Drawings are resources withdrawn by the owner and therefore reduce capital/equity."
+  },
+  {
+    "subject": "accounting",
+    "examType": "wassce",
+    "question": "Gross profit is calculated as",
+    "options": [
+      "A. Sales - Cost of sales",
+      "B. Sales + Expenses",
+      "C. Assets - Liabilities",
+      "D. Capital - Drawings"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Gross profit equals sales revenue less cost of sales."
+  },
+  {
+    "subject": "accounting",
+    "examType": "wassce",
+    "question": "Net profit is generally",
+    "options": [
+      "A. gross profit less operating expenses plus relevant other income",
+      "B. sales less purchases only",
+      "C. capital plus liabilities",
+      "D. assets less stock"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Net profit is derived after accounting for operating expenses and other relevant income/charges."
+  },
+  {
+    "subject": "accounting",
+    "examType": "wassce",
+    "question": "A balance sheet is now commonly called a statement of",
+    "options": [
+      "A. financial position",
+      "B. cash receipts",
+      "C. production",
+      "D. sales"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The statement of financial position reports assets, liabilities and equity at a date."
+  },
+  {
+    "subject": "accounting",
+    "examType": "wassce",
+    "question": "Bad debts are amounts that",
+    "options": [
+      "A. are unlikely to be collected from customers",
+      "B. are always paid early",
+      "C. increase cash",
+      "D. increase capital"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Bad debts are receivables considered irrecoverable."
+  },
+  {
+    "subject": "accounting",
+    "examType": "wassce",
+    "question": "The principle requiring expenses to be recognised in the period they help generate revenue is the",
+    "options": [
+      "A. matching principle",
+      "B. dual aspect only",
+      "C. money measurement rule",
+      "D. business entity only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The matching principle associates relevant costs with the revenue of the period."
+  },
+  {
+    "subject": "geography",
+    "examType": "wassce",
+    "question": "The imaginary line dividing the Earth into Northern and Southern Hemispheres is the",
+    "options": [
+      "A. Prime Meridian",
+      "B. Equator",
+      "C. Tropic of Cancer",
+      "D. Arctic Circle"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The Equator is at 0° latitude and divides the Earth into northern and southern halves."
+  },
+  {
+    "subject": "geography",
+    "examType": "wassce",
+    "question": "Weather refers to",
+    "options": [
+      "A. average atmospheric conditions over a long period",
+      "B. day-to-day atmospheric conditions",
+      "C. soil formation only",
+      "D. ocean currents only"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Weather describes short-term atmospheric conditions at a place."
+  },
+  {
+    "subject": "geography",
+    "examType": "wassce",
+    "question": "The instrument used to measure atmospheric pressure is the",
+    "options": [
+      "A. barometer",
+      "B. hygrometer",
+      "C. rain gauge",
+      "D. anemometer"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A barometer measures atmospheric pressure."
+  },
+  {
+    "subject": "geography",
+    "examType": "wassce",
+    "question": "A river’s load may be deposited when",
+    "options": [
+      "A. velocity decreases",
+      "B. velocity increases greatly",
+      "C. slope becomes steeper only",
+      "D. evaporation stops"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Reduced velocity lowers the river’s carrying capacity and encourages deposition."
+  },
+  {
+    "subject": "geography",
+    "examType": "wassce",
+    "question": "A delta is commonly formed where a river",
+    "options": [
+      "A. enters a body of still water and deposits sediment",
+      "B. flows through a desert only",
+      "C. begins at a spring",
+      "D. crosses a mountain pass"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Deltas develop from sediment deposition near river mouths where flow loses energy."
+  },
+  {
+    "subject": "geography",
+    "examType": "wassce",
+    "question": "The process by which rocks are broken down in situ is",
+    "options": [
+      "A. weathering",
+      "B. erosion",
+      "C. transportation",
+      "D. deposition"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Weathering breaks rocks down at or near their original location."
+  },
+  {
+    "subject": "geography",
+    "examType": "wassce",
+    "question": "A meander is",
+    "options": [
+      "A. a winding bend in a river channel",
+      "B. a volcanic cone",
+      "C. a sand dune",
+      "D. a coral reef"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Meanders are pronounced bends in river channels, especially on lower gradients."
+  },
+  {
+    "subject": "geography",
+    "examType": "wassce",
+    "question": "Population density is calculated as population divided by",
+    "options": [
+      "A. land area",
+      "B. rainfall",
+      "C. birth rate",
+      "D. road length"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Population density expresses the number of people per unit area of land."
+  },
+  {
+    "subject": "geography",
+    "examType": "wassce",
+    "question": "The main cause of tides is the gravitational pull of the",
+    "options": [
+      "A. Moon and, to a lesser extent, Sun",
+      "B. mountains",
+      "C. clouds",
+      "D. rivers"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Tides are primarily generated by gravitational forces of the Moon and Sun."
+  },
+  {
+    "subject": "geography",
+    "examType": "wassce",
+    "question": "A tropical rainforest is characterised by",
+    "options": [
+      "A. high temperature and high rainfall throughout much of the year",
+      "B. very low rainfall",
+      "C. permanent ice",
+      "D. sparse vegetation only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Tropical rainforests generally have high temperatures and abundant rainfall."
+  },
+  {
+    "subject": "geography",
+    "examType": "wassce",
+    "question": "The layer of the atmosphere where most weather occurs is the",
+    "options": [
+      "A. troposphere",
+      "B. stratosphere",
+      "C. mesosphere",
+      "D. thermosphere"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Most clouds and weather systems occur in the troposphere."
+  },
+  {
+    "subject": "geography",
+    "examType": "wassce",
+    "question": "Contour lines join places of equal",
+    "options": [
+      "A. elevation",
+      "B. rainfall",
+      "C. population",
+      "D. temperature"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Contour lines connect points having the same elevation above a reference level."
+  },
+  {
+    "subject": "geography",
+    "examType": "wassce",
+    "question": "A map scale of 1:50,000 means 1 cm on the map represents",
+    "options": [
+      "A. 500 m on the ground",
+      "B. 50 km",
+      "C. 5 km",
+      "D. 50 m"
+    ],
+    "correctAnswer": 0,
+    "explanation": "1 cm represents 50,000 cm, which is 500 m."
+  },
+  {
+    "subject": "geography",
+    "examType": "wassce",
+    "question": "Which human activity is a major cause of deforestation?",
+    "options": [
+      "A. large-scale clearing for agriculture",
+      "B. contour mapping",
+      "C. cloud formation",
+      "D. tidal action"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Clearing forests for agriculture is a major driver of deforestation."
+  },
+  {
+    "subject": "geography",
+    "examType": "wassce",
+    "question": "An earthquake is caused mainly by sudden release of energy in the",
+    "options": [
+      "A. Earth’s crust or upper mantle",
+      "B. atmosphere",
+      "C. oceans only",
+      "D. clouds"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Earthquakes result from sudden energy release associated with movement and deformation in the lithosphere."
+  },
+  {
+    "subject": "agricultural-science",
+    "examType": "wassce",
+    "question": "The practice of growing different crops on the same land in successive seasons is",
+    "options": [
+      "A. crop rotation",
+      "B. monoculture",
+      "C. irrigation",
+      "D. mulching"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Crop rotation changes crops across seasons to improve soil management and reduce pest and disease build-up."
+  },
+  {
+    "subject": "agricultural-science",
+    "examType": "wassce",
+    "question": "Nitrogen is important to plants mainly for",
+    "options": [
+      "A. protein and chlorophyll formation",
+      "B. making stones",
+      "C. increasing soil colour",
+      "D. producing sand"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Nitrogen is a key component of amino acids, proteins and chlorophyll."
+  },
+  {
+    "subject": "agricultural-science",
+    "examType": "wassce",
+    "question": "A young cattle kept for future breeding is commonly called a",
+    "options": [
+      "A. heifer or bull depending on sex",
+      "B. kid",
+      "C. lamb",
+      "D. chick"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Young cattle are described by sex-specific terms such as heifer for a young female."
+  },
+  {
+    "subject": "agricultural-science",
+    "examType": "wassce",
+    "question": "The removal of unwanted plants from a crop is called",
+    "options": [
+      "A. weeding",
+      "B. harvesting",
+      "C. threshing",
+      "D. grafting"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Weeding removes competing unwanted plants from crop fields."
+  },
+  {
+    "subject": "agricultural-science",
+    "examType": "wassce",
+    "question": "A farm record that shows money received and spent is a",
+    "options": [
+      "A. cash book",
+      "B. pedigree record only",
+      "C. soil profile",
+      "D. weather map"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A farm cash book records cash receipts and payments."
+  },
+  {
+    "subject": "agricultural-science",
+    "examType": "wassce",
+    "question": "Artificial application of water to crops is",
+    "options": [
+      "A. irrigation",
+      "B. drainage",
+      "C. evaporation",
+      "D. transpiration"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Irrigation supplies water artificially when natural rainfall is insufficient."
+  },
+  {
+    "subject": "agricultural-science",
+    "examType": "wassce",
+    "question": "The tool commonly used for measuring the diameter of a tree is",
+    "options": [
+      "A. girth tape",
+      "B. rain gauge",
+      "C. barometer",
+      "D. thermometer"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A girth tape is designed to measure tree circumference or girth."
+  },
+  {
+    "subject": "agricultural-science",
+    "examType": "wassce",
+    "question": "A disease caused by deficiency of vitamin A in livestock may affect",
+    "options": [
+      "A. vision and growth",
+      "B. horn colour only",
+      "C. soil texture",
+      "D. rainfall"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Vitamin A deficiency can impair vision, growth and epithelial health."
+  },
+  {
+    "subject": "agricultural-science",
+    "examType": "wassce",
+    "question": "Composting is the controlled decomposition of",
+    "options": [
+      "A. organic materials",
+      "B. rocks only",
+      "C. metal only",
+      "D. glass only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Composting converts organic residues into a more stable soil amendment."
+  },
+  {
+    "subject": "agricultural-science",
+    "examType": "wassce",
+    "question": "The process of joining a scion to a suitable rootstock is",
+    "options": [
+      "A. grafting",
+      "B. thinning",
+      "C. pruning only",
+      "D. harrowing"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Grafting joins plant parts so they grow as one plant."
+  },
+  {
+    "subject": "agricultural-science",
+    "examType": "wassce",
+    "question": "A common advantage of mulching is that it",
+    "options": [
+      "A. reduces soil moisture loss and suppresses weeds",
+      "B. increases erosion",
+      "C. removes all nutrients",
+      "D. prevents germination of all crops"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Mulch conserves moisture, moderates soil temperature and can suppress weeds."
+  },
+  {
+    "subject": "agricultural-science",
+    "examType": "wassce",
+    "question": "A farm animal kept mainly for milk production is a",
+    "options": [
+      "A. dairy animal",
+      "B. draught animal only",
+      "C. broiler",
+      "D. layer only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Dairy animals are selected and managed primarily for milk production."
+  },
+  {
+    "subject": "agricultural-science",
+    "examType": "wassce",
+    "question": "The process of loosening soil before planting is commonly called",
+    "options": [
+      "A. tillage",
+      "B. milking",
+      "C. branding",
+      "D. vaccination"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Tillage involves mechanical manipulation of soil to prepare it for cropping."
+  },
+  {
+    "subject": "agricultural-science",
+    "examType": "wassce",
+    "question": "A balanced ration contains",
+    "options": [
+      "A. nutrients in appropriate proportions for the animal’s needs",
+      "B. only protein",
+      "C. only water",
+      "D. only minerals"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A balanced ration supplies required nutrients in suitable proportions for maintenance, growth and production."
+  },
+  {
+    "subject": "agricultural-science",
+    "examType": "wassce",
+    "question": "Vaccination is used mainly to",
+    "options": [
+      "A. stimulate immunity against specific diseases",
+      "B. increase soil acidity",
+      "C. replace feed",
+      "D. measure yield"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Vaccines stimulate an immune response that helps protect against specific infectious diseases."
+  },
+  {
+    "subject": "literature",
+    "examType": "wassce",
+    "question": "A comparison using \"like\" or \"as\" is called",
+    "options": [
+      "A. metaphor",
+      "B. simile",
+      "C. irony",
+      "D. alliteration"
+    ],
+    "correctAnswer": 1,
+    "explanation": "A simile explicitly compares two unlike things using like or as."
+  },
+  {
+    "subject": "literature",
+    "examType": "wassce",
+    "question": "A character who opposes the protagonist is the",
+    "options": [
+      "A. narrator",
+      "B. antagonist",
+      "C. chorus",
+      "D. foil only"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The antagonist is the character or force that opposes the protagonist."
+  },
+  {
+    "subject": "literature",
+    "examType": "wassce",
+    "question": "The central idea of a literary work is its",
+    "options": [
+      "A. theme",
+      "B. setting",
+      "C. diction only",
+      "D. rhyme"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Theme is the central idea or underlying message explored by a literary work."
+  },
+  {
+    "subject": "literature",
+    "examType": "wassce",
+    "question": "The use of deliberate exaggeration for emphasis is",
+    "options": [
+      "A. hyperbole",
+      "B. euphemism",
+      "C. paradox",
+      "D. pun"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Hyperbole uses intentional exaggeration for emphasis or effect."
+  },
+  {
+    "subject": "literature",
+    "examType": "wassce",
+    "question": "A poem of fourteen lines is commonly a",
+    "options": [
+      "A. sonnet",
+      "B. ode",
+      "C. elegy",
+      "D. ballad"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A sonnet conventionally has fourteen lines, though forms vary."
+  },
+  {
+    "subject": "literature",
+    "examType": "wassce",
+    "question": "The setting of a story refers to its",
+    "options": [
+      "A. time and place",
+      "B. moral only",
+      "C. rhyme scheme",
+      "D. title"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Setting establishes where and when the events occur."
+  },
+  {
+    "subject": "literature",
+    "examType": "wassce",
+    "question": "A first-person narrator commonly uses",
+    "options": [
+      "A. I",
+      "B. he only",
+      "C. they only",
+      "D. you only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "First-person narration presents events from the speaker’s perspective, often using I or we."
+  },
+  {
+    "subject": "literature",
+    "examType": "wassce",
+    "question": "The repetition of initial consonant sounds is",
+    "options": [
+      "A. alliteration",
+      "B. assonance",
+      "C. enjambment",
+      "D. caesura"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Alliteration repeats initial consonant sounds in nearby words."
+  },
+  {
+    "subject": "literature",
+    "examType": "wassce",
+    "question": "A dramatic work written mainly to be performed on stage is a",
+    "options": [
+      "A. play",
+      "B. biography",
+      "C. lyric only",
+      "D. diary"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A play is a dramatic composition intended for performance."
+  },
+  {
+    "subject": "literature",
+    "examType": "wassce",
+    "question": "A story within another story is an example of",
+    "options": [
+      "A. frame narrative",
+      "B. satire only",
+      "C. paradox",
+      "D. rhyme"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A frame narrative contains one narrative within another larger narrative."
+  },
+  {
+    "subject": "literature",
+    "examType": "wassce",
+    "question": "Irony involves",
+    "options": [
+      "A. a contrast between appearance/expectation and reality",
+      "B. exact repetition only",
+      "C. absence of conflict",
+      "D. use of rhyme only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Irony depends on a meaningful discrepancy between expectation and what actually occurs or is meant."
+  },
+  {
+    "subject": "literature",
+    "examType": "wassce",
+    "question": "The emotional atmosphere created by a literary work is its",
+    "options": [
+      "A. mood",
+      "B. plot",
+      "C. conflict",
+      "D. metre"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Mood is the emotional atmosphere experienced by the reader or audience."
+  },
+  {
+    "subject": "literature",
+    "examType": "wassce",
+    "question": "A struggle between opposing forces in a narrative is",
+    "options": [
+      "A. conflict",
+      "B. exposition",
+      "C. imagery only",
+      "D. diction"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Conflict is the central struggle that drives narrative action."
+  },
+  {
+    "subject": "literature",
+    "examType": "wassce",
+    "question": "A narrator whose account is limited to one character’s knowledge uses",
+    "options": [
+      "A. limited third-person point of view",
+      "B. omniscient first person",
+      "C. dramatic monologue only",
+      "D. second-person only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Limited third-person narration follows one character’s perspective while using third-person pronouns."
+  },
+  {
+    "subject": "literature",
+    "examType": "wassce",
+    "question": "A poem mourning the dead is an",
+    "options": [
+      "A. elegy",
+      "B. epic",
+      "C. sonnet only",
+      "D. limerick"
+    ],
+    "correctAnswer": 0,
+    "explanation": "An elegy is a poem or literary work expressing grief for the dead."
+  },
+  {
+    "subject": "civiceducation",
+    "examType": "wassce",
+    "question": "A citizen’s responsibility to obey lawful rules is an example of",
+    "options": [
+      "A. civic responsibility",
+      "B. political apathy",
+      "C. corruption",
+      "D. discrimination"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Obeying lawful rules is a basic civic responsibility."
+  },
+  {
+    "subject": "civiceducation",
+    "examType": "wassce",
+    "question": "Human rights are best described as",
+    "options": [
+      "A. fundamental rights inherent to human beings",
+      "B. privileges for officials only",
+      "C. rewards for voters",
+      "D. benefits sold in markets"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Human rights are fundamental entitlements that belong to people by virtue of being human."
+  },
+  {
+    "subject": "civiceducation",
+    "examType": "wassce",
+    "question": "The act of giving or receiving an improper benefit to influence a decision is",
+    "options": [
+      "A. corruption",
+      "B. patriotism",
+      "C. tolerance",
+      "D. accountability"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Corruption includes improper use of power or benefits for private advantage."
+  },
+  {
+    "subject": "civiceducation",
+    "examType": "wassce",
+    "question": "Patriotism means",
+    "options": [
+      "A. love and commitment to one’s country",
+      "B. hatred of other countries",
+      "C. refusal to obey laws",
+      "D. avoiding civic duties"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Patriotism is constructive commitment and loyalty to one’s country."
+  },
+  {
+    "subject": "civiceducation",
+    "examType": "wassce",
+    "question": "Tolerance involves",
+    "options": [
+      "A. respecting differences while living peacefully with others",
+      "B. forcing everyone to agree",
+      "C. refusing dialogue",
+      "D. discrimination"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Tolerance means accepting and respecting legitimate differences among people."
+  },
+  {
+    "subject": "civiceducation",
+    "examType": "wassce",
+    "question": "An ombudsman institution generally helps citizens by",
+    "options": [
+      "A. investigating complaints about maladministration",
+      "B. collecting customs duties",
+      "C. conducting elections only",
+      "D. printing money"
+    ],
+    "correctAnswer": 0,
+    "explanation": "An ombudsman investigates complaints concerning administrative injustice or maladministration."
+  },
+  {
+    "subject": "civiceducation",
+    "examType": "wassce",
+    "question": "The national identity document commonly used in Nigeria is the",
+    "options": [
+      "A. National Identification Number identity system",
+      "B. school timetable",
+      "C. library card only",
+      "D. bank statement"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Nigeria uses the National Identification Number system as part of national identity management."
+  },
+  {
+    "subject": "civiceducation",
+    "examType": "wassce",
+    "question": "A democratic election should be",
+    "options": [
+      "A. free and fair",
+      "B. secret only for officials",
+      "C. controlled by one candidate",
+      "D. held without rules"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Free and fair elections allow genuine choice under impartial rules."
+  },
+  {
+    "subject": "civiceducation",
+    "examType": "wassce",
+    "question": "Accountability means public officials should",
+    "options": [
+      "A. explain and be answerable for their actions",
+      "B. avoid all scrutiny",
+      "C. ignore public funds",
+      "D. control courts"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Accountability requires office holders to justify actions and accept appropriate consequences."
+  },
+  {
+    "subject": "civiceducation",
+    "examType": "wassce",
+    "question": "Rule of law promotes",
+    "options": [
+      "A. equality before the law",
+      "B. arbitrary government",
+      "C. impunity",
+      "D. discrimination"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Rule of law supports equal application of law and limits arbitrary power."
+  },
+  {
+    "subject": "civiceducation",
+    "examType": "wassce",
+    "question": "A major way citizens can participate in democracy is through",
+    "options": [
+      "A. voting",
+      "B. bribery",
+      "C. violence",
+      "D. vandalism"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Voting is a lawful and important form of civic participation."
+  },
+  {
+    "subject": "civiceducation",
+    "examType": "wassce",
+    "question": "The peaceful settlement of disputes through dialogue promotes",
+    "options": [
+      "A. conflict resolution",
+      "B. political violence",
+      "C. intolerance",
+      "D. lawlessness"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Dialogue and negotiation are key tools for peaceful conflict resolution."
+  },
+  {
+    "subject": "civiceducation",
+    "examType": "wassce",
+    "question": "Environmental sanitation is important because it",
+    "options": [
+      "A. reduces health and environmental hazards",
+      "B. increases pollution",
+      "C. blocks drainage deliberately",
+      "D. encourages disease"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Good sanitation reduces exposure to disease and environmental hazards."
+  },
+  {
+    "subject": "civiceducation",
+    "examType": "wassce",
+    "question": "A whistle-blower is a person who",
+    "options": [
+      "A. reports suspected wrongdoing or misconduct",
+      "B. writes election results",
+      "C. sells government property",
+      "D. controls the judiciary"
+    ],
+    "correctAnswer": 0,
+    "explanation": "A whistle-blower reports suspected wrongdoing, often within an organisation."
+  },
+  {
+    "subject": "civiceducation",
+    "examType": "wassce",
+    "question": "National integration is strengthened by",
+    "options": [
+      "A. tolerance, justice and respect for diversity",
+      "B. ethnic discrimination",
+      "C. exclusion",
+      "D. violence"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Integration grows when citizens respect diversity and pursue fairness and shared national goals."
+  },
+  {
+    "subject": "english",
+    "examType": "wassce",
+    "question": "Choose the option that best completes the sentence: The committee has submitted ___ report to the chairman.",
+    "options": [
+      "A. its",
+      "B. their",
+      "C. his",
+      "D. our"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Committee is treated as a singular collective noun here, so the singular possessive pronoun its agrees with it."
+  },
+  {
+    "subject": "chemistry",
+    "examType": "wassce",
+    "question": "Which of the following is a strong electrolyte in aqueous solution?",
+    "options": [
+      "A. glucose",
+      "B. sodium chloride",
+      "C. ethanol",
+      "D. urea"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Sodium chloride dissociates extensively into ions in water and therefore conducts electricity strongly."
+  },
+  {
+    "subject": "chemistry",
+    "examType": "wassce",
+    "question": "The products formed when an alkene undergoes addition of hydrogen are generally",
+    "options": [
+      "A. alkanes",
+      "B. alcohols",
+      "C. carboxylic acids",
+      "D. esters"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Hydrogen adds across the carbon-carbon double bond of an alkene to form a saturated alkane."
+  }
+]

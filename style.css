@@ -373,3 +373,30 @@ button:disabled {
   color: #0d6efd;
   font-weight: 600;
 }
+
+/* ==========================================================================
+   PRODUCTION POLISH + PRACTICE GUIDE
+   ========================================================================== */
+body { background: linear-gradient(135deg, #eef4ff 0%, #f7f9fc 50%, #eef8f3 100%); }
+#quiz-container { max-width: 760px; border: 1px solid #e6ebf2; }
+header { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px; }
+header h2 { font-size: 21px; letter-spacing: -0.3px; }
+button { box-shadow: 0 3px 10px rgba(13,110,253,.10); }
+button:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(.98); }
+#setup-screen > select { margin-bottom: 4px; }
+.guide-btn { background: #173b72; }
+.guide-panel { margin-top: 18px; padding: 20px; border:1px solid #dbe5f4; border-radius:14px; background:#f8fbff; text-align:left; }
+.guide-header { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+.eyebrow { font-size:11px; font-weight:800; letter-spacing:1.2px; color:#0d6efd; }
+.guide-header h3 { margin-top:3px; }
+.guide-close { width:36px; height:36px; padding:0; margin:0; border-radius:50%; background:#e9eef6; color:#334155; font-size:24px; box-shadow:none; }
+.guide-intro { color:#526173; font-size:14px; margin:10px 0 15px; }
+.guide-topics { display:grid; gap:10px; }
+.guide-topic { display:flex; gap:12px; padding:13px; border:1px solid #e3e9f2; border-radius:11px; background:white; }
+.guide-topic-number { flex:0 0 30px; width:30px; height:30px; display:grid; place-items:center; border-radius:50%; background:#e8f1ff; color:#0d6efd; font-weight:800; }
+.guide-topic h4 { margin-bottom:4px; color:#24364b; }
+.guide-topic p { color:#65758b; font-size:13px; }
+#question-number { color:#0d6efd; margin-bottom:10px; }
+.option-btn { transition: all .18s ease; }
+.option-btn:hover { border-color:#0d6efd; background:#f5f9ff; }
+@media (max-width: 600px) { body { padding:8px; } #quiz-container { padding:16px; margin:4px auto; border-radius:10px; } header { display:block; } #timer { margin-top:10px; } .navigation-btns { flex-wrap:wrap; } .navigation-btns button { min-width:calc(50% - 5px); } }

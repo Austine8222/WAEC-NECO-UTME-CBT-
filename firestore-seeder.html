@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WAEC CBT — Firestore Seeder</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:#0b1118;color:#eaf2f8;min-height:100vh}
+.wrap{width:min(760px,94%);margin:24px auto 50px}.card{background:#121b24;border:1px solid #263442;border-radius:18px;padding:22px;margin-bottom:16px;box-shadow:0 12px 35px rgba(0,0,0,.2)}
+h1{margin:0 0 8px;font-size:25px}h2{font-size:18px;margin:0 0 12px}p{color:#aebdca;line-height:1.55}
+label{display:block;margin:12px 0 6px;color:#cbd8e3;font-weight:600}input{width:100%;padding:14px;border-radius:12px;border:1px solid #425261;background:#0d151d;color:#fff;outline:none;font-size:16px}
+input:focus{border-color:#35d6d0}button{width:100%;padding:14px 16px;border:0;border-radius:12px;margin-top:12px;background:#20c7c2;color:#061114;font-weight:800;font-size:16px;cursor:pointer}
+button.secondary{background:#243442;color:#eaf2f8}button:disabled{opacity:.5;cursor:not-allowed}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.stat{background:#0d151d;border:1px solid #263442;border-radius:14px;padding:15px}.stat b{display:block;font-size:25px;margin-top:3px}
+.status{white-space:pre-wrap;background:#081017;border-radius:12px;padding:14px;min-height:100px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:#b8cad6;overflow:auto}
+.ok{color:#63e6be}.bad{color:#ff8d9a}.warn{color:#ffd166}.hidden{display:none}.uid{word-break:break-all;font-family:monospace;color:#65e6df}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.wrap{margin-top:15px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="card">
+<h1>🔥 WAEC CBT Firestore Seeder</h1>
+<p>Use this page to seed/update your Firestore question bank and practice guides. It uses Firebase Authentication + the Firestore Web SDK. No Firebase Admin private key is stored here.</p>
+<p class="warn"><b>Important:</b> your signed-in Firebase account must have <code>isAdmin: true</code> in its own <code>users/{uid}</code> document.</p>
+</div>
+
+<div class="card" id="loginCard">
+<h2>1. Sign in as administrator</h2>
+<label for="email">Admin email</label>
+<input id="email" type="email" autocomplete="username" placeholder="admin@example.com">
+<label for="password">Password</label>
+<input id="password" type="password" autocomplete="current-password" placeholder="Firebase password">
+<button id="loginBtn">Sign in & check admin access</button>
+</div>
+
+<div class="card hidden" id="adminCard">
+<h2>2. Admin status</h2>
+<p>Signed in as <b id="userEmail"></b></p>
+<p>UID: <span class="uid" id="userUid"></span></p>
+<p id="adminStatus">Checking...</p>
+</div>
+
+<div class="card hidden" id="dataCard">
+<h2>3. Seed data</h2>
+<div class="grid">
+<div class="stat">Questions <b id="questionCount">0</b></div>
+<div class="stat">Practice guides <b id="guideCount">0</b></div>
+</div>
+<button id="seedBtn">🌱 Seed Questions + Practice Guides</button>
+<button id="logoutBtn" class="secondary">Sign out</button>
+</div>
+
+<div class="card"><h2>Activity log</h2><div id="log" class="status">Ready.</div></div>
+</div>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import {getAuth,signInWithEmailAndPassword,signOut} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import {getFirestore,doc,getDoc,writeBatch,serverTimestamp} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+const firebaseConfig={
+  apiKey:"AIzaSyDPhlfTNPORFIzQCvvEkvTsPJtjoqGSxvs",
+  authDomain:"waec-neco-utme-cbt.firebaseapp.com",
+  projectId:"waec-neco-utme-cbt",
+  storageBucket:"waec-neco-utme-cbt.firebasestorage.app",
+  messagingSenderId:"485089727740",
+  appId:"1:485089727740:web:e69058cbf60cfacddd3379"
+};
+const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
+const $=id=>document.getElementById(id); let currentUser=null,questions=[],guides=[];
+function log(m){$("log").textContent+=`\n[${new Date().toLocaleTimeString()}] ${m}`;$("log").scrollTop=$("log").scrollHeight}
+
+async function loadSeedData(){
+  const [qr,gr]=await Promise.all([
+    fetch("./seed-data/question-bank.json",{cache:"no-store"}),
+    fetch("./seed-data/practice-guides.json",{cache:"no-store"})
+  ]);
+  if(!qr.ok)throw new Error("Cannot load seed-data/question-bank.json");
+  if(!gr.ok)throw new Error("Cannot load seed-data/practice-guides.json");
+  questions=await qr.json();guides=await gr.json();
+  if(!Array.isArray(questions)||!Array.isArray(guides))throw new Error("Seed JSON must contain arrays.");
+  $("questionCount").textContent=questions.length;$("guideCount").textContent=guides.length;
+  log(`Loaded ${questions.length} questions and ${guides.length} guides.`);
+}
+
+async function checkAdmin(user){
+  const snap=await getDoc(doc(db,"users",user.uid));
+  if(!snap.exists()||snap.data().isAdmin!==true)
+    throw new Error(`This account is not an administrator. In Firebase Console set users/${user.uid} → isAdmin = true (boolean).`);
+}
+
+function questionItem(q,index){
+  if(!q.subject||!q.question||!Array.isArray(q.options)||q.options.length<4||!Number.isInteger(q.correctAnswer)||q.correctAnswer<0||q.correctAnswer>3)
+    throw new Error(`Invalid question at index ${index+1}.`);
+  const subject=String(q.subject).toLowerCase().replace(/[^a-z0-9-]/g,"-");
+  return {collection:"questions",id:`${subject}-${String(index+1).padStart(4,"0")}`,data:{
+    subject,examType:String(q.examType||"wassce").toLowerCase(),question:String(q.question),
+    options:q.options.map(String).slice(0,4),correctAnswer:q.correctAnswer,
+    explanation:String(q.explanation||""),active:q.active!==false,updatedAt:serverTimestamp()
+  }};
+}
+
+async function commit(items,label){
+  const size=450;
+  for(let start=0;start<items.length;start+=size){
+    const chunk=items.slice(start,start+size),batch=writeBatch(db);
+    chunk.forEach(x=>batch.set(doc(db,x.collection,x.id),x.data,{merge:true}));
+    await batch.commit();log(`${label}: uploaded ${Math.min(start+size,items.length)}/${items.length}`);
+  }
+}
+
+async function seedAll(){
+  await checkAdmin(currentUser);
+  const qs=questions.map(questionItem);
+  const gs=guides.map((g,i)=>{
+    if(!g.id||!g.title)throw new Error(`Invalid practice guide at index ${i+1}.`);
+    return {collection:"practiceGuides",id:String(g.id).toLowerCase(),data:{
+      title:String(g.title),introduction:String(g.introduction||""),topics:Array.isArray(g.topics)?g.topics:[],updatedAt:serverTimestamp()
+    }};
+  });
+  await commit(qs,"Questions");await commit(gs,"Practice guides");log("SUCCESS — Firestore seeding completed.");
+}
+
+$("loginBtn").onclick=async()=>{
+  $("loginBtn").disabled=true;
+  try{
+    const email=$("email").value.trim(),password=$("password").value;
+    if(!email||!password)throw new Error("Enter your admin email and password.");
+    log("Signing in...");
+    const c=await signInWithEmailAndPassword(auth,email,password);currentUser=c.user;
+    $("loginCard").classList.add("hidden");$("adminCard").classList.remove("hidden");$("dataCard").classList.remove("hidden");
+    $("userEmail").textContent=currentUser.email||"";$("userUid").textContent=currentUser.uid;
+    await checkAdmin(currentUser);$("adminStatus").innerHTML='<span class="ok">✓ Administrator access confirmed.</span>';
+    log("Admin access confirmed.");await loadSeedData();
+  }catch(e){console.error(e);log("ERROR — "+(e.message||e));alert(e.message||"Sign-in failed.");}
+  finally{$("loginBtn").disabled=false}
+};
+
+$("seedBtn").onclick=async()=>{
+  if(!confirm("Seed/update Firestore now?"))return;
+  $("seedBtn").disabled=true;
+  try{log("Starting seed...");await seedAll();alert("Firestore seeding completed successfully.");}
+  catch(e){console.error(e);log("ERROR — "+(e.message||e));alert(e.message||"Seeding failed.");}
+  finally{$("seedBtn").disabled=false}
+};
+$("logoutBtn").onclick=async()=>{await signOut(auth);location.reload()};
+</script>
+</body>
+</html>

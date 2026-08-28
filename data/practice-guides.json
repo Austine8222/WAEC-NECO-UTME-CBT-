@@ -1,0 +1,491 @@
+[
+  {
+    "id": "english",
+    "title": "English Language Practice Guide",
+    "introduction": "Build accuracy by combining grammar, vocabulary, comprehension, lexis and structure. After every practice session, review why each option is correct or incorrect. Use timed practice and review grammar rules after each set. For comprehension, answer from evidence in the passage rather than assumption.",
+    "topics": [
+      {
+        "title": "Grammar and Structure",
+        "content": "Revise concord, tenses, conditional sentences, reported speech, clauses, modifiers and punctuation. Pay attention to the exact relationship between subjects and verbs."
+      },
+      {
+        "title": "Vocabulary",
+        "content": "Learn words in context rather than memorising isolated definitions. Practise synonyms, antonyms, idioms and words commonly confused."
+      },
+      {
+        "title": "Comprehension",
+        "content": "Read the passage first for its central idea, then return to the relevant paragraph for evidence before choosing an option."
+      },
+      {
+        "title": "Grammar",
+        "content": "Grammar: concord, tense, clauses, modifiers and punctuation."
+      },
+      {
+        "title": "Practice routine",
+        "content": "Practice routine: 20 questions timed, mark immediately, then record recurring errors."
+      }
+    ]
+  },
+  {
+    "id": "mathematics",
+    "title": "Mathematics Practice Guide",
+    "introduction": "Aim for method as well as the final answer. Write down formulas, substitute carefully and check units and signs before submitting. Build accuracy through worked examples and timed objective practice. Always show enough working to catch sign, unit and arithmetic errors.",
+    "topics": [
+      {
+        "title": "Algebra",
+        "content": "Practise linear equations, simultaneous equations, factorisation, indices and variation. Simplify each side systematically."
+      },
+      {
+        "title": "Geometry and Mensuration",
+        "content": "Memorise standard area, volume, circle and triangle formulas. Draw a quick diagram when a problem describes a shape."
+      },
+      {
+        "title": "Statistics and Probability",
+        "content": "Know mean, median, mode, range and basic probability. Express probability as favourable outcomes divided by total equally likely outcomes."
+      },
+      {
+        "title": "Number and algebra",
+        "content": "Number and algebra: indices, logarithms, equations, inequalities, sequences and variation."
+      },
+      {
+        "title": "Geometry and mensuration",
+        "content": "Geometry and mensuration: angles, polygons, circles, areas, volumes and scale drawings."
+      },
+      {
+        "title": "Statistics and probability",
+        "content": "Statistics and probability: averages, tables, charts, probability and interpretation."
+      },
+      {
+        "title": "Practice routine",
+        "content": "Practice routine: solve without a calculator where appropriate, then verify calculations."
+      }
+    ]
+  },
+  {
+    "id": "biology",
+    "title": "Biology Practice Guide",
+    "introduction": "Study biology by connecting structures to their functions and processes to observable effects. Study biological processes as linked systems. Use labelled diagrams and explain why each process occurs, not just its definition.",
+    "topics": [
+      {
+        "title": "Cell Biology",
+        "content": "Know cell organelles, their functions, cell division, transport and differences between plant and animal cells."
+      },
+      {
+        "title": "Nutrition and Transport",
+        "content": "Revise balanced diets, enzymes, digestion, blood components, circulation and transport in plants."
+      },
+      {
+        "title": "Ecology",
+        "content": "Practise food chains, energy flow, population relationships, adaptation and environmental conservation."
+      },
+      {
+        "title": "Cell biology",
+        "content": "Cell biology: cell structures, transport, enzymes, nutrition and respiration."
+      },
+      {
+        "title": "Genetics and evolution",
+        "content": "Genetics and evolution: inheritance, variation, natural selection and population concepts."
+      },
+      {
+        "title": "Human biology",
+        "content": "Human biology: nutrition, transport, excretion, reproduction, coordination and health."
+      }
+    ]
+  },
+  {
+    "id": "chemistry",
+    "title": "Chemistry Practice Guide",
+    "introduction": "Combine equations, observations and calculations. Always check chemical formulae, balancing and units. Combine equations, observations and calculations. Memorise common tests only after understanding the chemical reason for each observation.",
+    "topics": [
+      {
+        "title": "Atomic Structure",
+        "content": "Revise protons, neutrons, electrons, isotopes, electronic configuration and periodic trends."
+      },
+      {
+        "title": "Acids, Bases and Salts",
+        "content": "Know indicators, pH, neutralisation and common methods of salt preparation."
+      },
+      {
+        "title": "Organic Chemistry",
+        "content": "Learn homologous series, functional groups, naming, properties and common reactions of hydrocarbons and related compounds."
+      },
+      {
+        "title": "Atomic structure and bonding",
+        "content": "Atomic structure and bonding: particles, electronic structure, ions and chemical formulae."
+      },
+      {
+        "title": "Quantitative chemistry",
+        "content": "Quantitative chemistry: relative masses, mole calculations, concentration and gas relationships."
+      },
+      {
+        "title": "Organic chemistry",
+        "content": "Organic chemistry: homologous series, functional groups, reactions and uses."
+      },
+      {
+        "title": "Practical chemistry",
+        "content": "Practical chemistry: separation methods, tests for ions/gases, acids, bases and titration principles."
+      }
+    ]
+  },
+  {
+    "id": "physics",
+    "title": "Physics Practice Guide",
+    "introduction": "Physics questions often reward correct formula selection and careful unit conversion. Show the steps in calculations. Translate words into physical quantities, choose the correct formula, substitute with units and check whether the result is reasonable.",
+    "topics": [
+      {
+        "title": "Mechanics",
+        "content": "Practise speed, velocity, acceleration, force, work, energy, momentum and simple machines."
+      },
+      {
+        "title": "Electricity",
+        "content": "Revise current, voltage, resistance, electrical power, series/parallel circuits and household safety."
+      },
+      {
+        "title": "Waves and Optics",
+        "content": "Know wave properties, reflection, refraction, lenses, sound and the electromagnetic spectrum."
+      },
+      {
+        "title": "Heat and waves",
+        "content": "Heat and waves: temperature, heat transfer, wave properties, sound and light."
+      },
+      {
+        "title": "Electricity and magnetism",
+        "content": "Electricity and magnetism: current, voltage, resistance, circuits, electromagnetism and transformers."
+      },
+      {
+        "title": "Practical skills",
+        "content": "Practical skills: graphs, measurements, significant figures, uncertainties and experimental precautions."
+      }
+    ]
+  },
+  {
+    "id": "government",
+    "title": "Government Practice Guide",
+    "introduction": "Learn key political concepts with examples from constitutional government and civic institutions. Understand institutions and principles before memorising examples. Compare systems and explain the advantages and limitations of each.",
+    "topics": [
+      {
+        "title": "Constitutional Principles",
+        "content": "Revise rule of law, separation of powers, checks and balances, fundamental rights and constitutional amendment."
+      },
+      {
+        "title": "Political Participation",
+        "content": "Study elections, political parties, pressure groups, public opinion and franchise."
+      },
+      {
+        "title": "Institutions",
+        "content": "Know the functions and relationships of the legislature, executive, judiciary and electoral bodies."
+      },
+      {
+        "title": "Constitutional government",
+        "content": "Constitutional government: constitutions, separation of powers, rule of law and checks and balances."
+      },
+      {
+        "title": "Political participation",
+        "content": "Political participation: parties, pressure groups, public opinion, elections and electoral bodies."
+      },
+      {
+        "title": "Systems of government",
+        "content": "Systems of government: presidential, parliamentary, federal, unitary and traditional institutions."
+      },
+      {
+        "title": "Practice routine",
+        "content": "Practice routine: answer comparison questions using definitions, features, examples and consequences."
+      }
+    ]
+  },
+  {
+    "id": "economics",
+    "title": "Economics Practice Guide",
+    "introduction": "Understand concepts through cause-and-effect relationships rather than memorising definitions alone. Draw simple diagrams where useful and distinguish between changes in demand/supply and movements along curves.",
+    "topics": [
+      {
+        "title": "Basic Economic Problems",
+        "content": "Revise scarcity, choice, opportunity cost, scale of preference and factors of production."
+      },
+      {
+        "title": "Demand and Supply",
+        "content": "Practise shifts versus movements, equilibrium price, elasticity and factors affecting demand and supply."
+      },
+      {
+        "title": "Macroeconomics",
+        "content": "Study inflation, unemployment, national income, money, banking and fiscal/monetary policy."
+      },
+      {
+        "title": "Microeconomics",
+        "content": "Microeconomics: scarcity, opportunity cost, demand, supply, elasticity, production and market structures."
+      },
+      {
+        "title": "International economics",
+        "content": "International economics: trade, exchange rates, balance of payments and development."
+      },
+      {
+        "title": "Practice routine",
+        "content": "Practice routine: define the concept, state the mechanism, then apply it to a realistic example."
+      }
+    ]
+  },
+  {
+    "id": "commerce",
+    "title": "Commerce Practice Guide",
+    "introduction": "Focus on the functions of trade and the documents, institutions and services that support business. Learn commercial documents and functions by understanding the transaction they support. Practise distinguishing closely related terms.",
+    "topics": [
+      {
+        "title": "Trade",
+        "content": "Revise home and foreign trade, channels of distribution, wholesalers, retailers and auxiliaries to trade."
+      },
+      {
+        "title": "Business Documents",
+        "content": "Know the purpose of invoices, receipts, quotations, orders, delivery notes, consignment notes and statements of account."
+      },
+      {
+        "title": "Insurance and Finance",
+        "content": "Study principles of insurance, types of risk and the role of banks and other financial institutions."
+      },
+      {
+        "title": "Aids to trade",
+        "content": "Aids to trade: banking, insurance, transport, warehousing, communication and advertising."
+      },
+      {
+        "title": "Business organisations",
+        "content": "Business organisations: sole proprietorship, partnership, companies and cooperatives."
+      },
+      {
+        "title": "Modern commerce",
+        "content": "Modern commerce: e-commerce, consumer protection, branding and business ethics."
+      }
+    ]
+  },
+  {
+    "id": "crk",
+    "title": "Christian Religious Studies Guide",
+    "introduction": "Read biblical passages in context and connect teachings with their moral and social implications. Study biblical narratives with attention to context, moral lessons and relationships between events. Avoid relying only on isolated quotations.",
+    "topics": [
+      {
+        "title": "Old Testament",
+        "content": "Revise creation, covenant, leadership, prophets, wisdom literature and major lessons from the lives of biblical figures."
+      },
+      {
+        "title": "Life and Teachings of Jesus",
+        "content": "Study parables, miracles, teachings, death and resurrection, paying attention to the lessons conveyed."
+      },
+      {
+        "title": "Early Church",
+        "content": "Revise Acts of the Apostles, the Holy Spirit, missionary work, leadership and challenges in the early church."
+      },
+      {
+        "title": "Teachings of Jesus",
+        "content": "Teachings of Jesus: kingdom of God, love, forgiveness, service, faith and stewardship."
+      },
+      {
+        "title": "Early church",
+        "content": "Early church: Acts, Christian fellowship, leadership, persecution and mission."
+      },
+      {
+        "title": "Practice routine",
+        "content": "Practice routine: identify the event, key characters, lesson and application before choosing an option."
+      }
+    ]
+  },
+  {
+    "id": "irk",
+    "title": "Islamic Religious Knowledge Guide",
+    "introduction": "Combine knowledge of Islamic beliefs and practices with the ethical principles they promote. Connect acts of worship with their ethical purposes. Study the life and teachings of Prophet Muhammad alongside core Islamic principles.",
+    "topics": [
+      {
+        "title": "Five Pillars",
+        "content": "Revise Shahadah, Salah, Zakat, Sawm and Hajj, including their significance and basic requirements."
+      },
+      {
+        "title": "Seerah",
+        "content": "Study major events in the life of Prophet Muhammad, including the Hijrah and the development of the Muslim community."
+      },
+      {
+        "title": "Moral Conduct",
+        "content": "Practise questions on honesty, justice, charity, patience, family responsibility and peaceful relations."
+      },
+      {
+        "title": "Qur’an and Sunnah",
+        "content": "Qur’an and Sunnah: revelation, guidance, moral conduct and sources of Islamic teaching."
+      },
+      {
+        "title": "Islamic ethics",
+        "content": "Islamic ethics: honesty, justice, charity, family responsibilities and peaceful coexistence."
+      }
+    ]
+  },
+  {
+    "id": "accounting",
+    "title": "Financial Accounting Guide",
+    "introduction": "Accounting becomes easier when you understand the effect of every transaction on assets, liabilities and capital. Master double-entry first, then apply it to books of original entry, ledgers, trial balance and final accounts.",
+    "topics": [
+      {
+        "title": "Double Entry",
+        "content": "Revise the rules of debit and credit and practise recording transactions in the appropriate accounts."
+      },
+      {
+        "title": "Final Accounts",
+        "content": "Study trading, profit and loss accounts, balance sheets and adjustments such as depreciation and accruals."
+      },
+      {
+        "title": "Control Procedures",
+        "content": "Revise trial balances, bank reconciliation, errors, suspense accounts and source documents."
+      },
+      {
+        "title": "Double entry",
+        "content": "Double entry: debit/credit rules, accounting equation and source documents."
+      },
+      {
+        "title": "Books and ledgers",
+        "content": "Books and ledgers: cash book, petty cash, sales/purchases books, returns and control accounts."
+      },
+      {
+        "title": "Final accounts",
+        "content": "Final accounts: trading account, profit and loss, statement of financial position and adjustments."
+      },
+      {
+        "title": "Practice routine",
+        "content": "Practice routine: analyse each transaction, identify affected accounts, then apply debit and credit rules."
+      }
+    ]
+  },
+  {
+    "id": "geography",
+    "title": "Geography Practice Guide",
+    "introduction": "Use diagrams and maps where possible. Connect physical processes with the landforms and human activities they create. Use diagrams, maps and data. Learn to connect physical processes with the landforms and human activities they produce.",
+    "topics": [
+      {
+        "title": "Map Work",
+        "content": "Practise scale, bearings, direction, grid references, relief and interpretation of conventional signs."
+      },
+      {
+        "title": "Physical Geography",
+        "content": "Revise weather, climate, rocks, rivers, erosion, coastal processes and natural vegetation."
+      },
+      {
+        "title": "Human Geography",
+        "content": "Study population, settlement, agriculture, industry, transport, trade and environmental issues."
+      },
+      {
+        "title": "Physical geography",
+        "content": "Physical geography: weather, climate, rocks, rivers, coasts, soils, vegetation and hazards."
+      },
+      {
+        "title": "Human geography",
+        "content": "Human geography: population, settlement, migration, agriculture, industry, transport and urbanisation."
+      },
+      {
+        "title": "Map work",
+        "content": "Map work: scale, direction, grid references, relief, contours, cross-sections and interpretation."
+      },
+      {
+        "title": "Fieldwork",
+        "content": "Fieldwork: sampling, observation, measurement, presentation and evaluation of evidence."
+      }
+    ]
+  },
+  {
+    "id": "agricultural-science",
+    "title": "Agricultural Science Guide",
+    "introduction": "Combine practical farm knowledge with scientific principles governing crops, livestock and soils. Relate farm practices to productivity, sustainability and management. Use local examples when revising tropical agriculture.",
+    "topics": [
+      {
+        "title": "Soil Science",
+        "content": "Revise soil texture, structure, fertility, pH, erosion and methods of soil improvement."
+      },
+      {
+        "title": "Crop Production",
+        "content": "Study propagation, nursery practices, planting, crop maintenance, harvesting, storage and pests."
+      },
+      {
+        "title": "Animal Production",
+        "content": "Revise breeds, nutrition, housing, disease prevention, reproduction and farm records."
+      },
+      {
+        "title": "Crop production",
+        "content": "Crop production: soil preparation, planting, nutrition, weed/pest control, harvesting and storage."
+      },
+      {
+        "title": "Animal production",
+        "content": "Animal production: breeds, feeding, housing, reproduction, health and management records."
+      },
+      {
+        "title": "Farm management",
+        "content": "Farm management: budgeting, records, credit, marketing, labour and risk."
+      },
+      {
+        "title": "Sustainable agriculture",
+        "content": "Sustainable agriculture: erosion control, crop rotation, organic matter, conservation and safe chemical use."
+      }
+    ]
+  },
+  {
+    "id": "literature",
+    "title": "Literature-in-English Guide",
+    "introduction": "Read beyond the plot. Examine character, conflict, theme, setting, language and dramatic or poetic techniques. Read widely and practise identifying literary devices from context. Support interpretations with evidence from the work being studied.",
+    "topics": [
+      {
+        "title": "Prose",
+        "content": "Practise identifying characterisation, themes, point of view, setting, symbolism and narrative techniques."
+      },
+      {
+        "title": "Poetry",
+        "content": "Revise imagery, tone, mood, diction, rhyme, rhythm, figures of speech and the relationship between form and meaning."
+      },
+      {
+        "title": "Drama",
+        "content": "Study plot development, dialogue, stage directions, conflict, dramatic irony and character motivation."
+      },
+      {
+        "title": "Genres",
+        "content": "Genres: poetry, prose and drama; know their structural and performance features."
+      },
+      {
+        "title": "Literary devices",
+        "content": "Literary devices: imagery, metaphor, simile, irony, symbolism, alliteration, diction and tone."
+      },
+      {
+        "title": "Narrative technique",
+        "content": "Narrative technique: plot, characterisation, point of view, setting, conflict and theme."
+      },
+      {
+        "title": "Practice routine",
+        "content": "Practice routine: identify the device, explain its effect, then connect it to meaning or character."
+      }
+    ]
+  },
+  {
+    "id": "civiceducation",
+    "title": "Civic Education Guide",
+    "introduction": "Civic questions often test both definitions and the practical importance of values, rights and responsibilities. Civic questions often test both knowledge and application. Learn the principle, its purpose, and how citizens or institutions demonstrate it.",
+    "topics": [
+      {
+        "title": "Rights and Duties",
+        "content": "Revise fundamental rights, civic duties, responsibilities of citizens and lawful participation in society."
+      },
+      {
+        "title": "Democratic Values",
+        "content": "Study justice, tolerance, accountability, integrity, rule of law, equality and respect for diversity."
+      },
+      {
+        "title": "National Development",
+        "content": "Practise topics on national unity, corruption, leadership, responsible citizenship and community participation."
+      },
+      {
+        "title": "Rights and responsibilities",
+        "content": "Rights and responsibilities: human rights, duties, rule of law, equality and justice."
+      },
+      {
+        "title": "Democracy",
+        "content": "Democracy: elections, participation, accountability, public opinion and political institutions."
+      },
+      {
+        "title": "National values",
+        "content": "National values: patriotism, tolerance, integrity, unity, hard work and respect for diversity."
+      },
+      {
+        "title": "Social issues",
+        "content": "Social issues: corruption, environmental responsibility, conflict resolution, security and community development."
+      }
+    ]
+  }
+]

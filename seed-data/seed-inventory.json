@@ -1,0 +1,38 @@
+{
+  "questionCount": 300,
+  "questionsPerSubject": {
+    "english": 20,
+    "mathematics": 20,
+    "biology": 20,
+    "chemistry": 20,
+    "physics": 20,
+    "government": 20,
+    "economics": 20,
+    "commerce": 20,
+    "crk": 20,
+    "irk": 20,
+    "accounting": 20,
+    "geography": 20,
+    "agricultural-science": 20,
+    "literature": 20,
+    "civiceducation": 20
+  },
+  "guideCount": 15,
+  "subjects": [
+    "accounting",
+    "agricultural-science",
+    "biology",
+    "chemistry",
+    "civiceducation",
+    "commerce",
+    "crk",
+    "economics",
+    "english",
+    "geography",
+    "government",
+    "irk",
+    "literature",
+    "mathematics",
+    "physics"
+  ]
+}

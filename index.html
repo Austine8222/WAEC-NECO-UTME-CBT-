@@ -148,7 +148,20 @@
       </button>
 
       <button id="start-btn">Start Practice Test</button>
+      <button id="practice-guide-btn" class="guide-btn">📘 View Practice Guide</button>
       <button id="switch-user-btn" class="secondary-btn">Sign Out / Switch Account</button>
+
+      <div id="practice-guide" class="guide-panel hidden">
+        <div class="guide-header">
+          <div>
+            <span class="eyebrow">SMART PREPARATION</span>
+            <h3 id="guide-title">Practice Guide</h3>
+          </div>
+          <button id="close-guide-btn" class="guide-close" type="button">×</button>
+        </div>
+        <p id="guide-intro" class="guide-intro"></p>
+        <div id="guide-topics" class="guide-topics"></div>
+      </div>
     </section>
 
     <!-- 3. ACTIVE EXAM SCREEN -->

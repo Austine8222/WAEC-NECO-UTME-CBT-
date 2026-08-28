@@ -9,9 +9,7 @@ import {
   getFirestore, 
   doc, 
   setDoc, 
-  getDoc, 
-  updateDoc, 
-  arrayUnion 
+  getDoc 
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 // 1. Firebase Configuration
@@ -30,12 +28,9 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // Paystack Key Configuration
-const PAYSTACK_PUBLIC_KEY = 'pk_test_ad1aa411e2e8cade2cbf911f346a07bbe0f018ea';
+const PAYSTACK_PUBLIC_KEY = 'pk_live_710b7ca31a5f1cd34e0b50a0d2f57b98eaac4678';
 
-// 2. ALOC API Config
-const API_TOKEN = '__INJECT_ALOC_TOKEN__';
-
-// 3. Application State Variables
+// 2. Application State Variables
 let questions = [];
 let currentQuestionIndex = 0;
 let userAnswers = {};
@@ -107,6 +102,13 @@ document.addEventListener('DOMContentLoaded', () => {
       showSetupScreen();
     } else {
       currentUser = null;
+      // Fixed sign-out state check: explicitly ensure auth screen & login tabs are cleanly re-enabled
+      const loginBtn = document.getElementById('login-btn');
+      if (loginBtn) {
+        loginBtn.innerText = "Sign In & Proceed";
+        loginBtn.disabled = false;
+      }
+      
       if (!document.getElementById('verify-box') || document.getElementById('verify-box').classList.contains('hidden')) {
         if (!document.getElementById('new-password-box') || document.getElementById('new-password-box').classList.contains('hidden')) {
           showAuthScreen();
@@ -128,6 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('switch-user-btn').addEventListener('click', handleSignOut);
   document.getElementById('start-btn').addEventListener('click', handleStartExamClick);
+  document.getElementById('practice-guide-btn').addEventListener('click', loadPracticeGuide);
+  document.getElementById('close-guide-btn').addEventListener('click', () => document.getElementById('practice-guide').classList.add('hidden'));
   document.getElementById('unlock-all-btn').addEventListener('click', () => triggerPaystackPayment('all'));
   document.getElementById('prev-btn').addEventListener('click', () => navigateQuestion(-1));
   document.getElementById('next-btn').addEventListener('click', () => navigateQuestion(1));
@@ -298,7 +302,6 @@ async function handleLogin(e) {
         return;
       }
     }
-
     document.getElementById('login-form').reset();
   } catch (error) {
     alert("Login Failed: " + error.message);
@@ -432,13 +435,8 @@ async function loadUserUnlockedSubjects() {
       unlockedSubjects = data.unlockedSubjects || ['english', 'mathematics'];
       isAllUnlocked = data.isAllUnlocked || false;
     } else {
-      await setDoc(userDocRef, {
-        name: currentUser.name,
-        email: currentUser.email,
-        unlockedSubjects: ['english', 'mathematics'],
-        isAllUnlocked: false,
-        createdAt: new Date().toISOString()
-      });
+      // Registration creates the profile server-side. Do not let the browser create
+      // or modify entitlement fields when the profile is missing.
       unlockedSubjects = ['english', 'mathematics'];
       isAllUnlocked = false;
     }
@@ -448,6 +446,7 @@ async function loadUserUnlockedSubjects() {
 
   updateSubjectDropdownUI();
 }
+
 function updateSubjectDropdownUI() {
   const select = document.getElementById('subject');
   if (!select) return;
@@ -485,90 +484,64 @@ function handleStartExamClick() {
   }
 }
 
-function triggerPaystackPayment(subjectOrType) {
+async function triggerPaystackPayment(subjectOrType) {
   if (!currentUser || !currentUser.email) {
     alert("User session not found. Please log in again.");
     return;
   }
-
   if (typeof PaystackPop === 'undefined') {
-    alert("Paystack payment SDK failed to load. Please check your internet connection.");
+    alert("Paystack checkout could not load. Please check your internet connection.");
     return;
   }
 
-  const isUnlockAll = subjectOrType === 'all';
-  const amountKobo = isUnlockAll ? 200000 : 50000;
+  try {
+    const idToken = await auth.currentUser.getIdToken();
+    const initRes = await fetch('/.netlify/functions/initialize-payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${idToken}` },
+      body: JSON.stringify({ unlockType: subjectOrType })
+    });
+    const init = await initRes.json();
+    if (!initRes.ok || !init.success) throw new Error(init.error || 'Could not initialize payment.');
 
-  const handler = PaystackPop.setup({
-    key: PAYSTACK_PUBLIC_KEY,
-    email: currentUser.email,
-    amount: amountKobo,
-    currency: 'NGN',
-    metadata: {
-      custom_fields: [
-        { display_name: "User ID", variable_name: "user_id", value: currentUser.uid },
-        { display_name: "Unlock Type", variable_name: "unlock_type", value: isUnlockAll ? "ALL_SUBJECTS" : subjectOrType }
-      ]
-    },
-    callback: async function(response) {
-      alert(`Payment Successful! Verifying transaction with server...`);
-      
+    alert('Secure Paystack checkout is opening.');
+    const popup = new PaystackPop();
+    popup.resumeTransaction(init.accessCode);
+
+    // The server owns the transaction reference. Poll verification so the
+    // unlock is granted only after Paystack confirms a successful payment.
+    let attempts = 0;
+    const verifyTimer = setInterval(async () => {
+      attempts++;
       try {
+        const token = await auth.currentUser.getIdToken(true);
         const res = await fetch('/.netlify/functions/verify-payment', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            reference: response.reference,
-            userId: currentUser.uid,
-            unlockType: subjectOrType
-          })
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+          body: JSON.stringify({ reference: init.reference, userId: currentUser.uid, unlockType: subjectOrType })
         });
-
         const result = await res.json();
         if (res.ok && result.success) {
-          await recordUnlockInFirestore(subjectOrType);
-        } else {
-          throw new Error(result.error || "Verification failed");
+          clearInterval(verifyTimer);
+          unlockedSubjects = Array.isArray(result.unlockedSubjects) ? result.unlockedSubjects : unlockedSubjects;
+          isAllUnlocked = Boolean(result.isAllUnlocked);
+          updateSubjectDropdownUI();
+          alert(subjectOrType === 'all' ? '🎉 All subjects have been unlocked!' : `🎉 ${subjectOrType.toUpperCase()} has been unlocked successfully.`);
+        } else if (res.status >= 400 && res.status !== 202) {
+          clearInterval(verifyTimer);
+          if (result.error) alert(`Payment verification: ${result.error}`);
         }
       } catch (err) {
-        console.error("Verification error:", err);
-        alert("Payment was made, but server verification failed. Please contact support with reference: " + response.reference);
+        console.warn('Payment polling error:', err);
       }
-    },
-    onClose: function() {
-      alert('Transaction was not completed.');
-    }
-  });
-
-  handler.openIframe();
-}
-
-async function recordUnlockInFirestore(subjectOrType) {
-  const userDocRef = doc(db, "users", currentUser.uid);
-
-  try {
-    if (subjectOrType === 'all') {
-      await updateDoc(userDocRef, {
-        isAllUnlocked: true,
-        unlockedSubjects: ALL_SUBJECTS
-      });
-      isAllUnlocked = true;
-      unlockedSubjects = ALL_SUBJECTS;
-      alert("🎉 Congratulations! You have unlocked ALL subjects!");
-    } else {
-      await updateDoc(userDocRef, {
-        unlockedSubjects: arrayUnion(subjectOrType)
-      });
-      if (!unlockedSubjects.includes(subjectOrType)) {
-        unlockedSubjects.push(subjectOrType);
+      if (attempts >= 20) {
+        clearInterval(verifyTimer);
+        alert(`Payment is still being confirmed. If you completed payment, wait a moment and refresh your account. Reference: ${init.reference}`);
       }
-      alert(`🎉 Subject successfully unlocked! You can now practice ${subjectOrType.toUpperCase()}.`);
-    }
-
-    updateSubjectDropdownUI();
+    }, 3000);
   } catch (err) {
-    console.error("Error saving payment unlock:", err);
-    alert("Payment verified successfully, but we encountered an issue syncing your account display. Please refresh.");
+    console.error('Payment initialization error:', err);
+    alert('Payment could not be started: ' + err.message);
   }
 }
 
@@ -590,62 +563,76 @@ function showAuthScreen() {
   switchAuthTab('login');
 }
 
+// Production question bank: questions are served from Firestore through Netlify.
 async function fetchExamQuestions() {
   const subject = document.getElementById('subject').value;
   const examType = document.getElementById('examtype').value;
   const limit = document.getElementById('question-limit').value;
   const startBtn = document.getElementById('start-btn');
-  
-  startBtn.innerText = "Fetching Questions...";
+
+  startBtn.innerText = "Loading Question Bank...";
   startBtn.disabled = true;
 
-  const url = `https://questions.aloc.com.ng/api/v2/m?subject=${subject}&type=${examType}&limit=${limit}`;
-
   try {
-    const response = await fetch(url, {
-      headers: {
-        'AccessToken': API_TOKEN,
-        'Accept': 'application/json'
-      }
-    });
-
+    const url = `/.netlify/functions/get-questions?subject=${encodeURIComponent(subject)}&type=${encodeURIComponent(examType)}&limit=${encodeURIComponent(limit)}`;
+    const response = await fetch(url, { headers: { 'Accept': 'application/json' }, cache: 'no-store' });
     const result = await response.json();
 
-    if (result.status === 200 && result.data && result.data.length > 0) {
-      const parsedData = result.data.filter(q => q.question && q.option && q.option.a && q.option.b);
-
-      questions = parsedData.map(q => ({
-        id: q.id,
-        section: q.section || q.passage || "",
-        question: q.question,
-        options: [
-          `A. ${q.option.a || ''}`,
-          `B. ${q.option.b || ''}`,
-          `C. ${q.option.c || ''}`,
-          `D. ${q.option.d || ''}`
-        ],
-        correctAnswer: ['a', 'b', 'c', 'd'].indexOf(q.answer ? q.answer.toLowerCase() : 'a'),
-        solution: q.solution || "No detailed explanation available for this question."
-      }));
-    } else {
-      throw new Error("Empty API Response");
+    if (!response.ok || !result.success || !Array.isArray(result.data) || !result.data.length) {
+      throw new Error(result.error || 'No questions are available for this subject yet.');
     }
+
+    questions = result.data.map(q => ({
+      id: q.id,
+      section: q.passage || q.section || '',
+      question: q.question,
+      options: q.options,
+      correctAnswer: Number(q.correctAnswer),
+      solution: q.explanation || q.solution || 'Explanation not available.'
+    }));
+
+    document.getElementById('setup-screen').classList.add('hidden');
+    document.getElementById('exam-area').classList.remove('hidden');
+    document.getElementById('timer').classList.remove('hidden');
+    currentQuestionIndex = 0;
+    userAnswers = {};
+    displayQuestion();
+    startTimer();
   } catch (error) {
-    console.warn("API Call Failed. Switching to local fallback questions:", error);
-    questions = localBackupQuestions;
+    console.error('Question bank error:', error);
+    alert(`Unable to start practice: ${error.message}`);
+  } finally {
+    startBtn.innerText = "Start Practice Test";
+    startBtn.disabled = false;
   }
+}
 
-  startBtn.innerText = "Start Practice Test";
-  startBtn.disabled = false;
+async function loadPracticeGuide() {
+  const subject = document.getElementById('subject').value;
+  const panel = document.getElementById('practice-guide');
+  const title = document.getElementById('guide-title');
+  const intro = document.getElementById('guide-intro');
+  const topics = document.getElementById('guide-topics');
+  panel.classList.remove('hidden');
+  title.textContent = `${subject.replaceAll('-', ' ')} Practice Guide`;
+  intro.textContent = 'Loading your study guide...';
+  topics.innerHTML = '';
 
-  document.getElementById('setup-screen').classList.add('hidden');
-  document.getElementById('exam-area').classList.remove('hidden');
-  document.getElementById('timer').classList.remove('hidden');
-  
-  currentQuestionIndex = 0;
-  userAnswers = {};
-  displayQuestion();
-  startTimer();
+  try {
+    const res = await fetch(`/.netlify/functions/get-practice-guide?subject=${encodeURIComponent(subject)}`, { cache: 'no-store' });
+    const data = await res.json();
+    if (!res.ok || !data.success) throw new Error(data.error || 'Guide unavailable.');
+    intro.textContent = data.guide.introduction || '';
+    const items = Array.isArray(data.guide.topics) ? data.guide.topics : [];
+    topics.innerHTML = items.map((topic, index) => `
+      <article class="guide-topic">
+        <div class="guide-topic-number">${index + 1}</div>
+        <div><h4>${topic.title || 'Study Topic'}</h4><p>${topic.content || ''}</p></div>
+      </article>`).join('');
+  } catch (error) {
+    console.error('Practice guide error:', error);
+    intro.textContent = 'Unable to load the guide right now. Please try again.';
+  }
 }
 
 function displayQuestion() {
