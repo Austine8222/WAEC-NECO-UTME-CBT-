@@ -563,3 +563,86 @@ header h2 { color: #fff; margin: 0; font-size: 16px; }
   .dashboard-stats small { font-size: 9px; }
   .setup-card { padding: 16px; }
 }
+
+
+/* =====================================================================
+   FINAL UI POLISH — CLEAN SUBJECT STATUS, BRAND LOGO & NOTIFICATIONS
+   ===================================================================== */
+.auth-brand-logo {
+  width: 118px;
+  height: 92px;
+  object-fit: contain;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 8px 18px rgba(15, 47, 95, .12));
+}
+.auth-brand-copy { min-width: 0; }
+.auth-brand h1 { font-weight: 800; }
+.auth-tabs { display: grid; grid-template-columns: repeat(3, 1fr); }
+.tab-btn { min-height: 48px; font-size: 13px; font-weight: 700; }
+.auth-form input:focus, #setup-screen > select:focus {
+  outline: none;
+  border-color: #2d73d5;
+  box-shadow: 0 0 0 4px rgba(45, 115, 213, .10);
+}
+#login-btn, #reg-btn, #reset-btn, #confirm-verify-btn, #confirm-reset-verify-btn, #update-password-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #0f3b73, #1765b4);
+  color: #fff;
+  font-weight: 800;
+}
+#login-btn:disabled, #reg-btn:disabled, #reset-btn:disabled,
+#confirm-verify-btn:disabled, #confirm-reset-verify-btn:disabled, #update-password-btn:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+.dashboard-stats { grid-template-columns: repeat(3, 1fr); }
+.dashboard-stats div { min-height: 92px; }
+#setup-screen > select { width: 100%; }
+
+/* No access icons in the subject dropdown. */
+#subject option { padding: 10px; }
+
+.app-notice {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 200000;
+  width: min(92vw, 470px);
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 14px 16px;
+  border: 1px solid #dbe3ed;
+  border-left: 4px solid #64748b;
+  border-radius: 14px;
+  background: #fff;
+  color: #253247;
+  box-shadow: 0 18px 50px rgba(15, 23, 42, .18);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.45;
+  opacity: 0;
+  transform: translate(-50%, 18px) scale(.98);
+  pointer-events: none;
+  transition: opacity .22s ease, transform .22s ease;
+}
+.app-notice.show { opacity: 1; transform: translate(-50%, 0) scale(1); }
+.app-notice.success { border-left-color: #16a34a; color: #166534; background: #f0fdf4; }
+.app-notice.error { border-left-color: #dc2626; color: #b91c1c; background: #fff5f5; }
+.app-notice.info { border-left-color: #2563eb; color: #1d4ed8; background: #f5f9ff; }
+.notice-icon {
+  width: 25px; height: 25px; flex: 0 0 25px; display: grid; place-items: center;
+  border-radius: 50%; background: currentColor; color: #fff; font-size: 13px; font-weight: 900;
+}
+
+@media (max-width: 600px) {
+  .auth-brand { align-items: center; gap: 12px; margin-bottom: 22px; }
+  .auth-brand-logo { width: 88px; height: 74px; }
+  .auth-brand h1 { font-size: 20px; }
+  .auth-brand p { font-size: 12px; }
+  .auth-tabs { grid-template-columns: 1fr; }
+  .tab-btn { min-height: 43px; }
+  .dashboard-stats { grid-template-columns: repeat(3, 1fr); }
+  .dashboard-stats div { min-height: 82px; }
+  .app-notice { bottom: 16px; }
+}

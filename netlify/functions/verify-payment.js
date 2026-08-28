@@ -68,7 +68,13 @@ exports.handler = async function(event) {
     // customer (which can include Paystack's fee).
     const expectedAmount = unlockType === 'all' ? 200000 : 50000;
     const amountPaid = Number(paystackData.data.amount);
-    const requestedAmount = Number(paystackData.data.requested_amount);
+    const paystackRequestedAmount = Number(paystackData.data.requested_amount);
+    // requested_amount is not guaranteed in every Paystack response. The
+    // package price is known from the server-validated unlock type, so it is
+    // safe to use that as the fallback base amount.
+    const requestedAmount = Number.isFinite(paystackRequestedAmount) && paystackRequestedAmount > 0
+      ? paystackRequestedAmount
+      : expectedAmount;
     const paystackFees = Number(paystackData.data.fees || 0);
     const currency = String(paystackData.data.currency || '').toUpperCase();
     const paidEmail = String(paystackData.data.customer?.email || '').trim().toLowerCase();
@@ -79,9 +85,14 @@ exports.handler = async function(event) {
 
     // The requested amount MUST be exactly our product price. The customer
     // amount may be higher because Paystack has added its transaction fee.
+    // Depending on the Paystack fee configuration/API response, `amount` may
+    // represent the product amount or the gross customer charge. Accept both
+    // forms, but never accept anything below the exact package price.
+    const validPaidAmount = amountPaid === requestedAmount ||
+      (paystackFees > 0 && amountPaid === requestedAmount + paystackFees);
+
     if (!Number.isFinite(requestedAmount) || requestedAmount !== expectedAmount ||
-        !Number.isFinite(amountPaid) || amountPaid < requestedAmount ||
-        !Number.isFinite(paystackFees) || (paystackFees > 0 && amountPaid !== requestedAmount + paystackFees)) {
+        !Number.isFinite(amountPaid) || !Number.isFinite(paystackFees) || !validPaidAmount) {
       console.error('Payment amount mismatch', {
         expectedAmount, requestedAmount, amountPaid, paystackFees, reference
       });

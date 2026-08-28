@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WAEC/NECO CBT Practice Engine</title>
   <link rel="stylesheet" href="style.css">
-  
-  <!-- Paystack Inline SDK -->
-  <script src="https://js.paystack.co/v2/inline.js"></script>
 </head>
 <body>
 
@@ -25,10 +22,10 @@
     <!-- 1. AUTHENTICATION & ACCOUNT PORTAL -->
     <section id="auth-screen">
       <div class="auth-brand">
-        <div class="auth-brand-mark">DB</div>
-        <div>
+        <img class="auth-brand-logo" src="logo.png" alt="De-Blaise Technologies logo">
+        <div class="auth-brand-copy">
           <span class="auth-brand-kicker">DE-BLAISE TECHNOLOGIES</span>
-          <h1>WAEC & NECO CBT</h1>
+          <h1>WAEC &amp; NECO CBT</h1>
           <p>Practice smarter. Prepare with confidence.</p>
         </div>
       </div>
@@ -117,8 +114,8 @@
       </div>
       <div class="dashboard-stats">
         <div><span>📚</span><strong>15</strong><small>Subjects</small></div>
-        <div><span>🔐</span><strong>Secure</strong><small>Payment verification</small></div>
         <div><span>✓</span><strong>CBT</strong><small>Practice mode</small></div>
+        <div><span>⚡</span><strong>Fast</strong><small>Easy practice</small></div>
       </div>
       <div class="setup-card">
         <div class="section-heading"><span class="section-icon">⚙</span><div><h3>Practice settings</h3><p>Choose how you want to practise today.</p></div></div>
@@ -216,6 +213,9 @@
       <button id="restart-btn">Take Another Test</button>
     </section>
 
+    <!-- PROFESSIONAL APP NOTIFICATION -->
+    <div id="app-notice" class="app-notice" role="status" aria-live="polite"></div>
+
     <!-- PROFESSIONAL UNLOCK MODAL -->
     <div id="unlock-modal" class="unlock-modal hidden" role="dialog" aria-modal="true" aria-labelledby="unlock-modal-title">
       <div class="unlock-card">
@@ -227,14 +227,14 @@
         <div class="unlock-options">
           <button id="unlock-subject-btn" class="unlock-option primary" type="button">
             <strong>Unlock Subject</strong>
-            <span>₦500 + applicable Paystack fee</span>
+            <span>₦500 base price</span>
           </button>
           <button id="unlock-all-modal-btn" class="unlock-option secondary" type="button">
             <strong>Unlock All Subjects</strong>
-            <span>₦2,000 + applicable Paystack fee</span>
+            <span>₦2,000 base price</span>
           </button>
         </div>
-        <p class="unlock-footnote">Payment is securely processed by Paystack. Access is granted only after your payment is verified.</p>
+        <p class="unlock-footnote">Payment is processed by Paystack. Your access is activated after successful payment confirmation.</p>
       </div>
     </div>
 

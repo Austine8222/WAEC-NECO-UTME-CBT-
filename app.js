@@ -27,9 +27,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Paystack Key Configuration
-const PAYSTACK_PUBLIC_KEY = 'pk_live_710b7ca31a5f1cd34e0b50a0d2f57b98eaac4678';
-
 // 2. Application State Variables
 let questions = [];
 let currentQuestionIndex = 0;
@@ -238,9 +235,9 @@ async function handleRegistration(e) {
     
     document.getElementById('register-form').classList.add('hidden');
     document.getElementById('verify-box').classList.remove('hidden');
-    alert(`Verification code sent to ${email}. Please check your inbox.`);
+    showNotice(`Verification code sent to ${email}. Check your inbox for the code.`, 'success');
   } catch (error) {
-    alert("Registration Failed: " + error.message);
+    showNotice(getFriendlyError(error, 'Registration could not be completed.'), 'error');
   } finally {
     regBtn.innerText = "Send Verification Code";
     regBtn.disabled = false;
@@ -252,7 +249,7 @@ async function handleVerifyRegistrationOtp() {
   const verifyBtn = document.getElementById('confirm-verify-btn');
 
   if (!enteredOtp || enteredOtp.length !== 6) {
-    alert("Please enter a valid 6-digit verification code.");
+    showNotice('Enter the 6-digit verification code.', 'error');
     return;
   }
 
@@ -276,13 +273,13 @@ async function handleVerifyRegistrationOtp() {
       throw new Error(result.error || "Verification failed.");
     }
 
-    alert("Account verified and created successfully! You can now log in.");
+    showNotice('Account created successfully. You can now sign in.', 'success');
     document.getElementById('register-form').reset();
     document.getElementById('verify-code-input').value = "";
     pendingRegData = null;
     switchAuthTab('login');
   } catch (error) {
-    alert("Verification Error: " + error.message);
+    showNotice(getFriendlyError(error, 'Verification could not be completed.'), 'error');
   } finally {
     verifyBtn.innerText = "Verify Account";
     verifyBtn.disabled = false;
@@ -312,7 +309,7 @@ async function handleLogin(e) {
       const userData = userSnap.data();
       if (!userData.isVerified) {
         await signOut(auth);
-        alert("Access Denied: Your account email is not verified.");
+        showNotice('Your email address has not been verified.', 'error');
         loginBtn.innerText = "Sign In & Proceed";
         loginBtn.disabled = false;
         return;
@@ -320,7 +317,7 @@ async function handleLogin(e) {
     }
     document.getElementById('login-form').reset();
   } catch (error) {
-    alert("Login Failed: " + error.message);
+    showNotice(getFriendlyError(error, 'Sign-in failed. Check your email and password.'), 'error');
     loginBtn.innerText = "Sign In & Proceed";
     loginBtn.disabled = false;
   }
@@ -352,9 +349,9 @@ async function handlePasswordResetRequest(e) {
     verifiedResetEmail = email;
     document.getElementById('reset-form').classList.add('hidden');
     document.getElementById('reset-verify-box').classList.remove('hidden');
-    alert(`A password reset code has been sent to ${email}.`);
+    showNotice(`Password reset code sent to ${email}.`, 'success');
   } catch (error) {
-    alert("Password Reset Request Failed: " + error.message);
+    showNotice(getFriendlyError(error, 'Password reset could not be started.'), 'error');
   } finally {
     resetBtn.innerText = "Send Reset Code";
     resetBtn.disabled = false;
@@ -366,7 +363,7 @@ async function handleVerifyResetOtp() {
   const verifyBtn = document.getElementById('confirm-reset-verify-btn');
 
   if (!enteredOtp || enteredOtp.length !== 6) {
-    alert("Please enter a valid 6-digit code.");
+    showNotice('Enter the 6-digit reset code.', 'error');
     return;
   }
 
@@ -385,11 +382,11 @@ async function handleVerifyResetOtp() {
       throw new Error(result.error || "Invalid or expired OTP code.");
     }
 
-    alert("Code verified successfully! Please enter your new password.");
+    showNotice('Code verified. Enter your new password.', 'success');
     document.getElementById('reset-verify-box').classList.add('hidden');
     document.getElementById('new-password-box').classList.remove('hidden');
   } catch (error) {
-    alert("Verification Failed: " + error.message);
+    showNotice(getFriendlyError(error, 'The verification code is not valid.'), 'error');
   } finally {
     verifyBtn.innerText = "Verify Code";
     verifyBtn.disabled = false;
@@ -401,7 +398,7 @@ async function handleSubmitNewPassword() {
   const updateBtn = document.getElementById('update-password-btn');
 
   if (!newPassword || newPassword.length < 6) {
-    alert("Password must be at least 6 characters long.");
+    showNotice('Password must be at least 6 characters long.', 'error');
     return;
   }
 
@@ -420,13 +417,13 @@ async function handleSubmitNewPassword() {
       throw new Error(result.error || "Failed to update password.");
     }
 
-    alert("Password updated successfully! You can now log in with your new password.");
+    showNotice('Password updated successfully. You can now sign in.', 'success');
     document.getElementById('reset-form').reset();
     document.getElementById('new-password-input').value = "";
     verifiedResetEmail = "";
     switchAuthTab('login');
   } catch (error) {
-    alert("Update Failed: " + error.message);
+    showNotice(getFriendlyError(error, 'Password could not be updated.'), 'error');
   } finally {
     updateBtn.innerText = "Save New Password";
     updateBtn.disabled = false;
@@ -466,18 +463,18 @@ async function loadUserUnlockedSubjects() {
 function updateSubjectDropdownUI() {
   const select = document.getElementById('subject');
   if (!select) return;
-  const options = select.options;
-
-  for (let i = 0; i < options.length; i++) {
-    const val = options[i].value;
-    const baseName = options[i].text.replace(/^🔒\s*/, '').replace(/^✓\s*/, '').split('(')[0].trim();
-    const unlocked = isAllUnlocked || unlockedSubjects.includes(val);
-    options[i].text = unlocked ? `✓ ${baseName}` : `🔒 ${baseName}`;
-  }
+  // Keep subject names clean. Access status is shown only when a locked
+  // subject is selected, not as symbols inside the dropdown.
+  Array.from(select.options).forEach(option => {
+    option.text = option.text
+      .replace(/^[✓🔒]\s*/, '')
+      .split('(')[0]
+      .trim();
+  });
 
   const unlockAllBtn = document.getElementById('unlock-all-btn');
-  if (isAllUnlocked || ALL_SUBJECTS.every(s => unlockedSubjects.includes(s))) {
-    if (unlockAllBtn) unlockAllBtn.style.display = 'none';
+  if (unlockAllBtn) {
+    unlockAllBtn.style.display = (isAllUnlocked || ALL_SUBJECTS.every(s => unlockedSubjects.includes(s))) ? 'none' : '';
   }
 }
 
@@ -526,6 +523,50 @@ function handleStartExamClick() {
   }
 }
 
+const FRIENDLY_AUTH_ERRORS = {
+  'auth/invalid-credential': 'Incorrect email or password.',
+  'auth/invalid-login-credentials': 'Incorrect email or password.',
+  'auth/user-not-found': 'No account was found with that email address.',
+  'auth/wrong-password': 'Incorrect email or password.',
+  'auth/invalid-email': 'Enter a valid email address.',
+  'auth/too-many-requests': 'Too many attempts. Please wait a moment and try again.',
+  'auth/network-request-failed': 'Network connection failed. Check your internet connection.',
+  'auth/user-disabled': 'This account has been disabled.',
+  'auth/email-already-in-use': 'An account already exists with this email address.',
+  'auth/weak-password': 'Choose a stronger password with at least 6 characters.'
+};
+
+let noticeTimer = null;
+
+function getFriendlyError(error, fallback = 'Something went wrong. Please try again.') {
+  const code = error?.code || '';
+  if (FRIENDLY_AUTH_ERRORS[code]) return FRIENDLY_AUTH_ERRORS[code];
+  const message = String(error?.message || '').replace(/^Firebase:\s*/i, '').trim();
+  // Never expose raw Firebase/provider errors in the interface.
+  if (!message || /firebase|auth\//i.test(message)) return fallback;
+  return message;
+}
+
+function showNotice(message, type = 'info') {
+  const notice = document.getElementById('app-notice');
+  if (!notice) return;
+  clearTimeout(noticeTimer);
+  notice.className = `app-notice ${type}`;
+  notice.innerHTML = `<span class="notice-icon" aria-hidden="true">${type === 'success' ? '✓' : type === 'error' ? '!' : 'i'}</span><span>${escapeHtml(String(message))}</span>`;
+  requestAnimationFrame(() => notice.classList.add('show'));
+  noticeTimer = setTimeout(() => notice.classList.remove('show'), 5000);
+}
+
+function showPaymentNotice(message, type = 'info') {
+  showNotice(message, type);
+}
+
+function escapeHtml(value) {
+  const div = document.createElement('div');
+  div.textContent = value;
+  return div.innerHTML;
+}
+
 async function triggerPaystackPayment(subjectOrType) {
   if (!currentUser || !auth.currentUser) {
     showPaymentNotice('Your session has expired. Please log in again.', 'error');
@@ -536,18 +577,25 @@ async function triggerPaystackPayment(subjectOrType) {
   const allButton = document.getElementById('unlock-all-modal-btn');
   if (subjectButton) subjectButton.disabled = true;
   if (allButton) allButton.disabled = true;
-  showPaymentNotice('Preparing your secure Paystack checkout…', 'info');
+  showPaymentNotice('Opening Paystack checkout…', 'info');
 
   try {
-    const idToken = await auth.currentUser.getIdToken();
-    const initRes = await fetch('/.netlify/functions/initialize-payment', {
+    const idToken = await auth.currentUser.getIdToken(true);
+    let initRes = await fetch('/api/initialize-payment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${idToken}` },
       body: JSON.stringify({ unlockType: subjectOrType })
     });
+    if (initRes.status === 404) {
+      initRes = await fetch('/.netlify/functions/initialize-payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${idToken}` },
+        body: JSON.stringify({ unlockType: subjectOrType })
+      });
+    }
     const init = await initRes.json();
     if (!initRes.ok || !init.success || !init.authorizationUrl || !init.reference) {
-      throw new Error(init.error || 'Could not initialize payment.');
+      throw new Error(init.error || 'Payment could not be started. Please try again.');
     }
 
     // Store only the non-sensitive transaction context. The server remains the
@@ -571,7 +619,7 @@ async function triggerPaystackPayment(subjectOrType) {
 
 async function handlePaymentReturn() {
   const params = new URLSearchParams(window.location.search);
-  const reference = params.get('reference');
+  const reference = params.get('reference') || params.get('trxref');
   const raw = sessionStorage.getItem('waec_pending_payment');
   if (!reference || !raw || !currentUser || !auth.currentUser) return;
 
@@ -585,11 +633,18 @@ async function handlePaymentReturn() {
 
   try {
     const token = await auth.currentUser.getIdToken(true);
-    const res = await fetch('/.netlify/functions/verify-payment', {
+    let res = await fetch('/api/verify-payment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
       body: JSON.stringify({ reference, userId: currentUser.uid, unlockType: pending.unlockType })
     });
+    if (res.status === 404) {
+      res = await fetch('/.netlify/functions/verify-payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ reference, userId: currentUser.uid, unlockType: pending.unlockType })
+      });
+    }
     const result = await res.json();
 
     if (res.ok && result.success) {
@@ -668,7 +723,7 @@ async function fetchExamQuestions() {
     startTimer();
   } catch (error) {
     console.error('Question bank error:', error);
-    alert(`Unable to start practice: ${error.message}`);
+    showNotice(getFriendlyError(error, 'Practice could not be started.'), 'error');
   } finally {
     startBtn.innerText = "Start Practice Test";
     startBtn.disabled = false;
@@ -767,7 +822,7 @@ function startTimer() {
 
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
-      alert("Time is up! Submitting exam automatically.");
+      showNotice('Time is up. Your test is being submitted.', 'info');
       submitExam();
     }
   }, 1000);
