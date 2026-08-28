@@ -59,26 +59,56 @@ exports.handler = async function(event) {
       return { statusCode: 202, body: JSON.stringify({ success: false, pending: true, status: paystackData.data.status }) };
     }
 
+    // Paystack may charge the customer more than the product price when
+    // "Pass fees to customers" is enabled. Therefore, do NOT compare
+    // data.amount directly with ₦500/₦2,000.
+    //
+    // data.requested_amount is the amount our application requested for the
+    // product, while data.amount is the gross amount actually charged to the
+    // customer (which can include Paystack's fee).
     const expectedAmount = unlockType === 'all' ? 200000 : 50000;
     const amountPaid = Number(paystackData.data.amount);
+    const requestedAmount = Number(paystackData.data.requested_amount);
+    const paystackFees = Number(paystackData.data.fees || 0);
     const currency = String(paystackData.data.currency || '').toUpperCase();
-    const paidEmail = String(paystackData.data.customer?.email || '').toLowerCase();
+    const paidEmail = String(paystackData.data.customer?.email || '').trim().toLowerCase();
 
-    if (currency !== 'NGN' || amountPaid < expectedAmount) {
-      return { statusCode: 400, body: JSON.stringify({ error: 'Payment amount or currency does not match the requested package.' }) };
+    if (currency !== 'NGN') {
+      return { statusCode: 400, body: JSON.stringify({ error: 'This payment was not completed in Nigerian Naira.' }) };
     }
 
-    const metadata = paystackData.data.metadata || {};
+    // The requested amount MUST be exactly our product price. The customer
+    // amount may be higher because Paystack has added its transaction fee.
+    if (!Number.isFinite(requestedAmount) || requestedAmount !== expectedAmount ||
+        !Number.isFinite(amountPaid) || amountPaid < requestedAmount) {
+      console.error('Payment amount mismatch', {
+        expectedAmount, requestedAmount, amountPaid, paystackFees, reference
+      });
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: 'The verified payment amount does not match the selected package.' })
+      };
+    }
+
+    if (String(paystackData.data.reference || '') !== String(reference)) {
+      return { statusCode: 403, body: JSON.stringify({ error: 'Payment reference could not be validated.' }) };
+    }
+
+    // Require the metadata we created during initialization. This prevents a
+    // valid payment for one package/account from being used to unlock another.
+    const metadataRaw = paystackData.data.metadata || {};
+    let metadata = metadataRaw;
+    if (typeof metadataRaw === 'string') {
+      try { metadata = JSON.parse(metadataRaw); } catch (_) { metadata = {}; }
+    }
     const customFields = Array.isArray(metadata.custom_fields) ? metadata.custom_fields : [];
     const field = (name) => customFields.find(f => f && f.variable_name === name)?.value;
-    const metadataUserId = field('user_id');
-    const metadataUnlock = field('unlock_type');
+    const metadataUserId = metadata.user_id || field('user_id');
+    const metadataUnlock = metadata.unlock_type || field('unlock_type');
+    const expectedMetadataUnlock = unlockType === 'all' ? 'ALL_SUBJECTS' : unlockType;
 
-    if (metadataUserId && metadataUserId !== userId) {
-      return { statusCode: 403, body: JSON.stringify({ error: 'Payment does not belong to this account.' }) };
-    }
-    if (metadataUnlock && metadataUnlock !== (unlockType === 'all' ? 'ALL_SUBJECTS' : unlockType)) {
-      return { statusCode: 403, body: JSON.stringify({ error: 'Payment package does not match the requested unlock.' }) };
+    if (metadataUserId !== userId || metadataUnlock !== expectedMetadataUnlock) {
+      return { statusCode: 403, body: JSON.stringify({ error: 'The payment details do not match this account or package.' }) };
     }
 
     const userRef = db.collection('users').doc(userId);
