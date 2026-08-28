@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WAEC/NECO CBT Practice Engine</title>
+  <meta name="theme-color" content="#0b2d5c">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="WAEC CBT">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -212,6 +220,17 @@
 
       <button id="restart-btn">Take Another Test</button>
     </section>
+
+    <!-- INSTALLABLE APP PROMPT -->
+    <div id="install-banner" class="install-banner hidden" role="dialog" aria-label="Install WAEC/NECO CBT">
+      <div class="install-app-icon"><img src="/icons/icon-192.png" alt="" /></div>
+      <div class="install-copy">
+        <strong>Install WAEC/NECO CBT</strong>
+        <span>Practise faster from your home screen.</span>
+      </div>
+      <button id="install-app-btn" class="install-action" type="button">Install</button>
+      <button id="dismiss-install-btn" class="install-dismiss" type="button" aria-label="Not now">×</button>
+    </div>
 
     <!-- PROFESSIONAL APP NOTIFICATION -->
     <div id="app-notice" class="app-notice" role="status" aria-live="polite"></div>

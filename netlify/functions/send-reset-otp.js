@@ -20,15 +20,16 @@ exports.handler = async function(event, context) {
   }
 
   try {
-    const { email } = JSON.parse(event.body);
+    const { email } = JSON.parse(event.body || '{}');
+    const normalizedEmail = String(email || '').trim().toLowerCase();
 
-    if (!email) {
+    if (!normalizedEmail) {
       return { statusCode: 400, body: JSON.stringify({ error: 'Email is required' }) };
     }
 
     // 1. Verify that the user actually exists in Firebase Auth before sending a reset code
     try {
-      await auth.getUserByEmail(email);
+      await auth.getUserByEmail(normalizedEmail);
     } catch (err) {
       return { statusCode: 404, body: JSON.stringify({ error: 'No account found with this email address.' }) };
     }
@@ -38,7 +39,7 @@ exports.handler = async function(event, context) {
     const otpExpires = Date.now() + 10 * 60 * 1000;
 
     // 3. Save the reset OTP to the user's Firestore document
-    const userSnapshot = await db.collection('users').where('email', '==', email).get();
+    const userSnapshot = await db.collection('users').where('email', '==', normalizedEmail).get();
     if (!userSnapshot.empty) {
       const docId = userSnapshot.docs[0].id;
       await db.collection('users').doc(docId).update({
@@ -48,7 +49,7 @@ exports.handler = async function(event, context) {
     } else {
       // If Firestore profile is missing, create a tracking record
       await db.collection('users').add({
-        email: email,
+        email: normalizedEmail,
         resetOtp: resetOtp,
         resetOtpExpires: otpExpires,
         isVerified: true,
@@ -67,7 +68,7 @@ exports.handler = async function(event, context) {
 
     const mailOptions = {
       from: `"WAEC/NECO CBT Support" <${process.env.EMAIL_USER}>`,
-      to: email,
+      to: normalizedEmail,
       subject: 'Password Reset Code',
       text: `Your password reset code is: ${resetOtp}. It will expire in 10 minutes.`
     };

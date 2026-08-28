@@ -42,6 +42,7 @@ let pendingUnlockSubject = null;
 // Temporary staging data for multi-step flows
 let pendingRegData = null;
 let verifiedResetEmail = "";
+let verifiedResetToken = "";
 
 // Constant WhatsApp Channel Configuration
 const WHATSAPP_CHANNEL_URL = "https://whatsapp.com/channel/0029VbDoREeFsn0avGYpKC0J";
@@ -71,7 +72,70 @@ const ALL_SUBJECTS = [
   'accounting', 'geography', 'agricultural-science', 'literature', 'civiceducation'
 ];
 
+let deferredInstallPrompt = null;
+
+function setupInstallPrompt() {
+  const installBanner = document.getElementById('install-banner');
+  const installButton = document.getElementById('install-app-btn');
+  const dismissButton = document.getElementById('dismiss-install-btn');
+
+  // The browser controls when the native install prompt is available.
+  window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+    deferredInstallPrompt = event;
+    if (installBanner && !localStorage.getItem('waec_install_dismissed')) {
+      installBanner.classList.remove('hidden');
+    }
+  });
+
+  installButton?.addEventListener('click', async () => {
+    if (!deferredInstallPrompt) {
+      showNotice('Use your browser menu and choose “Add to Home screen” to install the app.', 'info');
+      return;
+    }
+    installButton.disabled = true;
+    deferredInstallPrompt.prompt();
+    const choice = await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt = null;
+    installButton.disabled = false;
+    if (choice?.outcome === 'accepted') {
+      installBanner?.classList.add('hidden');
+      showNotice('WAEC/NECO CBT has been installed successfully.', 'success');
+    }
+  });
+
+  dismissButton?.addEventListener('click', () => {
+    installBanner?.classList.add('hidden');
+    localStorage.setItem('waec_install_dismissed', '1');
+  });
+
+  window.addEventListener('appinstalled', () => {
+    deferredInstallPrompt = null;
+    installBanner?.classList.add('hidden');
+    localStorage.removeItem('waec_install_dismissed');
+  });
+
+  // Show a friendly in-app install invitation on the first visit even on
+  // browsers that do not expose beforeinstallprompt (for example iOS Safari).
+  setTimeout(() => {
+    const alreadyInstalled = window.matchMedia('(display-mode: standalone)').matches ||
+      window.navigator.standalone === true;
+    if (!alreadyInstalled && installBanner && !localStorage.getItem('waec_install_dismissed')) {
+      installBanner.classList.remove('hidden');
+    }
+  }, 1200);
+
+  // Register the service worker so the app is installable and can load its
+  // shell during temporary network interruptions.
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch((error) => {
+      console.warn('Service worker registration failed:', error);
+    });
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  setupInstallPrompt();
   renderFooterChannelLink();
 
   onAuthStateChanged(auth, async (user) => {
@@ -323,6 +387,24 @@ async function handleLogin(e) {
   }
 }
 
+async function readApiResponse(response) {
+  const text = await response.text();
+  let data = null;
+  try {
+    data = text ? JSON.parse(text) : {};
+  } catch (_) {
+    const contentType = response.headers.get('content-type') || '';
+    if (text.trim().startsWith('<') || /html/i.test(contentType)) {
+      throw new Error('The service is temporarily unavailable. Please try again.');
+    }
+    throw new Error('The service returned an invalid response. Please try again.');
+  }
+  if (!response.ok) {
+    throw new Error(data?.error || data?.message || 'The request could not be completed.');
+  }
+  return data;
+}
+
 // 3. SECURE PASSWORD RESET FLOW
 async function handlePasswordResetRequest(e) {
   if (e) e.preventDefault();
@@ -341,9 +423,9 @@ async function handlePasswordResetRequest(e) {
       body: JSON.stringify({ email })
     });
 
-    const result = await res.json();
-    if (!res.ok || !result.success) {
-      throw new Error(result.error || "Failed to dispatch reset code.");
+    const result = await readApiResponse(res);
+    if (!result.success) {
+      throw new Error(result.error || 'Failed to send the reset code.');
     }
 
     verifiedResetEmail = email;
@@ -377,12 +459,13 @@ async function handleVerifyResetOtp() {
       body: JSON.stringify({ email: verifiedResetEmail, otp: enteredOtp })
     });
 
-    const result = await res.json();
-    if (!res.ok || !result.success) {
-      throw new Error(result.error || "Invalid or expired OTP code.");
+    const result = await readApiResponse(res);
+    if (!result.success || !result.resetToken) {
+      throw new Error('The reset code could not be verified. Please request a new code.');
     }
 
-    showNotice('Code verified. Enter your new password.', 'success');
+    verifiedResetToken = result.resetToken;
+    showNotice('Code verified. Create your new password below.', 'success');
     document.getElementById('reset-verify-box').classList.add('hidden');
     document.getElementById('new-password-box').classList.remove('hidden');
   } catch (error) {
@@ -409,18 +492,20 @@ async function handleSubmitNewPassword() {
     const res = await fetch('/.netlify/functions/update-password', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: verifiedResetEmail, newPassword })
+      body: JSON.stringify({ email: verifiedResetEmail, newPassword, resetToken: verifiedResetToken })
     });
 
-    const result = await res.json();
-    if (!res.ok || !result.success) {
-      throw new Error(result.error || "Failed to update password.");
+    const result = await readApiResponse(res);
+    if (!result.success) {
+      throw new Error(result.error || 'Password could not be updated.');
     }
 
     showNotice('Password updated successfully. You can now sign in.', 'success');
     document.getElementById('reset-form').reset();
     document.getElementById('new-password-input').value = "";
+    document.getElementById('reset-verify-code-input').value = "";
     verifiedResetEmail = "";
+    verifiedResetToken = "";
     switchAuthTab('login');
   } catch (error) {
     showNotice(getFriendlyError(error, 'Password could not be updated.'), 'error');
@@ -550,11 +635,30 @@ function getFriendlyError(error, fallback = 'Something went wrong. Please try ag
 function showNotice(message, type = 'info') {
   const notice = document.getElementById('app-notice');
   if (!notice) return;
+
   clearTimeout(noticeTimer);
+  const safeMessage = escapeHtml(String(message));
+  const titles = { success: 'Success', error: 'Error', info: 'Notice' };
+  const icons = { success: '✓', error: '×', info: 'i' };
+
   notice.className = `app-notice ${type}`;
-  notice.innerHTML = `<span class="notice-icon" aria-hidden="true">${type === 'success' ? '✓' : type === 'error' ? '!' : 'i'}</span><span>${escapeHtml(String(message))}</span>`;
+  notice.innerHTML = `
+    <div class="notice-icon" aria-hidden="true">${icons[type] || icons.info}</div>
+    <div class="notice-content">
+      <strong class="notice-title">${titles[type] || titles.info}</strong>
+      <span class="notice-message">${safeMessage}</span>
+    </div>
+    <button class="notice-close" type="button" aria-label="Dismiss notification">×</button>
+    <span class="notice-progress" aria-hidden="true"></span>
+  `;
+  const close = notice.querySelector('.notice-close');
+  if (close) close.addEventListener('click', () => {
+    clearTimeout(noticeTimer);
+    notice.classList.remove('show');
+  });
+
   requestAnimationFrame(() => notice.classList.add('show'));
-  noticeTimer = setTimeout(() => notice.classList.remove('show'), 5000);
+  noticeTimer = setTimeout(() => notice.classList.remove('show'), type === 'error' ? 6500 : 5000);
 }
 
 function showPaymentNotice(message, type = 'info') {
