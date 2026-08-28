@@ -34,6 +34,9 @@ exports.handler = async function(event) {
 
     const amount = unlockType === 'all' ? 200000 : 50000;
     const customUnlock = unlockType === 'all' ? 'ALL_SUBJECTS' : unlockType;
+    const host = event.headers?.host || event.headers?.Host;
+    const forwardedProto = event.headers?.['x-forwarded-proto'] || event.headers?.['X-Forwarded-Proto'] || 'https';
+    const callbackUrl = host ? `${forwardedProto.split(',')[0].trim()}://${host}/` : undefined;
     const response = await fetch('https://api.paystack.co/transaction/initialize', {
       method: 'POST',
       headers: {
@@ -50,11 +53,11 @@ exports.handler = async function(event) {
           unlock_type: customUnlock,
           product: 'WAEC_NECO_UTME_CBT_SUBJECT_UNLOCK'
         },
-        callback_url: `${process.env.URL || 'https://cbt.de-blaisetechnologies.com.ng'}/?payment=callback`
+        ...(callbackUrl ? { callback_url: callbackUrl } : {})
       })
     });
     const data = await response.json();
-    if (!response.ok || !data.status || !data.data?.access_code || !data.data?.reference) {
+    if (!response.ok || !data.status || !data.data?.access_code || !data.data?.reference || !data.data?.authorization_url) {
       console.error('Paystack initialization failed:', data);
       return { statusCode: 502, body: JSON.stringify({ error: 'Unable to initialize Paystack payment.' }) };
     }
@@ -62,7 +65,7 @@ exports.handler = async function(event) {
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ success: true, accessCode: data.data.access_code, authorizationUrl: data.data.authorization_url, reference: data.data.reference })
+      body: JSON.stringify({ success: true, accessCode: data.data.access_code, reference: data.data.reference, authorizationUrl: data.data.authorization_url })
     };
   } catch (error) {
     console.error('Initialize payment error:', error);

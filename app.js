@@ -39,9 +39,8 @@ let timeLeft = 0;
 let currentUser = null;
 let unlockedSubjects = ['english', 'mathematics'];
 let isAllUnlocked = false;
-let lastSelectedSubject = 'english';
-let pendingUnlockType = null;
-let noticeTimer = null;
+let lastAllowedSubject = 'english';
+let pendingUnlockSubject = null;
 
 // Temporary staging data for multi-step flows
 let pendingRegData = null;
@@ -102,8 +101,9 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       await loadUserUnlockedSubjects();
+      lastAllowedSubject = (isAllUnlocked || unlockedSubjects.includes('english')) ? 'english' : (unlockedSubjects[0] || 'english');
       showSetupScreen();
-      await handlePaymentCallback();
+      await handlePaymentReturn();
     } else {
       currentUser = null;
       // Fixed sign-out state check: explicitly ensure auth screen & login tabs are cleanly re-enabled
@@ -136,13 +136,19 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('start-btn').addEventListener('click', handleStartExamClick);
   document.getElementById('practice-guide-btn').addEventListener('click', loadPracticeGuide);
   document.getElementById('close-guide-btn').addEventListener('click', () => document.getElementById('practice-guide').classList.add('hidden'));
-  document.getElementById('unlock-all-btn').addEventListener('click', () => openUnlockModal('all'));
-  document.getElementById('subject').addEventListener('change', handleSubjectSelection);
-  document.getElementById('unlock-single-btn').addEventListener('click', () => { if (pendingUnlockType) triggerPaystackPayment(pendingUnlockType); });
-  document.getElementById('unlock-all-modal-btn').addEventListener('click', () => triggerPaystackPayment('all'));
+  document.getElementById('unlock-all-btn').addEventListener('click', () => openUnlockModal(document.getElementById('subject')?.value || 'biology'));
   document.getElementById('close-unlock-modal').addEventListener('click', closeUnlockModal);
-  document.getElementById('cancel-unlock-btn').addEventListener('click', closeUnlockModal);
-  document.querySelector('#app-notice .notice-close').addEventListener('click', hideNotice);
+  document.getElementById('unlock-subject-btn').addEventListener('click', () => {
+    const subject = pendingUnlockSubject;
+    closeUnlockModal();
+    if (subject) triggerPaystackPayment(subject);
+  });
+  document.getElementById('unlock-all-modal-btn').addEventListener('click', () => {
+    closeUnlockModal();
+    triggerPaystackPayment('all');
+  });
+  document.getElementById('subject').addEventListener('change', handleSubjectSelection);
+
   document.getElementById('prev-btn').addEventListener('click', () => navigateQuestion(-1));
   document.getElementById('next-btn').addEventListener('click', () => navigateQuestion(1));
   document.getElementById('submit-btn').addEventListener('click', () => submitExam());
@@ -232,9 +238,9 @@ async function handleRegistration(e) {
     
     document.getElementById('register-form').classList.add('hidden');
     document.getElementById('verify-box').classList.remove('hidden');
-    showNotice('success', `Verification code sent to ${email}. Please check your inbox.`);
+    alert(`Verification code sent to ${email}. Please check your inbox.`);
   } catch (error) {
-    showNotice('error', error);
+    alert("Registration Failed: " + error.message);
   } finally {
     regBtn.innerText = "Send Verification Code";
     regBtn.disabled = false;
@@ -246,7 +252,7 @@ async function handleVerifyRegistrationOtp() {
   const verifyBtn = document.getElementById('confirm-verify-btn');
 
   if (!enteredOtp || enteredOtp.length !== 6) {
-    showNotice('error', "Please enter a valid 6-digit verification code.");
+    alert("Please enter a valid 6-digit verification code.");
     return;
   }
 
@@ -270,13 +276,13 @@ async function handleVerifyRegistrationOtp() {
       throw new Error(result.error || "Verification failed.");
     }
 
-    showNotice('success', "Account verified and created successfully. You can now log in.");
+    alert("Account verified and created successfully! You can now log in.");
     document.getElementById('register-form').reset();
     document.getElementById('verify-code-input').value = "";
     pendingRegData = null;
     switchAuthTab('login');
   } catch (error) {
-    showNotice('error', error);
+    alert("Verification Error: " + error.message);
   } finally {
     verifyBtn.innerText = "Verify Account";
     verifyBtn.disabled = false;
@@ -306,7 +312,7 @@ async function handleLogin(e) {
       const userData = userSnap.data();
       if (!userData.isVerified) {
         await signOut(auth);
-        showNotice('error', "Your account email is not verified. Please complete verification before signing in.");
+        alert("Access Denied: Your account email is not verified.");
         loginBtn.innerText = "Sign In & Proceed";
         loginBtn.disabled = false;
         return;
@@ -314,7 +320,7 @@ async function handleLogin(e) {
     }
     document.getElementById('login-form').reset();
   } catch (error) {
-    showNotice('error', error);
+    alert("Login Failed: " + error.message);
     loginBtn.innerText = "Sign In & Proceed";
     loginBtn.disabled = false;
   }
@@ -346,9 +352,9 @@ async function handlePasswordResetRequest(e) {
     verifiedResetEmail = email;
     document.getElementById('reset-form').classList.add('hidden');
     document.getElementById('reset-verify-box').classList.remove('hidden');
-    showNotice('success', `A password reset code has been sent to ${email}.`);
+    alert(`A password reset code has been sent to ${email}.`);
   } catch (error) {
-    showNotice('error', error);
+    alert("Password Reset Request Failed: " + error.message);
   } finally {
     resetBtn.innerText = "Send Reset Code";
     resetBtn.disabled = false;
@@ -360,7 +366,7 @@ async function handleVerifyResetOtp() {
   const verifyBtn = document.getElementById('confirm-reset-verify-btn');
 
   if (!enteredOtp || enteredOtp.length !== 6) {
-    showNotice(\'error\', "Please enter a valid 6-digit code.");
+    alert("Please enter a valid 6-digit code.");
     return;
   }
 
@@ -379,11 +385,11 @@ async function handleVerifyResetOtp() {
       throw new Error(result.error || "Invalid or expired OTP code.");
     }
 
-    showNotice('success', "Code verified successfully. Please enter your new password.");
+    alert("Code verified successfully! Please enter your new password.");
     document.getElementById('reset-verify-box').classList.add('hidden');
     document.getElementById('new-password-box').classList.remove('hidden');
   } catch (error) {
-    showNotice('error', error);
+    alert("Verification Failed: " + error.message);
   } finally {
     verifyBtn.innerText = "Verify Code";
     verifyBtn.disabled = false;
@@ -395,7 +401,7 @@ async function handleSubmitNewPassword() {
   const updateBtn = document.getElementById('update-password-btn');
 
   if (!newPassword || newPassword.length < 6) {
-    showNotice('error', "Password must be at least 6 characters long.");
+    alert("Password must be at least 6 characters long.");
     return;
   }
 
@@ -414,13 +420,13 @@ async function handleSubmitNewPassword() {
       throw new Error(result.error || "Failed to update password.");
     }
 
-    showNotice('success', "Password updated successfully. You can now log in with your new password.");
+    alert("Password updated successfully! You can now log in with your new password.");
     document.getElementById('reset-form').reset();
     document.getElementById('new-password-input').value = "";
     verifiedResetEmail = "";
     switchAuthTab('login');
   } catch (error) {
-    showNotice('error', error);
+    alert("Update Failed: " + error.message);
   } finally {
     updateBtn.innerText = "Save New Password";
     updateBtn.disabled = false;
@@ -439,179 +445,172 @@ async function loadUserUnlockedSubjects() {
   try {
     const userDocRef = doc(db, "users", currentUser.uid);
     const userSnap = await getDoc(userDocRef);
+
     if (userSnap.exists()) {
       const data = userSnap.data();
-      unlockedSubjects = Array.isArray(data.unlockedSubjects) ? data.unlockedSubjects : ['english', 'mathematics'];
-      isAllUnlocked = data.isAllUnlocked === true;
+      unlockedSubjects = data.unlockedSubjects || ['english', 'mathematics'];
+      isAllUnlocked = data.isAllUnlocked || false;
     } else {
+      // Registration creates the profile server-side. Do not let the browser create
+      // or modify entitlement fields when the profile is missing.
       unlockedSubjects = ['english', 'mathematics'];
       isAllUnlocked = false;
     }
   } catch (err) {
-    console.warn('Could not retrieve user access:', err);
-    showNotice('error', 'Access information could not be loaded. Please refresh and try again.');
+    console.warn("Could not retrieve user unlocks from Firestore:", err);
   }
-  updateSubjectDropdownUI();
-}
 
-function subjectLabel(value) {
-  const option = [...document.querySelectorAll("#subject option")].find(o => o.value === value);
-  return option ? option.textContent.trim() : value.replaceAll('-', ' ');
+  updateSubjectDropdownUI();
 }
 
 function updateSubjectDropdownUI() {
   const select = document.getElementById('subject');
   if (!select) return;
-  [...select.options].forEach(option => {
-    option.textContent = option.dataset.label || option.textContent.replace(/\s*[🔒🔓].*$/u, '').replace(/\s*\(Unlocked.*\)$/i, '').replace(/\s*\(Free\)$/i, '').trim();
-    option.dataset.label = option.textContent;
-  });
-  // Keep the subject list clean: no prices or payment amounts.
-  lastSelectedSubject = select.value || lastSelectedSubject;
-  const allBtn = document.getElementById('unlock-all-btn');
-  if (allBtn) allBtn.classList.toggle('hidden', isAllUnlocked || ALL_SUBJECTS.every(s => unlockedSubjects.includes(s)));
-}
+  const options = select.options;
 
-function isSubjectUnlocked(subject) {
-  return isAllUnlocked || unlockedSubjects.includes(subject);
-}
-
-function handleSubjectSelection(e) {
-  const selected = e.target.value;
-  if (isSubjectUnlocked(selected)) {
-    lastSelectedSubject = selected;
-    return;
+  for (let i = 0; i < options.length; i++) {
+    const val = options[i].value;
+    const baseName = options[i].text.replace(/^🔒\s*/, '').replace(/^✓\s*/, '').split('(')[0].trim();
+    const unlocked = isAllUnlocked || unlockedSubjects.includes(val);
+    options[i].text = unlocked ? `✓ ${baseName}` : `🔒 ${baseName}`;
   }
-  e.target.value = lastSelectedSubject;
-  openUnlockModal(selected);
+
+  const unlockAllBtn = document.getElementById('unlock-all-btn');
+  if (isAllUnlocked || ALL_SUBJECTS.every(s => unlockedSubjects.includes(s))) {
+    if (unlockAllBtn) unlockAllBtn.style.display = 'none';
+  }
 }
 
-function openUnlockModal(subjectOrType) {
-  pendingUnlockType = subjectOrType === 'all' ? 'all' : subjectOrType;
+function openUnlockModal(subject) {
+  pendingUnlockSubject = subject;
   const modal = document.getElementById('unlock-modal');
-  const title = document.getElementById('unlock-title');
-  const message = document.getElementById('unlock-message');
-  const single = document.getElementById('unlock-single-btn');
-  if (!modal) return;
-  if (pendingUnlockType === 'all') {
-    title.textContent = 'Unlock all subjects';
-    message.textContent = 'Get access to every subject after your payment has been securely verified.';
-    single.classList.add('hidden');
-  } else {
-    const label = subjectLabel(pendingUnlockType);
-    title.textContent = `Unlock ${label}`;
-    message.textContent = 'This subject is currently locked. Continue to secure checkout to unlock it.';
-    single.classList.remove('hidden');
+  const title = document.getElementById('unlock-modal-title');
+  const message = document.getElementById('unlock-modal-message');
+  const subjectBtn = document.getElementById('unlock-subject-btn');
+  const displayName = subject === 'all' ? 'all subjects' : subject.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  if (title) title.textContent = subject === 'all' ? 'Unlock All Subjects' : `Unlock ${displayName}`;
+  if (message) message.textContent = subject === 'all'
+    ? 'Unlock every premium subject and get full access to the practice bank.'
+    : `${displayName} is currently locked. Choose a single-subject unlock or unlock all subjects.`;
+  if (subjectBtn) subjectBtn.querySelector('strong').textContent = `Unlock ${displayName}`;
+  if (modal) {
+    modal.classList.remove('hidden');
+    document.body.classList.add('modal-open');
   }
-  modal.classList.remove('hidden');
-  modal.setAttribute('aria-hidden', 'false');
 }
 
 function closeUnlockModal() {
   const modal = document.getElementById('unlock-modal');
-  if (modal) { modal.classList.add('hidden'); modal.setAttribute('aria-hidden', 'true'); }
-  pendingUnlockType = null;
+  if (modal) modal.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+  pendingUnlockSubject = null;
+}
+
+function handleSubjectSelection(event) {
+  const selectedSubject = event.target.value;
+  if (isAllUnlocked || unlockedSubjects.includes(selectedSubject)) {
+    lastAllowedSubject = selectedSubject;
+    return;
+  }
+  event.target.value = lastAllowedSubject;
+  openUnlockModal(selectedSubject);
 }
 
 function handleStartExamClick() {
   const selectedSubject = document.getElementById('subject').value;
-  if (isSubjectUnlocked(selectedSubject)) fetchExamQuestions();
-  else openUnlockModal(selectedSubject);
+
+  if (isAllUnlocked || unlockedSubjects.includes(selectedSubject)) {
+    fetchExamQuestions();
+  } else {
+    openUnlockModal(selectedSubject);
+  }
 }
 
 async function triggerPaystackPayment(subjectOrType) {
-  if (!currentUser || !currentUser.email || !auth.currentUser) {
-    showNotice('error', 'Your session has expired. Please sign in again.');
+  if (!currentUser || !auth.currentUser) {
+    showPaymentNotice('Your session has expired. Please log in again.', 'error');
     return;
   }
-  const amountText = subjectOrType === 'all' ? '₦2,000' : '₦500';
+
+  const subjectButton = document.getElementById('unlock-subject-btn');
+  const allButton = document.getElementById('unlock-all-modal-btn');
+  if (subjectButton) subjectButton.disabled = true;
+  if (allButton) allButton.disabled = true;
+  showPaymentNotice('Preparing your secure Paystack checkout…', 'info');
+
   try {
     const idToken = await auth.currentUser.getIdToken();
     const initRes = await fetch('/.netlify/functions/initialize-payment', {
-      method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${idToken}` },
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${idToken}` },
       body: JSON.stringify({ unlockType: subjectOrType })
     });
     const init = await initRes.json();
-    if (!initRes.ok || !init.success || !init.authorizationUrl || !init.reference) throw new Error(init.error || 'Secure checkout could not be prepared.');
+    if (!initRes.ok || !init.success || !init.authorizationUrl || !init.reference) {
+      throw new Error(init.error || 'Could not initialize payment.');
+    }
 
-    sessionStorage.setItem('waecPendingPayment', JSON.stringify({ reference: init.reference, unlockType: subjectOrType }));
-    closeUnlockModal();
-    showNotice('info', `Opening secure checkout for ${amountText}.`);
-    setTimeout(() => { window.location.href = init.authorizationUrl; }, 250);
+    // Store only the non-sensitive transaction context. The server remains the
+    // authority: access is granted only after verify-payment confirms Paystack.
+    sessionStorage.setItem('waec_pending_payment', JSON.stringify({
+      reference: init.reference,
+      unlockType: subjectOrType,
+      userId: currentUser.uid
+    }));
+
+    // Redirecting to Paystack avoids mobile-browser popup blocking that can
+    // happen when an iframe/popup is opened after an asynchronous API call.
+    window.location.assign(init.authorizationUrl);
   } catch (err) {
     console.error('Payment initialization error:', err);
-    showNotice('error', cleanUserMessage(err));
+    showPaymentNotice(err.message || 'Payment could not be started. Please try again.', 'error');
+    if (subjectButton) subjectButton.disabled = false;
+    if (allButton) allButton.disabled = false;
   }
 }
 
-async function handlePaymentCallback() {
+async function handlePaymentReturn() {
   const params = new URLSearchParams(window.location.search);
   const reference = params.get('reference');
-  const pendingRaw = sessionStorage.getItem('waecPendingPayment');
-  if (!reference || !pendingRaw || !auth.currentUser) return;
-  let pending;
-  try { pending = JSON.parse(pendingRaw); } catch { sessionStorage.removeItem('waecPendingPayment'); return; }
-  if (pending.reference !== reference) return;
+  const raw = sessionStorage.getItem('waec_pending_payment');
+  if (!reference || !raw || !currentUser || !auth.currentUser) return;
 
-  // Remove callback parameters from the address bar immediately.
+  let pending;
+  try { pending = JSON.parse(raw); } catch (_) { pending = null; }
+  if (!pending || pending.reference !== reference || pending.userId !== currentUser.uid) return;
+
+  // Remove the reference from the address bar without reloading the app.
   window.history.replaceState({}, document.title, window.location.pathname);
-  showNotice('info', 'Payment received. Verifying your transaction securely...');
+  showPaymentNotice('Payment received. Verifying with Paystack…', 'info');
+
   try {
     const token = await auth.currentUser.getIdToken(true);
     const res = await fetch('/.netlify/functions/verify-payment', {
-      method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-      body: JSON.stringify({ reference, unlockType: pending.unlockType })
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      body: JSON.stringify({ reference, userId: currentUser.uid, unlockType: pending.unlockType })
     });
     const result = await res.json();
+
     if (res.ok && result.success) {
       unlockedSubjects = Array.isArray(result.unlockedSubjects) ? result.unlockedSubjects : unlockedSubjects;
       isAllUnlocked = Boolean(result.isAllUnlocked);
       updateSubjectDropdownUI();
-      sessionStorage.removeItem('waecPendingPayment');
-      showNotice('success', pending.unlockType === 'all' ? 'All subjects are now unlocked. You can start practising.' : `${subjectLabel(pending.unlockType)} is now unlocked. You can start practising.`);
+      sessionStorage.removeItem('waec_pending_payment');
+      const label = pending.unlockType === 'all'
+        ? 'All subjects have been unlocked successfully.'
+        : `${pending.unlockType.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())} has been unlocked successfully.`;
+      showPaymentNotice(label, 'success');
     } else if (res.status === 202) {
-      showNotice('info', 'Your payment is still being confirmed. Please wait a moment and refresh your dashboard.');
+      showPaymentNotice('Paystack is still confirming this payment. Please refresh shortly.', 'info');
     } else {
-      sessionStorage.removeItem('waecPendingPayment');
-      showNotice('error', result.error || 'We could not confirm this payment. No access was granted.');
+      sessionStorage.removeItem('waec_pending_payment');
+      showPaymentNotice(result.error || 'Payment could not be verified.', 'error');
     }
   } catch (err) {
-    console.error('Payment verification error:', err);
-    showNotice('error', 'We could not verify the payment right now. Please refresh and try again.');
+    console.error('Payment return verification error:', err);
+    showPaymentNotice('Payment was completed, but verification could not be reached. Please refresh and try again.', 'error');
   }
-}
-
-function cleanUserMessage(error) {
-  const raw = String(error?.message || error || 'Something went wrong.');
-  const codeMatch = raw.match(/auth\/([a-z-]+)/i);
-  const code = codeMatch ? codeMatch[1].toLowerCase() : '';
-  const authMessages = {
-    'invalid-credential': 'The email or password is incorrect.',
-    'invalid-login-credentials': 'The email or password is incorrect.',
-    'user-not-found': 'No account was found with that email address.',
-    'wrong-password': 'The email or password is incorrect.',
-    'too-many-requests': 'Too many attempts. Please wait a few minutes and try again.',
-    'user-disabled': 'This account has been disabled. Please contact support.',
-    'network-request-failed': 'Network connection failed. Please check your internet connection.'
-  };
-  if (authMessages[code]) return authMessages[code];
-  return raw.replace(/^Firebase(?:Error)?\s*:\s*/i, '').replace(/^Error\s*\(([^)]+)\)\s*:?\s*/i, '').trim();
-}
-
-function showNotice(type, message, title) {
-  const box = document.getElementById('app-notice');
-  if (!box) return;
-  clearTimeout(noticeTimer);
-  box.className = `app-notice notice-${type}`;
-  box.querySelector('.notice-title').textContent = title || ({success:'Success', error:'Unable to continue', info:'Please wait'}[type] || 'Notice');
-  box.querySelector('.notice-message').textContent = cleanUserMessage(message);
-  box.classList.remove('hidden');
-  noticeTimer = setTimeout(hideNotice, type === 'error' ? 9000 : 6000);
-}
-
-function hideNotice() {
-  const box = document.getElementById('app-notice');
-  if (box) box.classList.add('hidden');
 }
 
 function showSetupScreen() {
@@ -619,8 +618,6 @@ function showSetupScreen() {
   document.getElementById('setup-screen').classList.remove('hidden');
   document.getElementById('user-badge').classList.remove('hidden');
   document.getElementById('candidate-name').innerText = currentUser.name;
-  const avatar = document.getElementById('dashboard-avatar');
-  if (avatar) avatar.textContent = (currentUser.name || 'A').trim().charAt(0).toUpperCase();
   
   ensureChannelBanner('setup-screen');
 }
@@ -671,7 +668,7 @@ async function fetchExamQuestions() {
     startTimer();
   } catch (error) {
     console.error('Question bank error:', error);
-    showNotice('error', error);
+    alert(`Unable to start practice: ${error.message}`);
   } finally {
     startBtn.innerText = "Start Practice Test";
     startBtn.disabled = false;
@@ -770,7 +767,7 @@ function startTimer() {
 
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
-      showNotice('info', "Time is up. Your practice test will be submitted automatically.");
+      alert("Time is up! Submitting exam automatically.");
       submitExam();
     }
   }, 1000);

@@ -19,20 +19,22 @@ exports.handler = async function(event) {
   }
 
   try {
-    const { reference, unlockType } = JSON.parse(event.body || '{}');
+    const { reference, userId, unlockType } = JSON.parse(event.body || '{}');
     const authHeader = event.headers?.authorization || event.headers?.Authorization || '';
     if (!authHeader.startsWith('Bearer ')) {
       return { statusCode: 401, body: JSON.stringify({ error: 'Authentication required.' }) };
     }
     const decoded = await auth.verifyIdToken(authHeader.slice(7));
-    const userId = decoded.uid;
+    if (decoded.uid !== userId) {
+      return { statusCode: 403, body: JSON.stringify({ error: 'Authenticated account does not match the payment account.' }) };
+    }
     const allowedSubjects = [
       'english', 'mathematics', 'biology', 'chemistry', 'physics', 'government',
       'economics', 'commerce', 'crk', 'irk', 'accounting', 'geography',
       'agricultural-science', 'literature', 'civiceducation'
     ];
 
-    if (!reference || !unlockType) {
+    if (!reference || !userId || !unlockType) {
       return { statusCode: 400, body: JSON.stringify({ error: 'Missing required payment details.' }) };
     }
     if (unlockType !== 'all' && !allowedSubjects.includes(unlockType)) {
@@ -57,33 +59,57 @@ exports.handler = async function(event) {
       return { statusCode: 202, body: JSON.stringify({ success: false, pending: true, status: paystackData.data.status }) };
     }
 
+    // Paystack may charge the customer more than the product price when
+    // "Pass fees to customers" is enabled. Therefore, do NOT compare
+    // data.amount directly with ₦500/₦2,000.
+    //
+    // data.requested_amount is the amount our application requested for the
+    // product, while data.amount is the gross amount actually charged to the
+    // customer (which can include Paystack's fee).
     const expectedAmount = unlockType === 'all' ? 200000 : 50000;
     const amountPaid = Number(paystackData.data.amount);
+    const requestedAmount = Number(paystackData.data.requested_amount);
+    const paystackFees = Number(paystackData.data.fees || 0);
     const currency = String(paystackData.data.currency || '').toUpperCase();
-    const paidEmail = String(paystackData.data.customer?.email || '').toLowerCase();
+    const paidEmail = String(paystackData.data.customer?.email || '').trim().toLowerCase();
 
-    if (currency !== 'NGN' || amountPaid !== expectedAmount) {
-      return { statusCode: 400, body: JSON.stringify({ error: 'Payment amount or currency does not match the requested package.' }) };
+    if (currency !== 'NGN') {
+      return { statusCode: 400, body: JSON.stringify({ error: 'This payment was not completed in Nigerian Naira.' }) };
     }
 
-    const metadata = paystackData.data.metadata || {};
+    // The requested amount MUST be exactly our product price. The customer
+    // amount may be higher because Paystack has added its transaction fee.
+    if (!Number.isFinite(requestedAmount) || requestedAmount !== expectedAmount ||
+        !Number.isFinite(amountPaid) || amountPaid < requestedAmount ||
+        !Number.isFinite(paystackFees) || (paystackFees > 0 && amountPaid !== requestedAmount + paystackFees)) {
+      console.error('Payment amount mismatch', {
+        expectedAmount, requestedAmount, amountPaid, paystackFees, reference
+      });
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: 'The verified payment amount does not match the selected package.' })
+      };
+    }
+
+    if (String(paystackData.data.reference || '') !== String(reference)) {
+      return { statusCode: 403, body: JSON.stringify({ error: 'Payment reference could not be validated.' }) };
+    }
+
+    // Require the metadata we created during initialization. This prevents a
+    // valid payment for one package/account from being used to unlock another.
+    const metadataRaw = paystackData.data.metadata || {};
+    let metadata = metadataRaw;
+    if (typeof metadataRaw === 'string') {
+      try { metadata = JSON.parse(metadataRaw); } catch (_) { metadata = {}; }
+    }
     const customFields = Array.isArray(metadata.custom_fields) ? metadata.custom_fields : [];
     const field = (name) => customFields.find(f => f && f.variable_name === name)?.value;
     const metadataUserId = metadata.user_id || field('user_id');
     const metadataUnlock = metadata.unlock_type || field('unlock_type');
+    const expectedMetadataUnlock = unlockType === 'all' ? 'ALL_SUBJECTS' : unlockType;
 
-    if (metadataUserId && metadataUserId !== userId) {
-      return { statusCode: 403, body: JSON.stringify({ error: 'Payment does not belong to this account.' }) };
-    }
-    if (metadataUnlock && metadataUnlock !== (unlockType === 'all' ? 'ALL_SUBJECTS' : unlockType)) {
-      return { statusCode: 403, body: JSON.stringify({ error: 'Payment package does not match the requested unlock.' }) };
-    }
-
-    const existingPayment = await db.collection('payments').doc(reference).get();
-    if (existingPayment.exists && existingPayment.data().status === 'success' && existingPayment.data().userId === userId) {
-      const existingUser = await db.collection('users').doc(userId).get();
-      const existingData = existingUser.exists ? existingUser.data() : {};
-      return { statusCode: 200, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ success: true, unlockedSubjects: existingData.unlockedSubjects || [], isAllUnlocked: existingData.isAllUnlocked === true }) };
+    if (metadataUserId !== userId || metadataUnlock !== expectedMetadataUnlock) {
+      return { statusCode: 403, body: JSON.stringify({ error: 'The payment details do not match this account or package.' }) };
     }
 
     const userRef = db.collection('users').doc(userId);
@@ -108,6 +134,8 @@ exports.handler = async function(event) {
       isAllUnlocked: unlockType === 'all' ? true : Boolean(userData.isAllUnlocked),
       lastPaymentReference: reference,
       lastPaymentAmount: amountPaid,
+      lastPaymentBaseAmount: requestedAmount,
+      lastPaystackFee: paystackFees,
       lastPaymentAt: admin.firestore.FieldValue.serverTimestamp()
     });
 
@@ -118,6 +146,8 @@ exports.handler = async function(event) {
       email: paidEmail || userData.email || null,
       unlockType,
       amount: amountPaid,
+      requestedAmount,
+      paystackFee: paystackFees,
       currency,
       status: 'success',
       paidAt: paystackData.data.paid_at || null,
@@ -127,7 +157,12 @@ exports.handler = async function(event) {
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ success: true, unlockedSubjects: updated, isAllUnlocked: unlockType === 'all' ? true : Boolean(userData.isAllUnlocked) })
+      body: JSON.stringify({
+        success: true,
+        unlockedSubjects: updated,
+        isAllUnlocked: unlockType === 'all' ? true : Boolean(userData.isAllUnlocked),
+        payment: { baseAmount: requestedAmount, paystackFee: paystackFees, customerPaid: amountPaid, currency }
+      })
     };
   } catch (error) {
     console.error('Payment verification error:', error);

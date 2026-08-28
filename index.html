@@ -24,6 +24,14 @@
 
     <!-- 1. AUTHENTICATION & ACCOUNT PORTAL -->
     <section id="auth-screen">
+      <div class="auth-brand">
+        <div class="auth-brand-mark">DB</div>
+        <div>
+          <span class="auth-brand-kicker">DE-BLAISE TECHNOLOGIES</span>
+          <h1>WAEC & NECO CBT</h1>
+          <p>Practice smarter. Prepare with confidence.</p>
+        </div>
+      </div>
       <div class="auth-tabs">
         <button id="tab-login" class="tab-btn active">Log In</button>
         <button id="tab-register" class="tab-btn">Create Account</button>
@@ -97,89 +105,86 @@
       </div>
     </section>
 
-    <!-- 2. PROFESSIONAL CANDIDATE DASHBOARD -->
+    <!-- 2. EXAM SETUP SCREEN -->
     <section id="setup-screen" class="hidden">
       <div class="dashboard-hero">
         <div>
-          <span class="dashboard-eyebrow">CANDIDATE DASHBOARD</span>
-          <h1>Ready to practise?</h1>
-          <p>Choose a subject, review your study guide, and start a timed CBT practice session.</p>
+          <span class="dashboard-kicker">STUDENT DASHBOARD</span>
+          <h1>Ready for your next practice?</h1>
+          <p>Select a subject, choose your exam settings and start practising.</p>
         </div>
-        <div class="candidate-avatar" id="dashboard-avatar">A</div>
+        <div class="dashboard-status"><span class="status-dot"></span> Account active</div>
       </div>
-
       <div class="dashboard-stats">
-        <div class="stat-card"><span class="stat-icon">📚</span><div><strong>15</strong><small>Subjects</small></div></div>
-        <div class="stat-card"><span class="stat-icon">🎯</span><div><strong>CBT</strong><small>Practice Mode</small></div></div>
-        <div class="stat-card"><span class="stat-icon">📖</span><div><strong>Smart</strong><small>Study Guides</small></div></div>
+        <div><span>📚</span><strong>15</strong><small>Subjects</small></div>
+        <div><span>🔐</span><strong>Secure</strong><small>Payment verification</small></div>
+        <div><span>✓</span><strong>CBT</strong><small>Practice mode</small></div>
       </div>
+      <div class="setup-card">
+        <div class="section-heading"><span class="section-icon">⚙</span><div><h3>Practice settings</h3><p>Choose how you want to practise today.</p></div></div>
 
-      <div class="dashboard-section-title">
-        <div><span class="dashboard-eyebrow">PRACTICE SETUP</span><h3>Choose your test</h3></div>
-        <span class="secure-badge">🔒 Secure</span>
+      <label for="subject">Subject:</label>
+      <select id="subject">
+        <option value="english">English Language</option>
+        <option value="mathematics">Mathematics</option>
+        <option value="biology">Biology</option>
+        <option value="chemistry">Chemistry</option>
+        <option value="physics">Physics</option>
+        <option value="government">Government</option>
+        <option value="economics">Economics</option>
+        <option value="commerce">Commerce</option>
+        <option value="crk">CRK</option>
+        <option value="irk">IRK</option>
+        <option value="accounting">Financial Accounting</option>
+        <option value="geography">Geography</option>
+        <option value="agricultural-science">Agricultural Science</option>
+        <option value="literature">Literature-in-English</option>
+        <option value="civiceducation">Civic Education</option>
+      </select>
+
+      <label for="examtype">Exam Board / Type:</label>
+      <select id="examtype">
+        <option value="wassce">WAEC (WASSCE)</option>
+        <option value="neco">NECO</option>
+        <option value="utme">JAMB (UTME)</option>
+      </select>
+
+      <label for="question-limit">Number of Questions:</label>
+      <select id="question-limit">
+        <option value="10">10 Questions (Quick Practice)</option>
+        <option value="20">20 Questions (Standard)</option>
+        <option value="40">40 Questions (Full Test)</option>
+      </select>
+
+      <label for="exam-duration">Time Duration:</label>
+      <select id="exam-duration">
+        <option value="10">10 Minutes</option>
+        <option value="20" selected>20 Minutes</option>
+        <option value="30">30 Minutes</option>
+        <option value="45">45 Minutes</option>
+      </select>
+
+      <!-- UNLOCK ALL BUTTON -->
+      <button id="unlock-all-btn" style="background-color: #28a745; margin-bottom: 10px;">
+        🔓 Unlock All Subjects
+      </button>
+
+      <button id="start-btn">Start Practice Test</button>
+      <button id="practice-guide-btn" class="guide-btn">📘 View Practice Guide</button>
+      <button id="switch-user-btn" class="secondary-btn">Sign Out / Switch Account</button>
       </div>
-
-      <div class="settings-card">
-        <label for="subject">Subject</label>
-        <select id="subject">
-          <option value="english">English Language</option>
-          <option value="mathematics">Mathematics</option>
-          <option value="biology">Biology</option>
-          <option value="chemistry">Chemistry</option>
-          <option value="physics">Physics</option>
-          <option value="government">Government</option>
-          <option value="economics">Economics</option>
-          <option value="commerce">Commerce</option>
-          <option value="crk">CRK</option>
-          <option value="irk">IRK</option>
-          <option value="accounting">Financial Accounting</option>
-          <option value="geography">Geography</option>
-          <option value="agricultural-science">Agricultural Science</option>
-          <option value="literature">Literature-in-English</option>
-          <option value="civiceducation">Civic Education</option>
-        </select>
-
-        <div class="settings-grid">
-          <div><label for="examtype">Exam Board / Type</label>
-            <select id="examtype"><option value="wassce">WAEC (WASSCE)</option><option value="neco">NECO</option><option value="utme">JAMB (UTME)</option></select>
-          </div>
-          <div><label for="question-limit">Questions</label>
-            <select id="question-limit"><option value="10">10 Questions</option><option value="20">20 Questions</option><option value="40">40 Questions</option></select>
-          </div>
-          <div><label for="exam-duration">Duration</label>
-            <select id="exam-duration"><option value="10">10 Minutes</option><option value="20" selected>20 Minutes</option><option value="30">30 Minutes</option><option value="45">45 Minutes</option></select>
-          </div>
-        </div>
-
-        <button id="start-btn" class="primary-action">Start Practice Test <span>→</span></button>
-      </div>
-
-      <div class="quick-actions">
-        <button id="practice-guide-btn" class="action-card guide-btn" type="button"><span>📘</span><div><strong>Practice Guide</strong><small>Study key topics before your test</small></div><b>›</b></button>
-        <button id="unlock-all-btn" class="action-card unlock-card" type="button"><span>🔓</span><div><strong>Unlock All Subjects</strong><small>Get full access to every subject</small></div><b>›</b></button>
-        <button id="switch-user-btn" class="action-card signout-card" type="button"><span>↪</span><div><strong>Sign Out</strong><small>Switch to another candidate account</small></div><b>›</b></button>
-      </div>
-
-      <div class="dashboard-note"><span>✓</span><div><strong>Your access is protected</strong><p>Payments are verified securely before any subject is unlocked.</p></div></div>
 
       <div id="practice-guide" class="guide-panel hidden">
-        <div class="guide-header"><div><span class="eyebrow">SMART PREPARATION</span><h3 id="guide-title">Practice Guide</h3></div><button id="close-guide-btn" class="guide-close" type="button">×</button></div>
-        <p id="guide-intro" class="guide-intro"></p><div id="guide-topics" class="guide-topics"></div>
-      </div>
-
-      <div id="unlock-modal" class="modal-backdrop hidden" aria-hidden="true">
-        <div class="unlock-modal" role="dialog" aria-modal="true" aria-labelledby="unlock-title">
-          <button id="close-unlock-modal" class="modal-close" type="button" aria-label="Close">×</button>
-          <div class="modal-icon">🔐</div>
-          <span class="dashboard-eyebrow">SUBJECT ACCESS</span>
-          <h3 id="unlock-title">Unlock this subject</h3>
-          <p id="unlock-message">This subject is currently locked. Choose how you would like to continue.</p>
-          <button id="unlock-single-btn" class="modal-primary" type="button">Unlock Subject — ₦500</button>
-          <button id="unlock-all-modal-btn" class="modal-secondary" type="button">Unlock All Subjects — ₦2,000</button>
-          <button id="cancel-unlock-btn" class="modal-cancel" type="button">Not now</button>
+        <div class="guide-header">
+          <div>
+            <span class="eyebrow">SMART PREPARATION</span>
+            <h3 id="guide-title">Practice Guide</h3>
+          </div>
+          <button id="close-guide-btn" class="guide-close" type="button">×</button>
         </div>
+        <p id="guide-intro" class="guide-intro"></p>
+        <div id="guide-topics" class="guide-topics"></div>
       </div>
-
     </section>
 
     <!-- 3. ACTIVE EXAM SCREEN -->
@@ -211,9 +216,27 @@
       <button id="restart-btn">Take Another Test</button>
     </section>
 
-      <div id="app-notice" class="app-notice hidden" role="status" aria-live="polite">
-        <span class="notice-icon"></span><div><strong class="notice-title"></strong><p class="notice-message"></p></div><button class="notice-close" type="button" aria-label="Close">×</button>
+    <!-- PROFESSIONAL UNLOCK MODAL -->
+    <div id="unlock-modal" class="unlock-modal hidden" role="dialog" aria-modal="true" aria-labelledby="unlock-modal-title">
+      <div class="unlock-card">
+        <button id="close-unlock-modal" class="unlock-close" type="button" aria-label="Close">×</button>
+        <div class="unlock-icon">🔐</div>
+        <span class="unlock-eyebrow">PREMIUM PRACTICE ACCESS</span>
+        <h3 id="unlock-modal-title">Unlock this subject</h3>
+        <p id="unlock-modal-message">This subject is currently locked. Choose how you would like to continue.</p>
+        <div class="unlock-options">
+          <button id="unlock-subject-btn" class="unlock-option primary" type="button">
+            <strong>Unlock Subject</strong>
+            <span>₦500 + applicable Paystack fee</span>
+          </button>
+          <button id="unlock-all-modal-btn" class="unlock-option secondary" type="button">
+            <strong>Unlock All Subjects</strong>
+            <span>₦2,000 + applicable Paystack fee</span>
+          </button>
+        </div>
+        <p class="unlock-footnote">Payment is securely processed by Paystack. Access is granted only after your payment is verified.</p>
       </div>
+    </div>
 
     <!-- PROFESSIONAL DEVELOPER FOOTER -->
     <footer class="app-footer">
