@@ -115,8 +115,8 @@ function setupInstallPrompt() {
       const isIOS = /iphone|ipad|ipod/i.test(window.navigator.userAgent);
       showNotice(
         isIOS
-          ? 'Tap Share in Safari, then choose “Add to Home Screen”.'
-          : 'Open your browser menu and choose “Install app” or “Add to Home screen”.',
+          ? 'On iPhone/iPad, use Share → Add to Home Screen.'
+          : 'The browser has not made the install prompt available yet. Please refresh the page and tap Install again.',
         'info'
       );
       return;
@@ -167,10 +167,12 @@ function setupInstallPrompt() {
   }
 }
 
+// Attach the install listener immediately so Android Chrome can deliver
+// beforeinstallprompt without being missed during page startup.
+setupInstallPrompt();
 setupAppLoader();
 
 document.addEventListener('DOMContentLoaded', () => {
-  setupInstallPrompt();
   renderFooterChannelLink();
 
   onAuthStateChanged(auth, async (user) => {
