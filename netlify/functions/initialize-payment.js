@@ -49,7 +49,8 @@ exports.handler = async function(event) {
           user_id: decoded.uid,
           unlock_type: customUnlock,
           product: 'WAEC_NECO_UTME_CBT_SUBJECT_UNLOCK'
-        }
+        },
+        callback_url: `${process.env.URL || 'https://cbt.de-blaisetechnologies.com.ng'}/?payment=callback`
       })
     });
     const data = await response.json();
@@ -61,7 +62,7 @@ exports.handler = async function(event) {
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ success: true, accessCode: data.data.access_code, reference: data.data.reference })
+      body: JSON.stringify({ success: true, accessCode: data.data.access_code, authorizationUrl: data.data.authorization_url, reference: data.data.reference })
     };
   } catch (error) {
     console.error('Initialize payment error:', error);
