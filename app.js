@@ -74,6 +74,28 @@ const ALL_SUBJECTS = [
 
 let deferredInstallPrompt = null;
 
+
+function hideAppLoader() {
+  const loader = document.getElementById('app-loader');
+  if (!loader || loader.classList.contains('is-hidden')) return;
+  loader.classList.add('is-hidden');
+  window.setTimeout(() => loader.remove(), 450);
+}
+
+function setupAppLoader() {
+  const startedAt = performance.now();
+  const minimumDisplay = 900;
+  const reveal = () => {
+    const remaining = Math.max(0, minimumDisplay - (performance.now() - startedAt));
+    window.setTimeout(hideAppLoader, remaining);
+  };
+  if (document.readyState === 'complete') reveal();
+  else window.addEventListener('load', reveal, { once: true });
+  // Never leave the user staring at the splash if a remote service is slow.
+  window.setTimeout(hideAppLoader, 2500);
+}
+
+
 function setupInstallPrompt() {
   const installBanner = document.getElementById('install-banner');
   const installButton = document.getElementById('install-app-btn');
@@ -90,7 +112,13 @@ function setupInstallPrompt() {
 
   installButton?.addEventListener('click', async () => {
     if (!deferredInstallPrompt) {
-      showNotice('Use your browser menu and choose “Add to Home screen” to install the app.', 'info');
+      const isIOS = /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+      showNotice(
+        isIOS
+          ? 'Tap Share in Safari, then choose “Add to Home Screen”.'
+          : 'Open your browser menu and choose “Install app” or “Add to Home screen”.',
+        'info'
+      );
       return;
     }
     installButton.disabled = true;
@@ -120,10 +148,15 @@ function setupInstallPrompt() {
   setTimeout(() => {
     const alreadyInstalled = window.matchMedia('(display-mode: standalone)').matches ||
       window.navigator.standalone === true;
+    const isIOS = /iphone|ipad|ipod/i.test(window.navigator.userAgent);
     if (!alreadyInstalled && installBanner && !localStorage.getItem('waec_install_dismissed')) {
       installBanner.classList.remove('hidden');
+      if (isIOS && installButton) {
+        installButton.textContent = 'Add to Home';
+        installButton.setAttribute('aria-label', 'Add WAEC/NECO CBT to Home Screen');
+      }
     }
-  }, 1200);
+  }, 500);
 
   // Register the service worker so the app is installable and can load its
   // shell during temporary network interruptions.
@@ -133,6 +166,8 @@ function setupInstallPrompt() {
     });
   }
 }
+
+setupAppLoader();
 
 document.addEventListener('DOMContentLoaded', () => {
   setupInstallPrompt();

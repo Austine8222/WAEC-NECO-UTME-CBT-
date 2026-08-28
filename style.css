@@ -749,3 +749,112 @@ header h2 { color: #fff; margin: 0; font-size: 16px; }
   .install-copy span { font-size:11px; }
   .install-action { padding:9px 12px; font-size:12px; }
 }
+
+
+/* ===== PROFESSIONAL APP LOADER / SPLASH ===== */
+.app-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(45,115,213,.12), transparent 34%),
+    linear-gradient(160deg, #f8fbff 0%, #eef4fb 100%);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .38s ease, visibility .38s ease;
+}
+.app-loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.app-loader-card {
+  width: min(88vw, 360px);
+  padding: 34px 28px 28px;
+  text-align: center;
+  border: 1px solid rgba(214,226,241,.9);
+  border-radius: 26px;
+  background: rgba(255,255,255,.94);
+  box-shadow: 0 24px 70px rgba(15,47,95,.16);
+  backdrop-filter: blur(12px);
+}
+.app-loader-icon-wrap {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  margin: 0 auto 20px;
+}
+.app-loader-icon {
+  position: relative;
+  z-index: 2;
+  width: 92px;
+  height: 92px;
+  display: block;
+  object-fit: cover;
+  border-radius: 22px;
+  box-shadow: 0 12px 28px rgba(15,47,95,.18);
+}
+.app-loader-ring {
+  position: absolute;
+  inset: -7px;
+  border: 3px solid rgba(23,101,180,.15);
+  border-top-color: #1765b4;
+  border-right-color: #0f3b73;
+  border-radius: 50%;
+  animation: appLoaderSpin 1s linear infinite;
+}
+.app-loader-brand {
+  color: #0f2f5f;
+  font-size: 21px;
+  font-weight: 900;
+  letter-spacing: -.02em;
+}
+.app-loader-subtitle {
+  margin-top: 5px;
+  color: #6b7789;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.app-loader-progress {
+  width: 100%;
+  height: 5px;
+  margin: 24px 0 11px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e7eef7;
+}
+.app-loader-progress span {
+  display: block;
+  width: 42%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #0f3b73, #2d73d5);
+  animation: appLoaderProgress 1.15s ease-in-out infinite;
+}
+.app-loader-status {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 600;
+}
+@keyframes appLoaderSpin { to { transform: rotate(360deg); } }
+@keyframes appLoaderProgress {
+  0% { transform: translateX(-120%); }
+  50% { transform: translateX(125%); }
+  100% { transform: translateX(280%); }
+}
+
+/* Keep the install invitation prominent and app-like. */
+.install-banner {
+  border-color: #cddbea;
+  box-shadow: 0 20px 60px rgba(15,23,42,.22);
+}
+.install-action:disabled { opacity: .65; cursor: wait; }
+.install-action::before { content: "↧ "; font-weight: 900; }
+@media (max-width: 600px) {
+  .app-loader-card { padding: 30px 22px 24px; border-radius: 22px; }
+}
